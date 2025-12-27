@@ -1,0 +1,16 @@
+[
+    {
+        "name": "Your Name",
+        "email": "your.email@company.com",
+        "password": "YourSecurePassword123",
+        "role": "CEO",
+        "phone": "+91 9876543210"
+    },
+    {
+        "name": "Employee Name",
+        "email": "employee@company.com",
+        "password": "EmployeePassword123",
+        "role": "EMPLOYEE",
+        "phone": ""
+    }
+]
