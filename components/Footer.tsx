@@ -39,11 +39,11 @@ export default function Footer() {
                         <Link href="/" className="flex items-center gap-2 mb-4">
                             <Car className="h-8 w-8 text-amber-500" />
                             <span className="text-2xl font-bold text-white">
-                                LUXE<span className="text-amber-500">AUTO</span>
+                                TORQUE
                             </span>
                         </Link>
                         <p className="text-white/60 text-sm leading-relaxed mb-6 max-w-sm">
-                            India&apos;s most trusted premium pre-owned car marketplace. Every car is
+                            Chennai's most trusted premium pre-owned car marketplace. Every car is
                             expert-verified for your peace of mind.
                         </p>
                         <div className="space-y-3">
@@ -53,11 +53,11 @@ export default function Footer() {
                             </div>
                             <div className="flex items-center gap-3 text-white/60 text-sm">
                                 <Mail className="h-4 w-4 text-amber-500" />
-                                <span>hello@luxeauto.in</span>
+                                <span>hello@torque.in</span>
                             </div>
                             <div className="flex items-center gap-3 text-white/60 text-sm">
                                 <MapPin className="h-4 w-4 text-amber-500" />
-                                <span>Mumbai, Maharashtra</span>
+                                <span>Chennai, Tamil Nadu, India</span>
                             </div>
                         </div>
                     </div>
@@ -106,7 +106,7 @@ export default function Footer() {
                 {/* Bottom Bar */}
                 <div className="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
                     <p className="text-white/40 text-sm">
-                        © {new Date().getFullYear()} LuxeAuto. All rights reserved.
+                        © {new Date().getFullYear()} Torque. All rights reserved.
                     </p>
                     <div className="flex items-center gap-4">
                         {socialLinks.map((social) => (

@@ -82,7 +82,7 @@ export default function DashboardLayout({
                     <Link href="/dashboard" className="flex items-center gap-2">
                         <Car className="h-7 w-7 text-amber-500" />
                         <span className="text-xl font-bold text-white">
-                            LUXE<span className="text-amber-500">AUTO</span>
+                            TORQUE
                         </span>
                     </Link>
                     <button

@@ -56,7 +56,7 @@ function LoginForm() {
             <Link href="/" className="flex items-center justify-center gap-2 mb-8">
                 <Car className="h-10 w-10 text-amber-500" />
                 <span className="text-3xl font-bold text-white">
-                    LUXE<span className="text-amber-500">AUTO</span>
+                    TORQUE
                 </span>
             </Link>
 

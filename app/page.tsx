@@ -107,7 +107,7 @@ export default function HomePage() {
             </h1>
 
             <p className="max-w-2xl mx-auto text-lg md:text-xl text-white/70 mb-10">
-              Every car is expert-verified. Every deal is transparent.
+              Chennai's most trusted marketplace. Every car is expert-verified.
               Experience the premium way to buy pre-owned cars.
             </p>
           </motion.div>
@@ -163,7 +163,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Why Choose <span className="text-amber-500">LuxeAuto</span>?
+              Why Choose <span className="text-amber-500">Torque</span>?
             </h2>
             <p className="text-white/60 max-w-2xl mx-auto">
               We bring transparency, trust, and premium service to the pre-owned car market.
