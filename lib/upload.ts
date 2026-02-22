@@ -1,4 +1,5 @@
 import { createClient } from '@/lib/supabase-browser'; // We need a browser-side supabase client
+import imageCompression from 'browser-image-compression';
 
 /**
  * Validates a file before compressing/uploading.
@@ -13,12 +14,30 @@ export function validateImage(file: File): { isValid: boolean; error?: string } 
         return { isValid: false, error: 'Only JPG, PNG, and WebP formats are allowed.' };
     }
 
-    // Size limit temporarily removed.
+    if (file.size / 1024 / 1024 > MAX_SIZE_MB) {
+        return { isValid: false, error: `File must be smaller than ${MAX_SIZE_MB}MB.` };
+    }
 
     return { isValid: true };
 }
 
-// Compression logic temporarily removed to prevent WebWorker browser hangs in Next.js.
+/**
+ * Compresses an image file before upload
+ */
+export async function compressImage(file: File): Promise<File> {
+    const options = {
+        maxSizeMB: 1, // Max 1MB
+        maxWidthOrHeight: 1920,
+        useWebWorker: false, // Set to false to prevent Next.js browser hangs
+    };
+
+    try {
+        return await imageCompression(file, options);
+    } catch (error) {
+        console.error('Compression error:', error);
+        return file; // Fallback to original if compression fails
+    }
+}
 
 /**
  * Uploads a single compressed file to Supabase Storage
@@ -66,22 +85,26 @@ export async function uploadMultipleFiles(
     folder: string = 'public',
     onProgress?: (uploaded: number, total: number) => void
 ): Promise<string[]> {
-    const urls: string[] = [];
+    let completed = 0;
 
-    for (let i = 0; i < files.length; i++) {
-        const file = files[i];
+    // Upload in parallel
+    const uploadPromises = files.map(async (file) => {
+        // 1. Compress
+        const compressedFile = await compressImage(file);
 
-        // 1. Upload to Supabase directly (skipping compression which causes React hangs)
-        const url = await uploadToSupabase(file, folder);
-
-        if (url) {
-            urls.push(url);
-        }
+        // 2. Upload to Supabase 
+        const url = await uploadToSupabase(compressedFile, folder);
 
         if (onProgress) {
-            onProgress(i + 1, files.length);
+            completed++;
+            onProgress(completed, files.length);
         }
-    }
 
-    return urls;
+        return url;
+    });
+
+    const results = await Promise.all(uploadPromises);
+
+    // returning only successful URLs
+    return results.filter((url): url is string => url !== null);
 }
