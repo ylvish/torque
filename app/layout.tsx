@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   description: 'Find your dream car at Torque. Chennai\'s most trusted marketplace for verified pre-owned luxury vehicles.',
   keywords: ["used cars", "pre-owned cars", "luxury cars", "verified cars", "car marketplace"],
   openGraph: {
-    title: "LuxeAuto | Premium Pre-Owned Cars",
+    title: "Torque | Premium Pre-Owned Cars",
     description: "India's most trusted premium pre-owned car marketplace.",
     type: "website",
   },

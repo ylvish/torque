@@ -26,8 +26,6 @@ const baseLinks = [
     { name: 'Submissions', href: '/dashboard/submissions', icon: FileText },
     { name: 'Listings', href: '/dashboard/listings', icon: List },
     { name: 'Leads', href: '/dashboard/leads', icon: Users },
-    { name: 'Analytics', href: '/dashboard/analytics', icon: BarChart3 },
-    { name: 'Settings', href: '/dashboard/settings', icon: Settings },
 ];
 
 export default function DashboardLayout({

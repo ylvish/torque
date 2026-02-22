@@ -11,12 +11,13 @@ import {
     CheckCircle2,
     Calendar,
     Car,
-    ChevronDown
+    ChevronDown,
+    Trash2
 } from 'lucide-react';
 import { LeadStatus, LeadInterest } from '@/types';
 import LeadDetailsModal from '@/components/LeadDetailsModal';
 
-import { getLeads, updateLeadStatus, assignLead, getEmployees } from '@/lib/actions';
+import { getLeads, updateLeadStatus, deleteLead } from '@/lib/actions';
 
 // Initial empty state
 const initialLeads: any[] = [];
@@ -39,7 +40,6 @@ const interestConfig = {
 
 export default function LeadsPage() {
     const [leads, setLeads] = useState<any[]>(initialLeads);
-    const [employees, setEmployees] = useState<any[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState('');
     const [statusFilter, setStatusFilter] = useState<LeadStatus | 'all'>('all');
@@ -47,13 +47,7 @@ export default function LeadsPage() {
 
     useEffect(() => {
         fetchLeads();
-        fetchEmployees();
     }, []);
-
-    const fetchEmployees = async () => {
-        const data = await getEmployees();
-        setEmployees(data);
-    };
 
     const fetchLeads = async () => {
         setIsLoading(true);
@@ -85,6 +79,17 @@ export default function LeadsPage() {
         }
         return true;
     });
+
+    const handleDeleteLead = async (e: React.MouseEvent, id: string) => {
+        e.stopPropagation();
+        if (!confirm('Are you sure you want to delete this lead?')) return;
+        try {
+            await deleteLead(id);
+            fetchLeads();
+        } catch (error) {
+            console.error('Error deleting lead:', error);
+        }
+    };
 
     const formatDate = (dateStr: string) => {
         const date = new Date(dateStr);
@@ -133,7 +138,6 @@ export default function LeadsPage() {
                         { value: LeadStatus.NEW, label: 'New' },
                         { value: LeadStatus.CONTACTED, label: 'Contacted' },
                         { value: LeadStatus.QUALIFIED, label: 'Qualified' },
-                        { value: LeadStatus.NEGOTIATING, label: 'Negotiating' },
                     ].map((filter) => (
                         <button
                             key={filter.value}
@@ -206,13 +210,6 @@ export default function LeadsPage() {
                                         {status.label}
                                     </span>
 
-                                    {/* Assigned To */}
-                                    <div className="relative" onClick={(e) => e.stopPropagation()}>
-                                        <span className="text-sm text-white/70 px-2 bg-white/5 py-1 rounded-md border border-white/10">
-                                            {lead.assigned_user?.name || 'Unassigned'}
-                                        </span>
-                                    </div>
-
                                     <span className="text-xs text-white/40 flex items-center gap-1">
                                         <Clock className="h-3 w-3" />
                                         {formatDate(lead.created_at)}
@@ -243,12 +240,19 @@ export default function LeadsPage() {
                                     >
                                         <MessageCircle className="h-4 w-4" />
                                     </a>
+                                    <button
+                                        onClick={(e) => handleDeleteLead(e, lead.id)}
+                                        className="p-2.5 bg-red-500/10 text-red-400 rounded-lg hover:bg-red-500/20 transition-all opacity-0 group-hover:opacity-100 flex items-center justify-center"
+                                        title="Delete Lead"
+                                    >
+                                        <Trash2 className="h-4 w-4" />
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     );
                 })}
-            </div>
+            </div >
 
             {!isLoading && filteredLeads.length === 0 && (
                 <div className="text-center py-16 bg-zinc-900 border border-white/5 rounded-xl">
@@ -262,8 +266,7 @@ export default function LeadsPage() {
                 isOpen={!!selectedLead}
                 onClose={() => setSelectedLead(null)}
                 onUpdate={fetchLeads}
-                employees={employees}
             />
-        </div>
+        </div >
     );
 }

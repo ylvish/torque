@@ -108,9 +108,8 @@ export default function LeadDetailsModal({ lead, isOpen, onClose, onUpdate, empl
                                         className="bg-zinc-800 border border-white/10 rounded-lg px-2 py-1 text-xs text-white focus:outline-none focus:border-amber-500"
                                     >
                                         <option value="NEW">New</option>
-                                        <option value="QUALIFIED">Qualified</option>
                                         <option value="CONTACTED">Contacted</option>
-                                        <option value="NEGOTIATING">Negotiating</option>
+                                        <option value="QUALIFIED">Qualified</option>
                                     </select>
                                 </div>
                             </div>
@@ -205,28 +204,6 @@ export default function LeadDetailsModal({ lead, isOpen, onClose, onUpdate, empl
                                     <span className="inline-flex items-center px-3 py-1.5 rounded-lg bg-amber-500/10 text-amber-500 text-sm font-medium border border-amber-500/20">
                                         {lead.interest}
                                     </span>
-                                </div>
-                                <div>
-                                    <h3 className="text-sm font-medium text-white/40 uppercase tracking-wider mb-2 flex items-center gap-2">
-                                        <User className="w-4 h-4" /> Assigned To
-                                    </h3>
-                                    <div className="flex items-center gap-2 text-white/80">
-                                        <div className="flex-1">
-                                            <select
-                                                value={lead.assigned_to || ''}
-                                                onChange={(e) => handleAssignmentChange(e.target.value)}
-                                                disabled={isUpdating}
-                                                className="w-full bg-zinc-800 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500"
-                                            >
-                                                <option value="">Unassigned</option>
-                                                {employees.map((emp) => (
-                                                    <option key={emp.id} value={emp.id}>
-                                                        {emp.name}
-                                                    </option>
-                                                ))}
-                                            </select>
-                                        </div>
-                                    </div>
                                 </div>
                                 <div>
                                     <h3 className="text-sm font-medium text-white/40 uppercase tracking-wider mb-2 flex items-center gap-2">

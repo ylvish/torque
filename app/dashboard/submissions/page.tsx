@@ -32,7 +32,7 @@ import {
     Image as ImageIcon
 } from 'lucide-react';
 import { SubmissionStatus, FuelType, TransmissionType, SellerSubmission } from '@/types';
-import { getSubmissions, updateSubmissionStatus } from '@/lib/actions';
+import { getSubmissions, updateSubmissionStatus, createListingFromSubmission } from '@/lib/actions';
 
 const statusConfig: Record<string, { label: string; icon: React.ElementType; class: string }> = {
     'PENDING_REVIEW': { label: 'Pending', icon: Clock, class: 'bg-amber-500/10 text-amber-400' },
@@ -85,6 +85,46 @@ export default function SubmissionsPage() {
             }
         } catch (error) {
             console.error('Error updating status:', error);
+        } finally {
+            setIsUpdating(false);
+        }
+    };
+
+    const handleApproveAndCreate = async (id: string) => {
+        const priceStr = window.prompt("Enter the selling price for this car (e.g. 500000):");
+        if (!priceStr) return; // user cancelled
+
+        const price = parseInt(priceStr.replace(/,/g, ''), 10);
+        if (isNaN(price)) {
+            alert("Invalid price format. Please enter numbers only.");
+            return;
+        }
+
+        const description = window.prompt("Enter a short description for the listing:");
+        if (!description) return;
+
+        setIsUpdating(true);
+        try {
+            const result = await createListingFromSubmission(id, {
+                price,
+                description
+            });
+
+            if (result.success) {
+                alert("Listing created and published successfully!");
+                // Update local state to show it's approved
+                setSubmissions(prev => prev.map(sub =>
+                    sub.id === id ? { ...sub, status: SubmissionStatus.APPROVED } : sub
+                ));
+                if (selectedSubmission?.id === id) {
+                    setSelectedSubmission({ ...selectedSubmission, status: SubmissionStatus.APPROVED });
+                }
+            } else {
+                alert(`Error creating listing: ${result.error}`);
+            }
+        } catch (error) {
+            console.error('Error creating listing:', error);
+            alert("Failed to create listing.");
         } finally {
             setIsUpdating(false);
         }
@@ -577,7 +617,7 @@ export default function SubmissionsPage() {
                                 {/* Actions */}
                                 <div className="flex flex-wrap gap-3 pt-4 border-t border-white/5">
                                     <button
-                                        onClick={() => handleStatusUpdate(selectedSubmission.id, SubmissionStatus.APPROVED)}
+                                        onClick={() => handleApproveAndCreate(selectedSubmission.id)}
                                         disabled={isUpdating || selectedSubmission.status === SubmissionStatus.APPROVED}
                                         className="flex-1 py-3 bg-emerald-500 text-white font-medium rounded-xl hover:bg-emerald-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                                     >

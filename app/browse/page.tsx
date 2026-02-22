@@ -1,6 +1,7 @@
 'use client';
 
 import { Suspense, useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Filter, Grid, List, SlidersHorizontal, X } from 'lucide-react';
 import SearchBar from '@/components/SearchBar';
@@ -22,6 +23,20 @@ const sortOptions = [
 ];
 
 export default function BrowsePage() {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen pt-20 flex items-center justify-center bg-[#0a0a0a]">
+                <div className="w-8 h-8 rounded-full border-2 border-amber-500 border-t-transparent animate-spin"></div>
+            </div>
+        }>
+            <BrowseContent />
+        </Suspense>
+    );
+}
+
+function BrowseContent() {
+    const searchParams = useSearchParams();
+
     const [listings, setListings] = useState<Listing[]>(initialListings);
     const [isLoading, setIsLoading] = useState(true);
     const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
@@ -31,17 +46,50 @@ export default function BrowsePage() {
     const [selectedTransmission, setSelectedTransmission] = useState('All');
     const [sortBy, setSortBy] = useState('newest');
     const [priceRange, setPriceRange] = useState([0, 10000000]);
+    const [maxFleetPrice, setMaxFleetPrice] = useState(10000000);
+    const [showSold, setShowSold] = useState(false);
+
+    // Sync URL Search Params
+    useEffect(() => {
+        const urlMake = searchParams.get('make');
+        const urlFuel = searchParams.get('fuel');
+        const urlMin = searchParams.get('minPrice');
+        const urlMax = searchParams.get('maxPrice');
+
+        if (urlMake) setSelectedMake(urlMake);
+        if (urlFuel) setSelectedFuel(urlFuel);
+        if (urlMin || urlMax) {
+            setPriceRange([
+                urlMin ? parseInt(urlMin) : 0,
+                urlMax ? parseInt(urlMax) : maxFleetPrice
+            ]);
+        }
+    }, [searchParams, maxFleetPrice]);
 
     useEffect(() => {
         fetchListings();
     }, []);
 
+    const formatPrice = (price: number) => {
+        if (price >= 10000000) {
+            return `₹${(price / 10000000).toFixed(2)} Cr`;
+        }
+        return `₹${(price / 100000).toFixed(1)} L`;
+    };
+
     const fetchListings = async () => {
         setIsLoading(true);
         try {
-            // Fetch only ACTIVE status listings
-            const data = await getListings('ACTIVE');
-            setListings(data as Listing[]);
+            // Fetch both ACTIVE and SOLD status listings
+            const data = await getListings(['ACTIVE', 'SOLD']) as Listing[];
+            setListings(data);
+
+            if (data.length > 0) {
+                const highestPrice = Math.max(...data.map(car => car.price));
+                const maxRounded = Math.ceil(highestPrice / 100000) * 100000;
+                setMaxFleetPrice(maxRounded);
+                setPriceRange(prev => [prev[0], maxRounded]);
+            }
         } catch (error) {
             console.error('Error fetching listings:', error);
         } finally {
@@ -51,6 +99,8 @@ export default function BrowsePage() {
 
     // Filter listings based on selections
     const filteredListings = listings.filter((listing) => {
+        if (showSold && listing.status !== ListingStatus.SOLD) return false;
+        if (!showSold && listing.status === ListingStatus.SOLD) return false;
         if (selectedMake !== 'All' && listing.make !== selectedMake) return false;
         if (selectedFuel !== 'All' && fuelTypes.indexOf(selectedFuel) !== fuelTypes.indexOf('All')) {
             const fuelMap: Record<string, FuelType> = {
@@ -227,21 +277,57 @@ export default function BrowsePage() {
                                 {/* Price Range */}
                                 <div>
                                     <h4 className="text-sm font-medium text-white/80 mb-3">Price Range</h4>
-                                    <div className="space-y-3">
-                                        <input
-                                            type="range"
-                                            min="0"
-                                            max="10000000"
-                                            step="100000"
-                                            value={priceRange[1]}
-                                            onChange={(e) => setPriceRange([priceRange[0], parseInt(e.target.value)])}
-                                            className="w-full accent-amber-500"
-                                        />
-                                        <div className="flex justify-between text-sm text-white/60">
-                                            <span>₹0</span>
-                                            <span>₹{(priceRange[1] / 100000).toFixed(0)} L</span>
+                                    <div className="space-y-4">
+                                        {/* Min Price */}
+                                        <div className="space-y-2">
+                                            <div className="flex justify-between text-xs text-white/60">
+                                                <span>Min Price</span>
+                                                <span className="text-white">{formatPrice(priceRange[0])}</span>
+                                            </div>
+                                            <input
+                                                type="range"
+                                                min="0"
+                                                max={maxFleetPrice}
+                                                step="100000"
+                                                value={priceRange[0]}
+                                                onChange={(e) => {
+                                                    const val = parseInt(e.target.value);
+                                                    if (val <= priceRange[1]) setPriceRange([val, priceRange[1]]);
+                                                }}
+                                                className="w-full accent-amber-500"
+                                            />
+                                        </div>
+                                        {/* Max Price */}
+                                        <div className="space-y-2">
+                                            <div className="flex justify-between text-xs text-white/60">
+                                                <span>Max Price</span>
+                                                <span className="text-white">{formatPrice(priceRange[1])}</span>
+                                            </div>
+                                            <input
+                                                type="range"
+                                                min="0"
+                                                max={maxFleetPrice}
+                                                step="100000"
+                                                value={priceRange[1]}
+                                                onChange={(e) => {
+                                                    const val = parseInt(e.target.value);
+                                                    if (val >= priceRange[0]) setPriceRange([priceRange[0], val]);
+                                                }}
+                                                className="w-full accent-amber-500"
+                                            />
                                         </div>
                                     </div>
+                                </div>
+
+                                {/* Sold Cars Filter */}
+                                <div className="flex items-center justify-between">
+                                    <h4 className="text-sm font-medium text-white/80">Show Sold Cars</h4>
+                                    <button
+                                        onClick={() => setShowSold(!showSold)}
+                                        className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${showSold ? 'bg-amber-500' : 'bg-white/10'}`}
+                                    >
+                                        <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${showSold ? 'translate-x-6' : 'translate-x-1'}`} />
+                                    </button>
                                 </div>
 
                                 {/* Reset Filters */}
@@ -250,7 +336,8 @@ export default function BrowsePage() {
                                         setSelectedMake('All');
                                         setSelectedFuel('All');
                                         setSelectedTransmission('All');
-                                        setPriceRange([0, 10000000]);
+                                        setPriceRange([0, maxFleetPrice]);
+                                        setShowSold(false);
                                     }}
                                     className="w-full px-4 py-2 text-sm text-amber-500 border border-amber-500/30 rounded-lg hover:bg-amber-500/10 transition-colors"
                                 >

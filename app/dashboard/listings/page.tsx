@@ -29,9 +29,8 @@ import {
     AlertCircle
 } from 'lucide-react';
 import { ListingStatus, FuelType, TransmissionType, Listing } from '@/types';
-import { getListings } from '@/lib/actions';
+import { getListings, createListing, updateListing, deleteListing } from '@/lib/actions';
 import { uploadMultipleFiles } from '@/lib/upload';
-import { createClient } from '@/lib/supabase-browser';
 
 const statusConfig: Record<string, { label: string; class: string }> = {
     'DRAFT': { label: 'Draft', class: 'bg-zinc-500/10 text-zinc-400' },
@@ -111,8 +110,6 @@ export default function ListingsPage() {
     const [isSaving, setIsSaving] = useState(false);
     const [error, setError] = useState('');
 
-    const supabase = createClient();
-
     useEffect(() => {
         fetchListings();
     }, []);
@@ -136,6 +133,8 @@ export default function ListingsPage() {
         setImageFiles([]);
         setSelectedListing(null);
         setError('');
+        setIsUploading(false);
+        setIsSaving(false);
         setShowModal(true);
     };
 
@@ -161,6 +160,8 @@ export default function ListingsPage() {
         setUploadedImages(listing.gallery_images || []);
         setImageFiles([]);
         setError('');
+        setIsUploading(false);
+        setIsSaving(false);
         setShowModal(true);
     };
 
@@ -214,45 +215,36 @@ export default function ListingsPage() {
                 setIsUploading(false);
             }
 
-            const listingData = {
+            const listingData: Partial<Listing> = {
                 make: formData.make,
                 model: formData.model,
                 year: formData.year,
-                variant: formData.variant || null,
-                fuel_type: formData.fuel_type,
-                transmission: formData.transmission,
+                variant: formData.variant ?? undefined,
+                fuel_type: formData.fuel_type as FuelType,
+                transmission: formData.transmission as TransmissionType,
                 mileage: formData.mileage,
                 registration_city: formData.registration_city,
                 owners: formData.owners,
                 price: formData.price,
-                description: formData.description || null,
-                why_we_like_it: formData.why_we_like_it || null,
-                inspection_summary: formData.inspection_summary || null,
-                status: formData.status,
-                featured_image_url: galleryUrls[0] || null,
+                description: formData.description ?? undefined,
+                why_we_like_it: formData.why_we_like_it ?? undefined,
+                inspection_summary: formData.inspection_summary ?? undefined,
+                status: formData.status as ListingStatus,
+                featured_image_url: galleryUrls[0] ?? undefined,
                 gallery_images: galleryUrls,
             };
 
             if (modalMode === 'new') {
                 // Create new listing
-                const { data, error: insertError } = await supabase
-                    .from('listings')
-                    .insert(listingData)
-                    .select()
-                    .single();
+                const { data, error: insertError } = await createListing(listingData);
 
-                if (insertError) throw insertError;
+                if (insertError) throw new Error(insertError);
                 setListings(prev => [data as Listing, ...prev]);
             } else if (modalMode === 'edit' && selectedListing) {
                 // Update existing listing
-                const { data, error: updateError } = await supabase
-                    .from('listings')
-                    .update(listingData)
-                    .eq('id', selectedListing.id)
-                    .select()
-                    .single();
+                const { data, error: updateError } = await updateListing(selectedListing.id, listingData);
 
-                if (updateError) throw updateError;
+                if (updateError) throw new Error(updateError);
                 setListings(prev => prev.map(l => l.id === selectedListing.id ? data as Listing : l));
             }
 
@@ -265,22 +257,22 @@ export default function ListingsPage() {
             setError(err.message || 'Failed to save listing');
         } finally {
             setIsSaving(false);
+            setIsUploading(false); // Ensure this resets even on error
         }
     };
 
-    const handleDelete = async (id: string) => {
-        if (!confirm('Are you sure you want to delete this listing?')) return;
+    const handleDelete = async (e: React.MouseEvent, id: string) => {
+        e.stopPropagation();
+        if (!window.confirm('Are you sure you want to delete this listing?')) return;
 
         try {
-            const { error } = await supabase
-                .from('listings')
-                .delete()
-                .eq('id', id);
+            const { error: deleteError } = await deleteListing(id);
 
-            if (error) throw error;
+            if (deleteError) throw new Error(deleteError);
             setListings(prev => prev.filter(l => l.id !== id));
         } catch (err) {
             console.error('Delete error:', err);
+            alert('Failed to delete listing.');
         }
     };
 
@@ -400,8 +392,8 @@ export default function ListingsPage() {
                                     </span>
                                     {/* Delete button */}
                                     <button
-                                        onClick={() => handleDelete(listing.id)}
-                                        className="absolute top-2 left-2 p-1.5 bg-red-500/80 text-white rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"
+                                        onClick={(e) => handleDelete(e, listing.id)}
+                                        className="absolute top-2 left-2 p-1.5 z-10 bg-red-500/80 text-white rounded-lg opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-500 hover:scale-105"
                                     >
                                         <Trash2 className="h-4 w-4" />
                                     </button>

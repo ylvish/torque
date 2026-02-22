@@ -146,6 +146,31 @@ export default function CarDetailPage() {
         }
     };
 
+    const handleShare = async () => {
+        const url = window.location.href;
+        if (navigator.share) {
+            try {
+                await navigator.share({
+                    title: `${listing.year} ${listing.make} ${listing.model}`,
+                    text: `Check out this ${listing.year} ${listing.make} ${listing.model} on Torque!`,
+                    url: url,
+                });
+            } catch (err) {
+                if ((err as Error).name !== 'AbortError') {
+                    console.error('Error sharing:', err);
+                }
+            }
+        } else {
+            try {
+                await navigator.clipboard.writeText(url);
+                alert('Link copied to clipboard!');
+            } catch (err) {
+                console.error('Failed to copy link:', err);
+                alert('Failed to copy link.');
+            }
+        }
+    };
+
     const specs = [
         { icon: Calendar, label: 'Year', value: listing.year.toString() },
         { icon: Gauge, label: 'Mileage', value: `${(listing.mileage / 1000).toFixed(0)}k km` },
@@ -303,38 +328,16 @@ export default function CarDetailPage() {
                                     </button>
                                 </div>
 
-                                <div className="mt-6 pt-6 border-t border-white/10">
-                                    <div className="flex items-center gap-4">
-                                        <a
-                                            href="tel:+919876543210"
-                                            className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-white/5 rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition-colors"
-                                        >
-                                            <Phone className="h-4 w-4" />
-                                            Call
-                                        </a>
-                                        <a
-                                            href="https://wa.me/919876543210"
-                                            target="_blank"
-                                            className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-emerald-500/20 rounded-lg text-emerald-400 hover:bg-emerald-500/30 transition-colors"
-                                        >
-                                            <MessageCircle className="h-4 w-4" />
-                                            WhatsApp
-                                        </a>
-                                    </div>
-                                </div>
                             </div>
 
-                            {/* Share & Save */}
-                            <div className="flex gap-3">
-                                <button className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-zinc-900 border border-white/5 rounded-xl text-white/60 hover:text-white hover:border-white/10 transition-colors">
-                                    <Heart className="h-5 w-5" />
-                                    Save
-                                </button>
-                                <button className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-zinc-900 border border-white/5 rounded-xl text-white/60 hover:text-white hover:border-white/10 transition-colors">
-                                    <Share2 className="h-5 w-5" />
-                                    Share
-                                </button>
-                            </div>
+                            {/* Share */}
+                            <button
+                                onClick={handleShare}
+                                className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-zinc-900 border border-white/5 rounded-xl text-white/80 hover:text-white hover:bg-white/5 transition-colors"
+                            >
+                                <Share2 className="h-5 w-5" />
+                                Share this car
+                            </button>
                         </div>
                     </div>
                 </div>

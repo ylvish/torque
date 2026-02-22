@@ -35,7 +35,7 @@ export default function Header() {
                         <Car className="relative h-8 w-8 text-amber-500" />
                     </div>
                     <span className="text-2xl font-bold text-white tracking-tight">
-                        LUXE<span className="text-amber-500">AUTO</span>
+                        TORQUE
                     </span>
                 </Link>
 

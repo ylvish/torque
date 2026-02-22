@@ -18,6 +18,15 @@ const popularMakes = [
     'Audi',
 ];
 
+const fuelTypes = [
+    'All Fuels',
+    'Petrol',
+    'Diesel',
+    'Electric',
+    'Hybrid',
+    'CNG',
+];
+
 const priceRanges = [
     { label: 'Any Price', min: 0, max: 0 },
     { label: 'Under ₹5 Lakh', min: 0, max: 500000 },
@@ -37,16 +46,17 @@ export default function SearchBar({ variant = 'hero' }: SearchBarProps) {
 
     const [make, setMake] = useState(searchParams.get('make') || 'All Makes');
     const [priceRange, setPriceRange] = useState(priceRanges[0]);
+    const [fuelType, setFuelType] = useState(searchParams.get('fuel') || 'All Fuels');
     const [isMakeOpen, setIsMakeOpen] = useState(false);
     const [isPriceOpen, setIsPriceOpen] = useState(false);
-    const [searchQuery, setSearchQuery] = useState('');
+    const [isFuelOpen, setIsFuelOpen] = useState(false);
 
     const handleSearch = () => {
         const params = new URLSearchParams();
         if (make !== 'All Makes') params.set('make', make);
+        if (fuelType !== 'All Fuels') params.set('fuel', fuelType);
         if (priceRange.min > 0) params.set('minPrice', priceRange.min.toString());
         if (priceRange.max > 0) params.set('maxPrice', priceRange.max.toString());
-        if (searchQuery) params.set('q', searchQuery);
 
         router.push(`/browse?${params.toString()}`);
     };
@@ -62,26 +72,11 @@ export default function SearchBar({ variant = 'hero' }: SearchBarProps) {
                     : 'bg-zinc-900 border border-white/10 rounded-xl'
                 }
       `}>
-                {/* Search Input */}
-                <div className="relative flex-1">
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-white/40" />
-                    <input
-                        type="text"
-                        placeholder="Search by make, model..."
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        className="w-full pl-12 pr-4 py-3 bg-transparent text-white placeholder:text-white/40 focus:outline-none"
-                    />
-                </div>
-
-                {/* Divider */}
-                <div className="hidden lg:block w-px bg-white/10" />
-
                 {/* Make Dropdown */}
-                <div className="relative">
+                <div className="relative flex-1">
                     <button
-                        onClick={() => { setIsMakeOpen(!isMakeOpen); setIsPriceOpen(false); }}
-                        className="w-full lg:w-40 flex items-center justify-between gap-2 px-4 py-3 text-white/80 hover:text-white transition-colors"
+                        onClick={() => { setIsMakeOpen(!isMakeOpen); setIsPriceOpen(false); setIsFuelOpen(false); }}
+                        className="w-full flex items-center justify-between gap-2 px-4 py-3 text-white/80 hover:text-white transition-colors"
                     >
                         <span className="truncate">{make}</span>
                         <ChevronDown className={`h-4 w-4 transition-transform ${isMakeOpen ? 'rotate-180' : ''}`} />
@@ -113,10 +108,10 @@ export default function SearchBar({ variant = 'hero' }: SearchBarProps) {
                 <div className="hidden lg:block w-px bg-white/10" />
 
                 {/* Price Dropdown */}
-                <div className="relative">
+                <div className="relative flex-1">
                     <button
-                        onClick={() => { setIsPriceOpen(!isPriceOpen); setIsMakeOpen(false); }}
-                        className="w-full lg:w-40 flex items-center justify-between gap-2 px-4 py-3 text-white/80 hover:text-white transition-colors"
+                        onClick={() => { setIsPriceOpen(!isPriceOpen); setIsMakeOpen(false); setIsFuelOpen(false); }}
+                        className="w-full flex items-center justify-between gap-2 px-4 py-3 text-white/80 hover:text-white transition-colors"
                     >
                         <span className="truncate">{priceRange.label}</span>
                         <ChevronDown className={`h-4 w-4 transition-transform ${isPriceOpen ? 'rotate-180' : ''}`} />
@@ -137,6 +132,41 @@ export default function SearchBar({ variant = 'hero' }: SearchBarProps) {
                                             }`}
                                     >
                                         {range.label}
+                                    </button>
+                                ))}
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </div>
+
+                {/* Divider */}
+                <div className="hidden lg:block w-px bg-white/10" />
+
+                {/* Fuel Dropdown */}
+                <div className="relative flex-1">
+                    <button
+                        onClick={() => { setIsFuelOpen(!isFuelOpen); setIsMakeOpen(false); setIsPriceOpen(false); }}
+                        className="w-full flex items-center justify-between gap-2 px-4 py-3 text-white/80 hover:text-white transition-colors"
+                    >
+                        <span className="truncate">{fuelType}</span>
+                        <ChevronDown className={`h-4 w-4 transition-transform ${isFuelOpen ? 'rotate-180' : ''}`} />
+                    </button>
+                    <AnimatePresence>
+                        {isFuelOpen && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: 10 }}
+                                className="absolute z-50 top-full mt-2 left-0 w-full lg:w-48 bg-zinc-900 border border-white/10 rounded-xl shadow-xl overflow-hidden"
+                            >
+                                {fuelTypes.map((f) => (
+                                    <button
+                                        key={f}
+                                        onClick={() => { setFuelType(f); setIsFuelOpen(false); }}
+                                        className={`w-full px-4 py-2.5 text-left text-sm hover:bg-white/5 transition-colors ${fuelType === f ? 'text-amber-500 bg-amber-500/10' : 'text-white/80'
+                                            }`}
+                                    >
+                                        {f}
                                     </button>
                                 ))}
                             </motion.div>

@@ -17,7 +17,7 @@ import {
     Loader2
 } from 'lucide-react';
 import { FuelType, TransmissionType, SellerFormData } from '@/types';
-import { uploadMultipleFiles } from '@/lib/upload';
+import { uploadMultipleFiles, validateImage } from '@/lib/upload';
 import { createSubmission } from '@/lib/actions';
 
 const steps = [
@@ -50,6 +50,7 @@ export default function SellPage() {
     const [submitted, setSubmitted] = useState(false);
     const [referenceId, setReferenceId] = useState('');
     const [error, setError] = useState('');
+    const [uploadError, setUploadError] = useState('');
 
     // Store actual File objects for upload
     const [photoFiles, setPhotoFiles] = useState<File[]>([]);
@@ -84,13 +85,29 @@ export default function SellPage() {
     };
 
     const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setUploadError(''); // Clear previous error
         const files = e.target.files;
         if (files) {
-            const newFiles = Array.from(files);
-            setPhotoFiles(prev => [...prev, ...newFiles]);
-            const newPreviews = newFiles.map(file => URL.createObjectURL(file));
-            setPhotoPreviews(prev => [...prev, ...newPreviews]);
+            const validFiles: File[] = [];
+
+            Array.from(files).forEach((file) => {
+                const { isValid, error } = validateImage(file);
+                if (!isValid) {
+                    setUploadError(error || 'Invalid file.');
+                } else {
+                    validFiles.push(file);
+                }
+            });
+
+            if (validFiles.length > 0) {
+                setPhotoFiles(prev => [...prev, ...validFiles]);
+                const newPreviews = validFiles.map(file => URL.createObjectURL(file));
+                setPhotoPreviews(prev => [...prev, ...newPreviews]);
+            }
         }
+
+        // Clear input to allow re-uploading the same file if needed
+        e.target.value = '';
     };
 
     const handleDocUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -526,8 +543,8 @@ export default function SellPage() {
                                             type="button"
                                             onClick={() => updateFormData('accident_history', false)}
                                             className={`flex-1 py-3 rounded-xl border transition-colors ${!formData.accident_history
-                                                    ? 'bg-emerald-500/20 border-emerald-500/50 text-emerald-400'
-                                                    : 'bg-white/5 border-white/10 text-white/60'
+                                                ? 'bg-emerald-500/20 border-emerald-500/50 text-emerald-400'
+                                                : 'bg-white/5 border-white/10 text-white/60'
                                                 }`}
                                         >
                                             No Accidents
@@ -536,8 +553,8 @@ export default function SellPage() {
                                             type="button"
                                             onClick={() => updateFormData('accident_history', true)}
                                             className={`flex-1 py-3 rounded-xl border transition-colors ${formData.accident_history
-                                                    ? 'bg-amber-500/20 border-amber-500/50 text-amber-400'
-                                                    : 'bg-white/5 border-white/10 text-white/60'
+                                                ? 'bg-amber-500/20 border-amber-500/50 text-amber-400'
+                                                : 'bg-white/5 border-white/10 text-white/60'
                                                 }`}
                                         >
                                             Has Accident History
@@ -583,6 +600,14 @@ export default function SellPage() {
                                 {/* Photos Upload */}
                                 <div>
                                     <label className="block text-sm text-white/60 mb-3">Car Photos * (At least 1 required)</label>
+
+                                    {uploadError && (
+                                        <div className="mb-4 p-3 bg-red-500/10 border border-red-500/20 rounded-xl flex items-center gap-2">
+                                            <AlertCircle className="h-4 w-4 text-red-400" />
+                                            <p className="text-sm text-red-400">{uploadError}</p>
+                                        </div>
+                                    )}
+
                                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                                         {photoPreviews.map((photo, index) => (
                                             <div key={index} className="relative aspect-square rounded-xl overflow-hidden group">

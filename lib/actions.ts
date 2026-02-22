@@ -2,7 +2,7 @@
 
 import { createClient } from '@/lib/supabase-server';
 import { revalidatePath } from 'next/cache';
-import { SellerFormData, SubmissionStatus, LeadInterest, LeadStatus } from '@/types';
+import { SellerFormData, SubmissionStatus, LeadInterest, LeadStatus, Listing } from '@/types';
 
 // ============================================
 // SELLER SUBMISSIONS
@@ -272,7 +272,7 @@ export async function getEmployees() {
 // LISTINGS
 // ============================================
 
-export async function getListings(status?: string, limit?: number) {
+export async function getListings(status?: string | string[], limit?: number) {
     const supabase = await createClient();
 
     let query = supabase
@@ -281,7 +281,11 @@ export async function getListings(status?: string, limit?: number) {
         .order('created_at', { ascending: false });
 
     if (status) {
-        query = query.eq('status', status);
+        if (Array.isArray(status)) {
+            query = query.in('status', status);
+        } else {
+            query = query.eq('status', status);
+        }
     }
 
     if (limit) {
@@ -405,6 +409,83 @@ export async function publishListing(listingId: string) {
         .eq('id', listingId);
 
     if (error) {
+        return { success: false, error: error.message };
+    }
+
+    revalidatePath('/dashboard/listings');
+    revalidatePath('/browse');
+    return { success: true };
+}
+
+export async function createListing(data: Partial<Listing>) {
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+
+    if (!user) {
+        return { success: false, error: 'Not authenticated' };
+    }
+
+    const { data: newListing, error } = await supabase
+        .from('listings')
+        .insert({
+            ...data,
+            published_by: user.id
+        })
+        .select()
+        .single();
+
+    if (error) {
+        console.error('Error creating listing:', error);
+        return { success: false, error: error.message };
+    }
+
+    revalidatePath('/dashboard/listings');
+    revalidatePath('/browse');
+    return { success: true, data: newListing };
+}
+
+export async function updateListing(listingId: string, data: Partial<Listing>) {
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+
+    if (!user) {
+        return { success: false, error: 'Not authenticated' };
+    }
+
+    const { data: updatedData, error } = await supabase
+        .from('listings')
+        .update(data)
+        .eq('id', listingId)
+        .select()
+        .single();
+
+    if (error) {
+        console.error('Error updating listing:', error);
+        return { success: false, error: error.message };
+    }
+
+    revalidatePath('/dashboard/listings');
+    // Also revalidate the main browse page in case status changed
+    revalidatePath('/browse');
+    revalidatePath(`/cars/${listingId}`);
+    return { success: true, data: updatedData };
+}
+
+export async function deleteListing(listingId: string) {
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+
+    if (!user) {
+        return { success: false, error: 'Not authenticated' };
+    }
+
+    const { error } = await supabase
+        .from('listings')
+        .delete()
+        .eq('id', listingId);
+
+    if (error) {
+        console.error('Error deleting listing:', error);
         return { success: false, error: error.message };
     }
 
