@@ -26,13 +26,18 @@ export function validateImage(file: File): { isValid: boolean; error?: string } 
  */
 export async function compressImage(file: File): Promise<File> {
     const options = {
-        maxSizeMB: 1, // Max 1MB
-        maxWidthOrHeight: 1920,
-        useWebWorker: false, // Set to false to prevent Next.js browser hangs
+        maxSizeMB: 0.8, // Slightly reduced to speed up compression
+        maxWidthOrHeight: 1600, // Reduced from 1920 for faster processing
+        useWebWorker: true, // Re-enabled WebWorkers to move compression off the main thread
+        initialQuality: 0.8,
     };
 
     try {
-        return await imageCompression(file, options);
+        console.time(`Compressing ${file.name}`);
+        const compressed = await imageCompression(file, options);
+        console.timeEnd(`Compressing ${file.name}`);
+        console.log(`Size reduced from ${(file.size / 1024 / 1024).toFixed(2)}MB to ${(compressed.size / 1024 / 1024).toFixed(2)}MB`);
+        return compressed;
     } catch (error) {
         console.error('Compression error:', error);
         return file; // Fallback to original if compression fails
@@ -49,23 +54,23 @@ export async function uploadToSupabase(
     try {
         const supabase = createClient();
 
-        // Generate a random UUID-based filename (safe and collision-free)
         const fileExtension = file.name.split('.').pop();
         const fileName = `${crypto.randomUUID()}.${fileExtension}`;
         const filePath = `${folder}/${fileName}`;
 
+        console.time(`Uploading ${fileName}`);
         const { data, error } = await supabase.storage
             .from('car-images')
             .upload(filePath, file, {
                 cacheControl: '3600',
                 upsert: false
             });
+        console.timeEnd(`Uploading ${fileName}`);
 
         if (error) {
             throw error;
         }
 
-        // Get public URL
         const { data: { publicUrl } } = supabase.storage
             .from('car-images')
             .getPublicUrl(data.path);
@@ -85,6 +90,9 @@ export async function uploadMultipleFiles(
     folder: string = 'public',
     onProgress?: (uploaded: number, total: number) => void
 ): Promise<string[]> {
+    console.log(`Starting upload of ${files.length} files...`);
+    console.time('Total Upload Time');
+
     let completed = 0;
 
     // Upload in parallel
@@ -104,6 +112,7 @@ export async function uploadMultipleFiles(
     });
 
     const results = await Promise.all(uploadPromises);
+    console.timeEnd('Total Upload Time');
 
     // returning only successful URLs
     return results.filter((url): url is string => url !== null);
