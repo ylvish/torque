@@ -25,6 +25,12 @@ export function validateImage(file: File): { isValid: boolean; error?: string } 
  * Compresses an image file before upload
  */
 export async function compressImage(file: File): Promise<File> {
+    // Skip compression if file is already less than 500KB
+    if (file.size < 500 * 1024) {
+        console.log(`[Upload] Skipping compression for ${file.name} as it is only ${(file.size / 1024).toFixed(0)}KB`);
+        return file;
+    }
+
     const options = {
         maxSizeMB: 0.8, // Slightly reduced to speed up compression
         maxWidthOrHeight: 1600, // Reduced from 1920 for faster processing
@@ -37,7 +43,7 @@ export async function compressImage(file: File): Promise<File> {
         const compressed = await imageCompression(file, options);
         console.timeEnd(`Compressing ${file.name}`);
         console.log(`Size reduced from ${(file.size / 1024 / 1024).toFixed(2)}MB to ${(compressed.size / 1024 / 1024).toFixed(2)}MB`);
-        return compressed;
+        return compressed as File;
     } catch (error) {
         console.error('Compression error:', error);
         return file; // Fallback to original if compression fails
@@ -49,12 +55,12 @@ export async function compressImage(file: File): Promise<File> {
  */
 export async function uploadToSupabase(
     file: File | Blob,
-    folder: string = 'public'
+    folder: string = 'public',
+    supabaseClient?: any
 ): Promise<string | null> {
     try {
         console.log('[Upload] Starting uploadToSupabase');
-        const supabase = createClient();
-        console.log('[Upload] Supabase client created');
+        const supabase = supabaseClient || createClient();
 
         // Extracting name safely in case it is a Blob
         const originalName = (file as File).name || 'image.jpg';
@@ -111,13 +117,17 @@ export async function uploadMultipleFiles(
 
     let completed = 0;
 
+    // Create ONE instance of the Supabase client for all uploads in this batch
+    // This prevents parallel instances fighting over auth lock in localStorage
+    const supabase = createClient();
+
     // Upload in parallel
     const uploadPromises = files.map(async (file) => {
         // 1. Compress
         const compressedFile = await compressImage(file);
 
         // 2. Upload to Supabase 
-        const url = await uploadToSupabase(compressedFile, folder);
+        const url = await uploadToSupabase(compressedFile, folder, supabase);
 
         if (onProgress) {
             completed++;
