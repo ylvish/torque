@@ -74,12 +74,9 @@ export async function uploadToSupabase(
         console.log(`[Upload] Attempting to upload ${filePath} to 'car-images' bucket...`);
         console.time(`[Upload Time] ${fileName}`);
 
-        // Convert File to ArrayBuffer to prevent Fetch stream hangs with WebWorker blobs
-        const buffer = await file.arrayBuffer();
-
         const { data, error } = await supabase.storage
             .from('car-images')
-            .upload(filePath, buffer, {
+            .upload(filePath, file, {
                 contentType: file.type,
                 cacheControl: '3600',
                 upsert: false
