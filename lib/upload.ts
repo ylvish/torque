@@ -52,6 +52,7 @@ export async function compressImage(file: File): Promise<File> {
 
 /**
  * Uploads a single compressed file to Supabase Storage
+ * By-passes `supabase-js` fetch and auth deadlocks using raw XMLHttpRequest
  */
 export async function uploadToSupabase(
     file: File | Blob,
@@ -71,28 +72,57 @@ export async function uploadToSupabase(
         const fileName = `${randomId}.${fileExtension}`;
         const filePath = `${folder}/${fileName}`;
 
-        console.log(`[Upload] Attempting to upload ${filePath} to 'car-images' bucket...`);
-        console.time(`[Upload Time] ${fileName}`);
-
-        const { data, error } = await supabase.storage
-            .from('car-images')
-            .upload(filePath, file, {
-                contentType: file.type,
-                cacheControl: '3600',
-                upsert: false
-            });
-
-        console.timeEnd(`[Upload Time] ${fileName}`);
-        console.log('[Upload] Supabase response received', { data, error });
-
-        if (error) {
-            throw error;
+        const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
+        const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
+        if (!supabaseUrl || !supabaseAnonKey) {
+            throw new Error('Supabase ENV vars missing');
         }
 
-        const { data: { publicUrl } } = supabase.storage
-            .from('car-images')
-            .getPublicUrl(data.path);
+        console.log(`[Upload] Attempting to upload ${filePath} to 'car-images' bucket via raw XHR...`);
+        console.time(`[Upload Time] ${fileName}`);
 
+        // 1. Try to get auth token without hanging indefinitely (500ms timeout)
+        let token = supabaseAnonKey;
+        try {
+            const sessionPromise = supabase.auth.getSession();
+            const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 500));
+            const { data: { session } } = await Promise.race([sessionPromise, timeoutPromise]) as any;
+            if (session?.access_token) {
+                token = session.access_token;
+            }
+        } catch (e) {
+            console.warn('[Upload] Auth getSession timed out (deadlock protected). Falling back to anon key.');
+        }
+
+        // 2. Perform raw XMLHttpRequest to completely bypass buggy fetch() polyfills and hanging streams
+        const uploadEndpoint = `${supabaseUrl}/storage/v1/object/car-images/${filePath}`;
+
+        const publicUrl = await new Promise<string>((resolve, reject) => {
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', uploadEndpoint, true);
+
+            // Required Supabase Headers
+            xhr.setRequestHeader('Authorization', `Bearer ${token}`);
+            xhr.setRequestHeader('apikey', supabaseAnonKey);
+            xhr.setRequestHeader('x-upsert', 'false');
+            xhr.setRequestHeader('cache-control', '3600');
+            xhr.setRequestHeader('Content-Type', file.type || 'image/jpeg');
+
+            xhr.onload = () => {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    // Success, calculate the public URL
+                    const finalUrl = `${supabaseUrl}/storage/v1/object/public/car-images/${filePath}`;
+                    resolve(finalUrl);
+                } else {
+                    reject(new Error(`Upload failed: ${xhr.status} ${xhr.responseText}`));
+                }
+            };
+
+            xhr.onerror = () => reject(new Error('XHR Network Error during upload'));
+            xhr.send(file);   // Native browser file blob stream
+        });
+
+        console.timeEnd(`[Upload Time] ${fileName}`);
         console.log('[Upload] Got public URL:', publicUrl);
         return publicUrl;
     } catch (error) {
