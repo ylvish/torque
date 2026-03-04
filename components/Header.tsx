@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Car, User, LogOut, LayoutDashboard } from 'lucide-react';
+import { Menu, X, Car, User, LogOut, LayoutDashboard, Phone } from 'lucide-react';
 import { useAuth } from '@/lib/auth-context';
 
 const navigation = [
@@ -111,21 +111,14 @@ export default function Header() {
                                 )}
                             </AnimatePresence>
                         </div>
-                    ) : (
-                        <Link
-                            href="/auth/login"
-                            className="flex items-center gap-2 text-sm font-medium text-white/80 hover:text-white transition-colors"
-                        >
-                            <User className="h-4 w-4" />
-                            Sign In
-                        </Link>
-                    )}
-                    <Link
-                        href="/sell"
+                    ) : null}
+                    <a
+                        href="tel:+919940419999"
                         className="group relative inline-flex items-center gap-2 px-6 py-2.5 text-sm font-semibold text-white bg-red-600 rounded-full overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-red-600/25 hover:bg-red-700"
                     >
-                        <span className="relative z-10">Sell Your Car</span>
-                    </Link>
+                        <Phone className="h-4 w-4 relative z-10" />
+                        <span className="relative z-10">Call</span>
+                    </a>
                 </div>
 
                 {/* Mobile menu button */}
@@ -184,7 +177,7 @@ export default function Header() {
                                 )}
                             </div>
                             <div className="mt-8 pt-8 border-t border-white/10 space-y-4">
-                                {user ? (
+                                {user && (
                                     <>
                                         <div className="flex items-center gap-3 px-4 py-2">
                                             <div className="w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center">
@@ -205,23 +198,15 @@ export default function Header() {
                                             Sign Out
                                         </button>
                                     </>
-                                ) : (
-                                    <Link
-                                        href="/auth/login"
-                                        className="flex items-center justify-center gap-2 w-full py-3 text-white/80 hover:text-white border border-white/20 rounded-full transition-colors"
-                                        onClick={() => setMobileMenuOpen(false)}
-                                    >
-                                        <User className="h-4 w-4" />
-                                        Sign In
-                                    </Link>
                                 )}
-                                <Link
-                                    href="/sell"
+                                <a
+                                    href="tel:+919940419999"
                                     className="flex items-center justify-center gap-2 w-full py-3 text-white font-semibold bg-red-600 rounded-full hover:bg-red-700 transition-colors"
                                     onClick={() => setMobileMenuOpen(false)}
                                 >
-                                    Sell Your Car
-                                </Link>
+                                    <Phone className="h-5 w-5" />
+                                    Call Now
+                                </a>
                             </div>
                         </div>
                     </motion.div>
