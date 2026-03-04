@@ -29,7 +29,7 @@ export default function Header() {
 
     return (
         <>
-            <header className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md">
+            <header className="fixed top-0 left-0 right-0 z-50 bg-black border-b border-white/5">
                 <nav className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-2 group">
@@ -112,7 +112,15 @@ export default function Header() {
                                     )}
                                 </AnimatePresence>
                             </div>
-                        ) : null}
+                        ) : (
+                            <Link
+                                href="/auth/login"
+                                className="flex items-center gap-1.5 text-sm font-medium text-white/80 hover:text-white transition-colors"
+                            >
+                                <User className="h-4 w-4" />
+                                Sign In
+                            </Link>
+                        )}
                         <a
                             href="tel:+919940419999"
                             className="group relative inline-flex items-center gap-2 px-6 py-2.5 text-sm font-semibold text-white bg-red-600 rounded-full overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-red-600/25 hover:bg-red-700"

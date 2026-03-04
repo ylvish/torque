@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import FloatingSocial from "@/components/FloatingSocial";
 import { Providers } from "@/components/Providers";
 
 const inter = Inter({
@@ -31,6 +32,7 @@ export default function RootLayout({
       <body className={`${inter.variable} font-sans antialiased bg-zinc-950 text-white`}>
         <Providers>
           <Header />
+          <FloatingSocial />
           <main className="min-h-screen">
             {children}
           </main>

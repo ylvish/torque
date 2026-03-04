@@ -42,11 +42,6 @@ export default function AboutPage() {
                     <p>
                         With a commitment to premium vehicles, expert service, and a seamless ownership experience, The Torque continues to be a preferred destination for car enthusiasts and everyday drivers alike.
                     </p>
-
-                    <div className="mt-12 p-8 bg-zinc-900 border border-white/5 rounded-2xl">
-                        <h3 className="text-2xl font-bold text-red-500 mb-2 italic">"Driven by customer trust."</h3>
-                        <p className="text-xl text-white font-medium italic">Where dreams come true on four wheels.</p>
-                    </div>
                 </div>
 
                 {/* Sidebar */}

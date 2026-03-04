@@ -7,19 +7,19 @@ import { useRouter, useSearchParams } from 'next/navigation';
 
 const popularMakes = [
     'All Makes',
-    'Maruti Suzuki',
-    'Hyundai',
-    'Honda',
-    'Toyota',
-    'Mahindra',
-    'Tata',
-    'BMW',
-    'Mercedes-Benz',
     'Audi',
+    'BMW',
+    'Honda',
+    'Hyundai',
+    'Mahindra',
+    'Maruti Suzuki',
+    'Mercedes-Benz',
+    'Tata',
+    'Toyota',
 ];
 
 const fuelTypes = [
-    'All Fuels',
+    'Fuel',
     'Petrol',
     'Diesel',
     'Electric',
@@ -46,7 +46,7 @@ export default function SearchBar({ variant = 'hero' }: SearchBarProps) {
 
     const [make, setMake] = useState(searchParams.get('make') || 'All Makes');
     const [priceRange, setPriceRange] = useState(priceRanges[0]);
-    const [fuelType, setFuelType] = useState(searchParams.get('fuel') || 'All Fuels');
+    const [fuelType, setFuelType] = useState(searchParams.get('fuel') || 'Fuel');
     const [isMakeOpen, setIsMakeOpen] = useState(false);
     const [isPriceOpen, setIsPriceOpen] = useState(false);
     const [isFuelOpen, setIsFuelOpen] = useState(false);
@@ -54,7 +54,7 @@ export default function SearchBar({ variant = 'hero' }: SearchBarProps) {
     const handleSearch = () => {
         const params = new URLSearchParams();
         if (make !== 'All Makes') params.set('make', make);
-        if (fuelType !== 'All Fuels') params.set('fuel', fuelType);
+        if (fuelType !== 'Fuel') params.set('fuel', fuelType);
         if (priceRange.min > 0) params.set('minPrice', priceRange.min.toString());
         if (priceRange.max > 0) params.set('maxPrice', priceRange.max.toString());
 

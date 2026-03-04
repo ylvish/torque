@@ -34,11 +34,6 @@ const carMakes = [
     'Porsche', 'Mini', 'Jeep', 'MG', 'Citroen', 'Other'
 ];
 
-const cities = [
-    'Mumbai', 'Delhi', 'Bangalore', 'Chennai', 'Kolkata', 'Hyderabad',
-    'Pune', 'Ahmedabad', 'Jaipur', 'Lucknow', 'Chandigarh', 'Goa', 'Other'
-];
-
 const years = Array.from({ length: 20 }, (_, i) => new Date().getFullYear() - i);
 
 export default function SellPage() {
@@ -346,11 +341,11 @@ export default function SellPage() {
                                         <select
                                             value={formData.seller_city}
                                             onChange={(e) => updateFormData('seller_city', e.target.value)}
-                                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-red-500/50"
+                                            className="w-full px-4 py-3 bg-zinc-900 border border-white/10 rounded-xl text-white focus:outline-none focus:border-red-500/50"
                                         >
-                                            <option value="">Select city</option>
-                                            {cities.map(city => (
-                                                <option key={city} value={city}>{city}</option>
+                                            <option value="" className="bg-zinc-900 text-white/40">Select city</option>
+                                            {['Mumbai', 'Delhi', 'Bangalore', 'Chennai', 'Kolkata', 'Hyderabad', 'Pune', 'Ahmedabad', 'Jaipur', 'Lucknow', 'Chandigarh', 'Goa', 'Other'].map(city => (
+                                                <option key={city} value={city} className="bg-zinc-900 text-white">{city}</option>
                                             ))}
                                         </select>
                                     </div>
@@ -396,11 +391,11 @@ export default function SellPage() {
                                         <select
                                             value={formData.make}
                                             onChange={(e) => updateFormData('make', e.target.value)}
-                                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-red-500/50"
+                                            className="w-full px-4 py-3 bg-zinc-900 border border-white/10 rounded-xl text-white focus:outline-none focus:border-red-500/50"
                                         >
-                                            <option value="">Select make</option>
+                                            <option value="" className="bg-zinc-900 text-white/40">Select make</option>
                                             {carMakes.map(make => (
-                                                <option key={make} value={make}>{make}</option>
+                                                <option key={make} value={make} className="bg-zinc-900 text-white">{make}</option>
                                             ))}
                                         </select>
                                     </div>
@@ -422,10 +417,10 @@ export default function SellPage() {
                                         <select
                                             value={formData.year}
                                             onChange={(e) => updateFormData('year', parseInt(e.target.value))}
-                                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-red-500/50"
+                                            className="w-full px-4 py-3 bg-zinc-900 border border-white/10 rounded-xl text-white focus:outline-none focus:border-red-500/50"
                                         >
                                             {years.map(year => (
-                                                <option key={year} value={year}>{year}</option>
+                                                <option key={year} value={year} className="bg-zinc-900 text-white">{year}</option>
                                             ))}
                                         </select>
                                     </div>
@@ -447,13 +442,13 @@ export default function SellPage() {
                                         <select
                                             value={formData.fuel_type}
                                             onChange={(e) => updateFormData('fuel_type', e.target.value as FuelType)}
-                                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-red-500/50"
+                                            className="w-full px-4 py-3 bg-zinc-900 border border-white/10 rounded-xl text-white focus:outline-none focus:border-red-500/50"
                                         >
-                                            <option value={FuelType.PETROL}>Petrol</option>
-                                            <option value={FuelType.DIESEL}>Diesel</option>
-                                            <option value={FuelType.CNG}>CNG</option>
-                                            <option value={FuelType.ELECTRIC}>Electric</option>
-                                            <option value={FuelType.HYBRID}>Hybrid</option>
+                                            <option value={FuelType.PETROL} className="bg-zinc-900">Petrol</option>
+                                            <option value={FuelType.DIESEL} className="bg-zinc-900">Diesel</option>
+                                            <option value={FuelType.CNG} className="bg-zinc-900">CNG</option>
+                                            <option value={FuelType.ELECTRIC} className="bg-zinc-900">Electric</option>
+                                            <option value={FuelType.HYBRID} className="bg-zinc-900">Hybrid</option>
                                         </select>
                                     </div>
                                     <div>
@@ -461,10 +456,10 @@ export default function SellPage() {
                                         <select
                                             value={formData.transmission}
                                             onChange={(e) => updateFormData('transmission', e.target.value as TransmissionType)}
-                                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-red-500/50"
+                                            className="w-full px-4 py-3 bg-zinc-900 border border-white/10 rounded-xl text-white focus:outline-none focus:border-red-500/50"
                                         >
-                                            <option value={TransmissionType.MANUAL}>Manual</option>
-                                            <option value={TransmissionType.AUTOMATIC}>Automatic</option>
+                                            <option value={TransmissionType.MANUAL} className="bg-zinc-900">Manual</option>
+                                            <option value={TransmissionType.AUTOMATIC} className="bg-zinc-900">Automatic</option>
                                         </select>
                                     </div>
                                 </div>
@@ -482,16 +477,13 @@ export default function SellPage() {
                                     </div>
                                     <div>
                                         <label className="block text-sm text-white/60 mb-1.5">Registration City *</label>
-                                        <select
-                                            value={formData.registration_city}
+                                        <input
+                                            type="text"
+                                            value={formData.registration_city || ''}
                                             onChange={(e) => updateFormData('registration_city', e.target.value)}
-                                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-red-500/50"
-                                        >
-                                            <option value="">Select city</option>
-                                            {cities.map(city => (
-                                                <option key={city} value={city}>{city}</option>
-                                            ))}
-                                        </select>
+                                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/30 focus:outline-none focus:border-red-500/50"
+                                            placeholder="e.g. Chennai"
+                                        />
                                     </div>
                                 </div>
                             </motion.div>

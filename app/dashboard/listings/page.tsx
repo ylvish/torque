@@ -50,11 +50,6 @@ const carMakes = [
     'Land Rover', 'Jaguar', 'Volvo', 'Porsche'
 ].sort();
 
-const cities = [
-    'Mumbai', 'Delhi', 'Bangalore', 'Hyderabad', 'Chennai', 'Kolkata', 'Pune', 'Ahmedabad',
-    'Jaipur', 'Surat', 'Lucknow', 'Kanpur', 'Nagpur', 'Indore', 'Thane', 'Bhopal',
-    'Visakhapatnam', 'Coimbatore', 'Patna', 'Vadodara'
-].sort();
 
 interface ListingFormData {
     make: string;
@@ -736,16 +731,13 @@ export default function ListingsPage() {
                                             </div>
                                             <div>
                                                 <label className="block text-sm text-white/60 mb-1">Registration City</label>
-                                                <select
+                                                <input
+                                                    type="text"
                                                     value={formData.registration_city}
                                                     onChange={(e) => setFormData(prev => ({ ...prev, registration_city: e.target.value }))}
                                                     className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-red-500/50"
-                                                >
-                                                    <option value="" disabled>Select City</option>
-                                                    {cities.map(city => (
-                                                        <option key={city} value={city} className="bg-zinc-900 text-white">{city}</option>
-                                                    ))}
-                                                </select>
+                                                    placeholder="e.g. Chennai"
+                                                />
                                             </div>
                                             <div className="col-span-2">
                                                 <label className="block text-sm text-white/60 mb-1">Status</label>

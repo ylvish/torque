@@ -16,7 +16,7 @@ const WhatsappIcon = ({ className }: { className?: string }) => (
 
 const footerLinks = [
     { name: 'Home', href: '/' },
-    { name: 'Inventory', href: '/cars' },
+    { name: 'Inventory', href: '/browse' },
     { name: 'Sell Your Car', href: '/sell' },
     { name: 'Service Center', href: '/service' },
     { name: 'About Us', href: '/about' },
@@ -32,7 +32,7 @@ const socialLinks = [
 
 export default function Footer() {
     return (
-        <footer className="bg-zinc-950 border-t border-white/5">
+        <footer className="bg-black border-t border-white/10">
             <div className="mx-auto max-w-7xl px-4 py-12 lg:py-16 lg:px-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
                     {/* Brand Column */}
@@ -61,10 +61,15 @@ export default function Footer() {
                                 <Mail className="h-4 w-4 text-red-500 flex-shrink-0" />
                                 <span>info@thetorque.in</span>
                             </a>
-                            <div className="flex items-start gap-3 text-white/60 text-sm">
+                            <a
+                                href="https://www.google.com/maps?gs_lcrp=EgZjaHJvbWUqBggBEEUYOzIHCAAQABiPAjIGCAEQRRg7MgYIAhBFGDsyBggDEEUYPDIGCAQQRRg8MgYIBRBFGDwyBggGEEUYPDIGCAcQRRg90gEINDYzNWowajmoAgawAgHxBRLA5I6_XBoo&um=1&ie=UTF-8&fb=1&gl=in&sa=X&geocode=Kc_hqQgpZFI6MWSBe5I3qCE4&daddr=861,+Poonamallee+High+Rd,+Kilpauk,+Chennai,+Tamil+Nadu+600010"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-start gap-3 text-white/60 text-sm hover:text-red-400 transition-colors"
+                            >
                                 <MapPin className="h-4 w-4 text-red-500 flex-shrink-0 mt-1" />
                                 <span>861, Poonamallee High Rd, Kilpauk<br />Chennai, Tamil Nadu 600010</span>
-                            </div>
+                            </a>
                         </div>
                     </div>
 
