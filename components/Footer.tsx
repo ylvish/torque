@@ -49,11 +49,15 @@ export default function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
                     {/* Brand Column */}
                     <div className="lg:col-span-2">
-                        <Link href="/" className="flex items-center gap-2 mb-4">
-                            <Car className="h-8 w-8 text-red-500" />
-                            <span className="text-2xl font-bold text-white">
-                                TORQUE
-                            </span>
+                        <Link href="/" className="flex items-center gap-2 mb-4 h-10">
+                            <img
+                                src="/logo.png"
+                                alt="The Torque"
+                                className="h-full object-contain"
+                                onError={(e) => {
+                                    e.currentTarget.style.display = 'none';
+                                }}
+                            />
                         </Link>
                         <p className="text-white/60 text-sm leading-relaxed mb-6 max-w-sm">
                             Chennai's most trusted premium pre-owned car marketplace. Every car is

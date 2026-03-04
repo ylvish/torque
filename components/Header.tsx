@@ -8,8 +8,10 @@ import { Menu, X, Car, User, LogOut, LayoutDashboard } from 'lucide-react';
 import { useAuth } from '@/lib/auth-context';
 
 const navigation = [
-    { name: 'Browse Cars', href: '/browse' },
+    { name: 'Home', href: '/' },
+    { name: 'Inventory', href: '/browse' },
     { name: 'Sell Your Car', href: '/sell' },
+    { name: 'Service Center', href: '/service' },
     { name: 'About Us', href: '/about' },
     { name: 'Contact', href: '/contact' },
 ];
@@ -30,13 +32,22 @@ export default function Header() {
             <nav className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8">
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-2 group">
-                    <div className="relative">
-                        <div className="absolute inset-0 bg-red-500 blur-lg opacity-50 group-hover:opacity-75 transition-opacity" />
-                        <Car className="relative h-8 w-8 text-red-500" />
+                    <div className="relative flex items-center h-10">
+                        {/* 
+                          We replaced the icon with the actual torque logo image. 
+                          The user must ensure the logo file is uploaded to the Next.js `public` directory as `logo.png`.
+                        */}
+                        <img
+                            src="/logo.png"
+                            alt="The Torque"
+                            className="h-full object-contain"
+                            onError={(e) => {
+                                // Fallback if image not found during dev
+                                e.currentTarget.style.display = 'none';
+                                e.currentTarget.parentElement?.classList.add('fallback-text');
+                            }}
+                        />
                     </div>
-                    <span className="text-2xl font-bold text-white tracking-tight">
-                        TORQUE
-                    </span>
                 </Link>
 
                 {/* Desktop Navigation */}
@@ -140,11 +151,8 @@ export default function Header() {
                         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)} />
                         <div className="fixed inset-y-0 right-0 w-full max-w-sm bg-zinc-900 px-6 py-6">
                             <div className="flex items-center justify-between mb-8">
-                                <Link href="/" className="flex items-center gap-2" onClick={() => setMobileMenuOpen(false)}>
-                                    <Car className="h-7 w-7 text-red-500" />
-                                    <span className="text-xl font-bold text-white">
-                                        TORQUE
-                                    </span>
+                                <Link href="/" className="flex items-center gap-2 h-8" onClick={() => setMobileMenuOpen(false)}>
+                                    <img src="/logo.png" alt="The Torque" className="h-full object-contain" />
                                 </Link>
                                 <button
                                     type="button"
