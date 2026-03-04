@@ -86,7 +86,7 @@ export default function HomePage() {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 py-32 lg:py-40 text-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 py-24 md:py-32 lg:py-40 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -125,15 +125,15 @@ export default function HomePage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto"
+            className="mt-10 md:mt-16 grid grid-cols-3 gap-2 md:gap-6 max-w-3xl mx-auto"
           >
             {stats.map((stat) => (
               <div key={stat.label} className="text-center">
-                <div className="inline-flex items-center justify-center w-12 h-12 mb-3 bg-red-500/10 rounded-xl">
-                  <stat.icon className="h-6 w-6 text-red-500" />
+                <div className="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 mb-2 md:mb-3 bg-red-500/10 rounded-lg md:rounded-xl">
+                  <stat.icon className="h-5 w-5 md:h-6 md:w-6 text-red-500" />
                 </div>
-                <div className="text-2xl md:text-3xl font-bold text-white">{stat.value}</div>
-                <div className="text-sm text-white/50">{stat.label}</div>
+                <div className="text-lg md:text-3xl font-bold text-white">{stat.value}</div>
+                <div className="text-[10px] md:text-sm text-white/50 uppercase tracking-tight md:tracking-normal">{stat.label}</div>
               </div>
             ))}
           </motion.div>
