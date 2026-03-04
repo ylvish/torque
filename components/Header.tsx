@@ -28,108 +28,110 @@ export default function Header() {
     }
 
     return (
-        <header className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md">
-            <nav className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8">
-                {/* Logo */}
-                <Link href="/" className="flex items-center gap-2 group">
-                    <div className="relative flex items-center h-10">
-                        {/* 
+        <>
+            <header className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md">
+                <nav className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8">
+                    {/* Logo */}
+                    <Link href="/" className="flex items-center gap-2 group">
+                        <div className="relative flex items-center h-10">
+                            {/* 
                           We replaced the icon with the actual torque logo image. 
                           The user must ensure the logo file is uploaded to the Next.js `public` directory as `logo.png`.
                         */}
-                        <img
-                            src="/logo.png"
-                            alt="The Torque"
-                            className="h-full object-contain"
-                            onError={(e) => {
-                                // Fallback if image not found during dev
-                                e.currentTarget.style.display = 'none';
-                                e.currentTarget.parentElement?.classList.add('fallback-text');
-                            }}
-                        />
-                    </div>
-                </Link>
-
-                {/* Desktop Navigation */}
-                <div className="hidden lg:flex lg:gap-x-8">
-                    {navigation.map((item) => (
-                        <Link
-                            key={item.name}
-                            href={item.href}
-                            className="text-sm font-medium text-white/80 hover:text-red-500 transition-colors duration-200 relative group py-2"
-                        >
-                            {item.name}
-                            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 group-hover:w-full transition-all duration-300" />
-                        </Link>
-                    ))}
-                </div>
-
-                {/* Desktop CTA */}
-                <div className="hidden lg:flex lg:items-center lg:gap-4">
-                    {isLoading ? (
-                        <div className="h-8 w-20 bg-white/10 rounded animate-pulse" />
-                    ) : user ? (
-                        <div className="relative">
-                            <button
-                                onClick={() => setUserMenuOpen(!userMenuOpen)}
-                                className="flex items-center gap-2 text-sm font-medium text-white/80 hover:text-white transition-colors"
-                            >
-                                <div className="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center">
-                                    <span className="text-sm font-medium text-red-400">
-                                        {profile?.name?.charAt(0) || user.email?.charAt(0) || 'U'}
-                                    </span>
-                                </div>
-                                <span className="hidden xl:inline">{profile?.name || 'Account'}</span>
-                            </button>
-
-                            <AnimatePresence>
-                                {userMenuOpen && (
-                                    <motion.div
-                                        initial={{ opacity: 0, y: 10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0, y: 10 }}
-                                        className="absolute right-0 top-full mt-2 w-48 bg-zinc-900 border border-white/10 rounded-xl shadow-xl overflow-hidden"
-                                    >
-                                        {isStaff && (
-                                            <Link
-                                                href="/dashboard"
-                                                onClick={() => setUserMenuOpen(false)}
-                                                className="flex items-center gap-2 px-4 py-3 text-sm text-white/80 hover:bg-white/5"
-                                            >
-                                                <LayoutDashboard className="h-4 w-4" />
-                                                Dashboard
-                                            </Link>
-                                        )}
-                                        <button
-                                            onClick={() => { signOut(); setUserMenuOpen(false); }}
-                                            className="flex items-center gap-2 w-full px-4 py-3 text-sm text-red-400 hover:bg-red-500/10"
-                                        >
-                                            <LogOut className="h-4 w-4" />
-                                            Sign Out
-                                        </button>
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
+                            <img
+                                src="https://okdvpidwuhawowepxucq.supabase.co/storage/v1/object/public/car-images/logo/dsfsds.png"
+                                alt="The Torque"
+                                className="h-full object-contain"
+                                onError={(e) => {
+                                    // Fallback if image not found during dev
+                                    e.currentTarget.style.display = 'none';
+                                    e.currentTarget.parentElement?.classList.add('fallback-text');
+                                }}
+                            />
                         </div>
-                    ) : null}
-                    <a
-                        href="tel:+919940419999"
-                        className="group relative inline-flex items-center gap-2 px-6 py-2.5 text-sm font-semibold text-white bg-red-600 rounded-full overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-red-600/25 hover:bg-red-700"
-                    >
-                        <Phone className="h-4 w-4 relative z-10" />
-                        <span className="relative z-10">Call</span>
-                    </a>
-                </div>
+                    </Link>
 
-                {/* Mobile menu button */}
-                <button
-                    type="button"
-                    className="lg:hidden p-2 text-white/80 hover:text-white"
-                    onClick={() => setMobileMenuOpen(true)}
-                >
-                    <Menu className="h-6 w-6" />
-                </button>
-            </nav>
+                    {/* Desktop Navigation */}
+                    <div className="hidden lg:flex lg:gap-x-8">
+                        {navigation.map((item) => (
+                            <Link
+                                key={item.name}
+                                href={item.href}
+                                className="text-sm font-medium text-white/80 hover:text-red-500 transition-colors duration-200 relative group py-2"
+                            >
+                                {item.name}
+                                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 group-hover:w-full transition-all duration-300" />
+                            </Link>
+                        ))}
+                    </div>
+
+                    {/* Desktop CTA */}
+                    <div className="hidden lg:flex lg:items-center lg:gap-4">
+                        {isLoading ? (
+                            <div className="h-8 w-20 bg-white/10 rounded animate-pulse" />
+                        ) : user ? (
+                            <div className="relative">
+                                <button
+                                    onClick={() => setUserMenuOpen(!userMenuOpen)}
+                                    className="flex items-center gap-2 text-sm font-medium text-white/80 hover:text-white transition-colors"
+                                >
+                                    <div className="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center">
+                                        <span className="text-sm font-medium text-red-400">
+                                            {profile?.name?.charAt(0) || user.email?.charAt(0) || 'U'}
+                                        </span>
+                                    </div>
+                                    <span className="hidden xl:inline">{profile?.name || 'Account'}</span>
+                                </button>
+
+                                <AnimatePresence>
+                                    {userMenuOpen && (
+                                        <motion.div
+                                            initial={{ opacity: 0, y: 10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: 10 }}
+                                            className="absolute right-0 top-full mt-2 w-48 bg-zinc-900 border border-white/10 rounded-xl shadow-xl overflow-hidden"
+                                        >
+                                            {isStaff && (
+                                                <Link
+                                                    href="/dashboard"
+                                                    onClick={() => setUserMenuOpen(false)}
+                                                    className="flex items-center gap-2 px-4 py-3 text-sm text-white/80 hover:bg-white/5"
+                                                >
+                                                    <LayoutDashboard className="h-4 w-4" />
+                                                    Dashboard
+                                                </Link>
+                                            )}
+                                            <button
+                                                onClick={() => { signOut(); setUserMenuOpen(false); }}
+                                                className="flex items-center gap-2 w-full px-4 py-3 text-sm text-red-400 hover:bg-red-500/10"
+                                            >
+                                                <LogOut className="h-4 w-4" />
+                                                Sign Out
+                                            </button>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </div>
+                        ) : null}
+                        <a
+                            href="tel:+919940419999"
+                            className="group relative inline-flex items-center gap-2 px-6 py-2.5 text-sm font-semibold text-white bg-red-600 rounded-full overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-red-600/25 hover:bg-red-700"
+                        >
+                            <Phone className="h-4 w-4 relative z-10" />
+                            <span className="relative z-10">Call</span>
+                        </a>
+                    </div>
+
+                    {/* Mobile menu button */}
+                    <button
+                        type="button"
+                        className="lg:hidden p-2 text-white/80 hover:text-white"
+                        onClick={() => setMobileMenuOpen(true)}
+                    >
+                        <Menu className="h-6 w-6" />
+                    </button>
+                </nav>
+            </header>
 
             {/* Mobile Menu */}
             <AnimatePresence>
@@ -145,7 +147,7 @@ export default function Header() {
                         <div className="fixed inset-y-0 right-0 w-full max-w-sm bg-zinc-900 px-6 py-6">
                             <div className="flex items-center justify-between mb-8">
                                 <Link href="/" className="flex items-center gap-2 h-8" onClick={() => setMobileMenuOpen(false)}>
-                                    <img src="/logo.png" alt="The Torque" className="h-full object-contain" />
+                                    <img src="https://okdvpidwuhawowepxucq.supabase.co/storage/v1/object/public/car-images/logo/dsfsds.png" alt="The Torque" className="h-full object-contain" />
                                 </Link>
                                 <button
                                     type="button"
@@ -212,6 +214,6 @@ export default function Header() {
                     </motion.div>
                 )}
             </AnimatePresence>
-        </header>
+        </>
     );
 }

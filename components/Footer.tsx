@@ -51,7 +51,7 @@ export default function Footer() {
                     <div className="lg:col-span-2">
                         <Link href="/" className="flex items-center gap-2 mb-4 h-10">
                             <img
-                                src="/logo.png"
+                                src="https://okdvpidwuhawowepxucq.supabase.co/storage/v1/object/public/car-images/logo/dsfsds.png"
                                 alt="The Torque"
                                 className="h-full object-contain"
                             />

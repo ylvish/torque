@@ -44,8 +44,8 @@ const trustFeatures = [
   },
   {
     icon: CheckCircle2,
-    title: 'Quality Guarantee',
-    description: '7-day money-back guarantee if the car doesn\'t meet your expectations.',
+    title: 'Easy Financing',
+    description: 'Hassle-free finance options with quick approvals and competitive interest rates.',
   },
 ];
 
@@ -94,7 +94,7 @@ export default function HomePage() {
           >
             <span className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 text-sm font-medium text-red-400 bg-red-500/10 border border-red-500/20 rounded-full">
               <Star className="h-4 w-4 fill-red-400" />
-              Trusted by 1,00,000+ of Customers Since 2011
+              Trusted by 1,00,000+ Customers Since 2011
             </span>
 
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
