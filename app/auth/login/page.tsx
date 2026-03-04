@@ -54,7 +54,7 @@ function LoginForm() {
         >
             {/* Logo */}
             <Link href="/" className="flex items-center justify-center gap-2 mb-8">
-                <Car className="h-10 w-10 text-amber-500" />
+                <Car className="h-10 w-10 text-red-500" />
                 <span className="text-3xl font-bold text-white">
                     TORQUE
                 </span>
@@ -86,7 +86,7 @@ function LoginForm() {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
-                                className="w-full pl-12 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/30 focus:outline-none focus:border-amber-500/50"
+                                className="w-full pl-12 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/30 focus:outline-none focus:border-red-500/50"
                                 placeholder="your.email@company.com"
                             />
                         </div>
@@ -102,7 +102,7 @@ function LoginForm() {
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
                                 minLength={6}
-                                className="w-full pl-12 pr-12 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/30 focus:outline-none focus:border-amber-500/50"
+                                className="w-full pl-12 pr-12 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/30 focus:outline-none focus:border-red-500/50"
                                 placeholder="••••••••"
                             />
                             <button
@@ -117,7 +117,7 @@ function LoginForm() {
 
                     <div className="flex items-center justify-between">
                         <label className="flex items-center gap-2 cursor-pointer">
-                            <input type="checkbox" className="w-4 h-4 rounded border-white/20 bg-white/5 text-amber-500" />
+                            <input type="checkbox" className="w-4 h-4 rounded border-white/20 bg-white/5 text-red-500" />
                             <span className="text-sm text-white/60">Remember me</span>
                         </label>
                     </div>
@@ -125,7 +125,7 @@ function LoginForm() {
                     <button
                         type="submit"
                         disabled={isLoading}
-                        className="w-full py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 text-black font-semibold rounded-xl hover:shadow-lg hover:shadow-amber-500/25 transition-all disabled:opacity-50"
+                        className="w-full py-3.5 bg-gradient-to-r from-red-500 to-red-600 text-black font-semibold rounded-xl hover:shadow-lg hover:shadow-red-500/25 transition-all disabled:opacity-50"
                     >
                         {isLoading ? 'Signing in...' : 'Sign In'}
                     </button>
@@ -140,7 +140,7 @@ function LoginForm() {
 
             <p className="text-center text-white/40 text-sm mt-6">
                 Not a staff member?{' '}
-                <Link href="/" className="text-amber-500 hover:text-amber-400">
+                <Link href="/" className="text-red-500 hover:text-red-400">
                     Go to homepage
                 </Link>
             </p>

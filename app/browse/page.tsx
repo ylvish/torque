@@ -26,7 +26,7 @@ export default function BrowsePage() {
     return (
         <Suspense fallback={
             <div className="min-h-screen pt-20 flex items-center justify-center bg-[#0a0a0a]">
-                <div className="w-8 h-8 rounded-full border-2 border-amber-500 border-t-transparent animate-spin"></div>
+                <div className="w-8 h-8 rounded-full border-2 border-red-500 border-t-transparent animate-spin"></div>
             </div>
         }>
             <BrowseContent />
@@ -139,7 +139,7 @@ function BrowseContent() {
             <div className="bg-zinc-900/50 border-b border-white/5">
                 <div className="max-w-7xl mx-auto px-4 py-8">
                     <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
-                        Browse <span className="text-amber-500">Verified Cars</span>
+                        Browse <span className="text-red-500">Verified Cars</span>
                     </h1>
                     <p className="text-white/60">
                         {sortedListings.length} cars available
@@ -170,7 +170,7 @@ function BrowseContent() {
                         <select
                             value={sortBy}
                             onChange={(e) => setSortBy(e.target.value)}
-                            className="px-4 py-3 bg-zinc-900 border border-white/10 rounded-xl text-white/80 focus:outline-none focus:border-amber-500/50"
+                            className="px-4 py-3 bg-zinc-900 border border-white/10 rounded-xl text-white/80 focus:outline-none focus:border-red-500/50"
                         >
                             {sortOptions.map((option) => (
                                 <option key={option.value} value={option.value}>
@@ -183,13 +183,13 @@ function BrowseContent() {
                         <div className="hidden sm:flex items-center bg-zinc-900 border border-white/10 rounded-xl overflow-hidden">
                             <button
                                 onClick={() => setViewMode('grid')}
-                                className={`p-3 ${viewMode === 'grid' ? 'bg-amber-500/20 text-amber-500' : 'text-white/50 hover:text-white'}`}
+                                className={`p-3 ${viewMode === 'grid' ? 'bg-red-500/20 text-red-500' : 'text-white/50 hover:text-white'}`}
                             >
                                 <Grid className="h-4 w-4" />
                             </button>
                             <button
                                 onClick={() => setViewMode('list')}
-                                className={`p-3 ${viewMode === 'list' ? 'bg-amber-500/20 text-amber-500' : 'text-white/50 hover:text-white'}`}
+                                className={`p-3 ${viewMode === 'list' ? 'bg-red-500/20 text-red-500' : 'text-white/50 hover:text-white'}`}
                             >
                                 <List className="h-4 w-4" />
                             </button>
@@ -226,7 +226,7 @@ function BrowseContent() {
                                                 key={make}
                                                 onClick={() => setSelectedMake(make)}
                                                 className={`block w-full text-left px-3 py-2 text-sm rounded-lg transition-colors ${selectedMake === make
-                                                    ? 'bg-amber-500/20 text-amber-500'
+                                                    ? 'bg-red-500/20 text-red-500'
                                                     : 'text-white/60 hover:text-white hover:bg-white/5'
                                                     }`}
                                             >
@@ -245,7 +245,7 @@ function BrowseContent() {
                                                 key={fuel}
                                                 onClick={() => setSelectedFuel(fuel)}
                                                 className={`px-3 py-1.5 text-sm rounded-full transition-colors ${selectedFuel === fuel
-                                                    ? 'bg-amber-500 text-black'
+                                                    ? 'bg-red-500 text-black'
                                                     : 'bg-white/5 text-white/60 hover:text-white hover:bg-white/10'
                                                     }`}
                                             >
@@ -264,7 +264,7 @@ function BrowseContent() {
                                                 key={trans}
                                                 onClick={() => setSelectedTransmission(trans)}
                                                 className={`px-3 py-1.5 text-sm rounded-full transition-colors ${selectedTransmission === trans
-                                                    ? 'bg-amber-500 text-black'
+                                                    ? 'bg-red-500 text-black'
                                                     : 'bg-white/5 text-white/60 hover:text-white hover:bg-white/10'
                                                     }`}
                                             >
@@ -294,7 +294,7 @@ function BrowseContent() {
                                                     const val = parseInt(e.target.value);
                                                     if (val <= priceRange[1]) setPriceRange([val, priceRange[1]]);
                                                 }}
-                                                className="w-full accent-amber-500"
+                                                className="w-full accent-red-500"
                                             />
                                         </div>
                                         {/* Max Price */}
@@ -313,7 +313,7 @@ function BrowseContent() {
                                                     const val = parseInt(e.target.value);
                                                     if (val >= priceRange[0]) setPriceRange([priceRange[0], val]);
                                                 }}
-                                                className="w-full accent-amber-500"
+                                                className="w-full accent-red-500"
                                             />
                                         </div>
                                     </div>
@@ -324,7 +324,7 @@ function BrowseContent() {
                                     <h4 className="text-sm font-medium text-white/80">Show Sold Cars</h4>
                                     <button
                                         onClick={() => setShowSold(!showSold)}
-                                        className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${showSold ? 'bg-amber-500' : 'bg-white/10'}`}
+                                        className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${showSold ? 'bg-red-500' : 'bg-white/10'}`}
                                     >
                                         <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${showSold ? 'translate-x-6' : 'translate-x-1'}`} />
                                     </button>
@@ -339,7 +339,7 @@ function BrowseContent() {
                                         setPriceRange([0, maxFleetPrice]);
                                         setShowSold(false);
                                     }}
-                                    className="w-full px-4 py-2 text-sm text-amber-500 border border-amber-500/30 rounded-lg hover:bg-amber-500/10 transition-colors"
+                                    className="w-full px-4 py-2 text-sm text-red-500 border border-red-500/30 rounded-lg hover:bg-red-500/10 transition-colors"
                                 >
                                     Reset All Filters
                                 </button>

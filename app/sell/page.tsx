@@ -220,14 +220,14 @@ export default function SellPage() {
                     </p>
                     <div className="p-4 bg-zinc-900 border border-white/10 rounded-xl mb-6">
                         <p className="text-sm text-white/50 mb-1">Your Reference ID</p>
-                        <p className="text-2xl font-mono font-bold text-amber-500">{referenceId}</p>
+                        <p className="text-2xl font-mono font-bold text-red-400">{referenceId}</p>
                     </div>
                     <p className="text-sm text-white/40 mb-8">
                         Please save this reference ID for future communication.
                     </p>
                     <button
                         onClick={() => router.push('/')}
-                        className="px-8 py-3 bg-amber-500 text-black font-semibold rounded-full hover:bg-amber-400 transition-colors"
+                        className="px-8 py-3 bg-red-600 text-white font-semibold rounded-full hover:bg-red-700 transition-colors"
                     >
                         Back to Home
                     </button>
@@ -239,10 +239,10 @@ export default function SellPage() {
     return (
         <div className="min-h-screen pt-20 pb-24">
             {/* Header */}
-            <div className="bg-gradient-to-b from-amber-500/10 to-transparent border-b border-white/5">
+            <div className="bg-gradient-to-b from-red-500/10 to-transparent border-b border-white/5">
                 <div className="max-w-3xl mx-auto px-4 py-12 text-center">
                     <h1 className="text-3xl md:text-4xl font-bold text-white mb-3">
-                        Sell Your <span className="text-amber-500">Car</span>
+                        Sell Your <span className="text-red-500">Car</span>
                     </h1>
                     <p className="text-white/60 max-w-lg mx-auto">
                         Submit your car details. Our experts will review, verify, and help you
@@ -262,7 +262,7 @@ export default function SellPage() {
                   ${currentStep > step.id
                                         ? 'bg-emerald-500 text-white'
                                         : currentStep === step.id
-                                            ? 'bg-amber-500 text-black'
+                                            ? 'bg-red-600 text-white'
                                             : 'bg-zinc-800 text-white/40'
                                     }
                 `}>
@@ -314,7 +314,7 @@ export default function SellPage() {
                                             type="text"
                                             value={formData.seller_name}
                                             onChange={(e) => updateFormData('seller_name', e.target.value)}
-                                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/30 focus:outline-none focus:border-amber-500/50"
+                                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/30 focus:outline-none focus:border-red-500/50"
                                             placeholder="Enter your name"
                                         />
                                     </div>
@@ -324,7 +324,7 @@ export default function SellPage() {
                                             type="tel"
                                             value={formData.seller_phone}
                                             onChange={(e) => updateFormData('seller_phone', e.target.value)}
-                                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/30 focus:outline-none focus:border-amber-500/50"
+                                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/30 focus:outline-none focus:border-red-500/50"
                                             placeholder="+91 98765 43210"
                                         />
                                     </div>
@@ -337,7 +337,7 @@ export default function SellPage() {
                                             type="email"
                                             value={formData.seller_email}
                                             onChange={(e) => updateFormData('seller_email', e.target.value)}
-                                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/30 focus:outline-none focus:border-amber-500/50"
+                                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/30 focus:outline-none focus:border-red-500/50"
                                             placeholder="you@example.com"
                                         />
                                     </div>
@@ -346,7 +346,7 @@ export default function SellPage() {
                                         <select
                                             value={formData.seller_city}
                                             onChange={(e) => updateFormData('seller_city', e.target.value)}
-                                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-amber-500/50"
+                                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-red-500/50"
                                         >
                                             <option value="">Select city</option>
                                             {cities.map(city => (
@@ -362,7 +362,7 @@ export default function SellPage() {
                                         type="text"
                                         value={formData.preferred_contact_time || ''}
                                         onChange={(e) => updateFormData('preferred_contact_time', e.target.value)}
-                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/30 focus:outline-none focus:border-amber-500/50"
+                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/30 focus:outline-none focus:border-red-500/50"
                                         placeholder="e.g., Weekdays after 6 PM"
                                     />
                                 </div>
@@ -372,7 +372,7 @@ export default function SellPage() {
                                         type="checkbox"
                                         checked={formData.whatsapp_consent}
                                         onChange={(e) => updateFormData('whatsapp_consent', e.target.checked)}
-                                        className="w-5 h-5 rounded border-white/20 bg-white/5 text-amber-500 focus:ring-amber-500"
+                                        className="w-5 h-5 rounded border-white/20 bg-white/5 text-red-600 focus:ring-red-600"
                                     />
                                     <span className="text-white/70">I consent to receive WhatsApp messages</span>
                                 </label>
@@ -396,7 +396,7 @@ export default function SellPage() {
                                         <select
                                             value={formData.make}
                                             onChange={(e) => updateFormData('make', e.target.value)}
-                                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-amber-500/50"
+                                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-red-500/50"
                                         >
                                             <option value="">Select make</option>
                                             {carMakes.map(make => (
@@ -410,7 +410,7 @@ export default function SellPage() {
                                             type="text"
                                             value={formData.model}
                                             onChange={(e) => updateFormData('model', e.target.value)}
-                                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/30 focus:outline-none focus:border-amber-500/50"
+                                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/30 focus:outline-none focus:border-red-500/50"
                                             placeholder="e.g., Swift, Creta, 3 Series"
                                         />
                                     </div>
@@ -422,7 +422,7 @@ export default function SellPage() {
                                         <select
                                             value={formData.year}
                                             onChange={(e) => updateFormData('year', parseInt(e.target.value))}
-                                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-amber-500/50"
+                                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-red-500/50"
                                         >
                                             {years.map(year => (
                                                 <option key={year} value={year}>{year}</option>
@@ -435,7 +435,7 @@ export default function SellPage() {
                                             type="text"
                                             value={formData.variant || ''}
                                             onChange={(e) => updateFormData('variant', e.target.value)}
-                                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/30 focus:outline-none focus:border-amber-500/50"
+                                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/30 focus:outline-none focus:border-red-500/50"
                                             placeholder="e.g., ZXi+, M Sport"
                                         />
                                     </div>
@@ -447,7 +447,7 @@ export default function SellPage() {
                                         <select
                                             value={formData.fuel_type}
                                             onChange={(e) => updateFormData('fuel_type', e.target.value as FuelType)}
-                                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-amber-500/50"
+                                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-red-500/50"
                                         >
                                             <option value={FuelType.PETROL}>Petrol</option>
                                             <option value={FuelType.DIESEL}>Diesel</option>
@@ -461,7 +461,7 @@ export default function SellPage() {
                                         <select
                                             value={formData.transmission}
                                             onChange={(e) => updateFormData('transmission', e.target.value as TransmissionType)}
-                                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-amber-500/50"
+                                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-red-500/50"
                                         >
                                             <option value={TransmissionType.MANUAL}>Manual</option>
                                             <option value={TransmissionType.AUTOMATIC}>Automatic</option>
@@ -476,7 +476,7 @@ export default function SellPage() {
                                             type="number"
                                             value={formData.mileage || ''}
                                             onChange={(e) => updateFormData('mileage', parseInt(e.target.value) || 0)}
-                                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/30 focus:outline-none focus:border-amber-500/50"
+                                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/30 focus:outline-none focus:border-red-500/50"
                                             placeholder="e.g., 45000"
                                         />
                                     </div>
@@ -485,7 +485,7 @@ export default function SellPage() {
                                         <select
                                             value={formData.registration_city}
                                             onChange={(e) => updateFormData('registration_city', e.target.value)}
-                                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-amber-500/50"
+                                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-red-500/50"
                                         >
                                             <option value="">Select city</option>
                                             {cities.map(city => (
@@ -514,7 +514,7 @@ export default function SellPage() {
                                         <select
                                             value={formData.owners}
                                             onChange={(e) => updateFormData('owners', parseInt(e.target.value))}
-                                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-amber-500/50"
+                                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-red-500/50"
                                         >
                                             {[1, 2, 3, 4, 5].map(num => (
                                                 <option key={num} value={num}>{num}{num === 1 ? 'st' : num === 2 ? 'nd' : num === 3 ? 'rd' : 'th'} Owner</option>
@@ -526,7 +526,7 @@ export default function SellPage() {
                                         <select
                                             value={formData.insurance_status || ''}
                                             onChange={(e) => updateFormData('insurance_status', e.target.value)}
-                                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-amber-500/50"
+                                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-red-500/50"
                                         >
                                             <option value="">Select status</option>
                                             <option value="comprehensive">Comprehensive</option>
@@ -553,7 +553,7 @@ export default function SellPage() {
                                             type="button"
                                             onClick={() => updateFormData('accident_history', true)}
                                             className={`flex-1 py-3 rounded-xl border transition-colors ${formData.accident_history
-                                                ? 'bg-amber-500/20 border-amber-500/50 text-amber-400'
+                                                ? 'bg-red-500/20 border-red-500/50 text-red-400'
                                                 : 'bg-white/5 border-white/10 text-white/60'
                                                 }`}
                                         >
@@ -567,7 +567,7 @@ export default function SellPage() {
                                     <textarea
                                         value={formData.service_history || ''}
                                         onChange={(e) => updateFormData('service_history', e.target.value)}
-                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/30 focus:outline-none focus:border-amber-500/50 resize-none"
+                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/30 focus:outline-none focus:border-red-500/50 resize-none"
                                         rows={3}
                                         placeholder="Describe service history (e.g., Regular servicing at authorized center)"
                                     />
@@ -578,7 +578,7 @@ export default function SellPage() {
                                     <textarea
                                         value={formData.selling_reason || ''}
                                         onChange={(e) => updateFormData('selling_reason', e.target.value)}
-                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/30 focus:outline-none focus:border-amber-500/50 resize-none"
+                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/30 focus:outline-none focus:border-red-500/50 resize-none"
                                         rows={2}
                                         placeholder="Why are you selling this car?"
                                     />
@@ -622,7 +622,7 @@ export default function SellPage() {
                                             </div>
                                         ))}
                                         {photoPreviews.length < 8 && (
-                                            <label className="aspect-square rounded-xl border-2 border-dashed border-white/20 hover:border-amber-500/50 flex flex-col items-center justify-center cursor-pointer transition-colors">
+                                            <label className="aspect-square rounded-xl border-2 border-dashed border-white/20 hover:border-red-500/50 flex flex-col items-center justify-center cursor-pointer transition-colors">
                                                 <Upload className="h-8 w-8 text-white/40 mb-2" />
                                                 <span className="text-sm text-white/40">Add Photo</span>
                                                 <input
@@ -659,7 +659,7 @@ export default function SellPage() {
                                             </div>
                                         ))}
                                         {docPreviews.length < 4 && (
-                                            <label className="aspect-square rounded-xl border-2 border-dashed border-white/20 hover:border-amber-500/50 flex flex-col items-center justify-center cursor-pointer transition-colors">
+                                            <label className="aspect-square rounded-xl border-2 border-dashed border-white/20 hover:border-red-500/50 flex flex-col items-center justify-center cursor-pointer transition-colors">
                                                 <Upload className="h-8 w-8 text-white/40 mb-2" />
                                                 <span className="text-sm text-white/40">Add Document</span>
                                                 <input
@@ -674,10 +674,10 @@ export default function SellPage() {
                                     </div>
                                 </div>
 
-                                <div className="p-4 bg-amber-500/10 border border-amber-500/20 rounded-xl flex gap-3">
-                                    <AlertCircle className="h-5 w-5 text-amber-500 flex-shrink-0 mt-0.5" />
+                                <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl flex gap-3">
+                                    <AlertCircle className="h-5 w-5 text-red-400 flex-shrink-0 mt-0.5" />
                                     <div>
-                                        <p className="text-sm text-amber-200">
+                                        <p className="text-sm text-white/70">
                                             <strong>Note:</strong> Your listing will NOT be published automatically.
                                             Our team will review your submission and contact you for verification.
                                         </p>
@@ -703,7 +703,7 @@ export default function SellPage() {
                             type="button"
                             onClick={nextStep}
                             disabled={!validateStep() || isSubmitting}
-                            className="flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-amber-500 to-amber-600 text-black font-semibold rounded-full hover:shadow-lg hover:shadow-amber-500/25 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="flex items-center gap-2 px-8 py-3 bg-red-600 text-white font-semibold rounded-full hover:shadow-lg hover:shadow-red-600/25 hover:bg-red-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             {isSubmitting ? (
                                 <>

@@ -37,7 +37,7 @@ export default function Footer() {
                     {/* Brand Column */}
                     <div className="lg:col-span-2">
                         <Link href="/" className="flex items-center gap-2 mb-4">
-                            <Car className="h-8 w-8 text-amber-500" />
+                            <Car className="h-8 w-8 text-red-500" />
                             <span className="text-2xl font-bold text-white">
                                 TORQUE
                             </span>
@@ -48,15 +48,15 @@ export default function Footer() {
                         </p>
                         <div className="space-y-3">
                             <div className="flex items-center gap-3 text-white/60 text-sm">
-                                <Phone className="h-4 w-4 text-amber-500" />
+                                <Phone className="h-4 w-4 text-red-500" />
                                 <span>+91 98765 43210</span>
                             </div>
                             <div className="flex items-center gap-3 text-white/60 text-sm">
-                                <Mail className="h-4 w-4 text-amber-500" />
+                                <Mail className="h-4 w-4 text-red-500" />
                                 <span>hello@torque.in</span>
                             </div>
                             <div className="flex items-center gap-3 text-white/60 text-sm">
-                                <MapPin className="h-4 w-4 text-amber-500" />
+                                <MapPin className="h-4 w-4 text-red-500" />
                                 <span>Chennai, Tamil Nadu, India</span>
                             </div>
                         </div>
@@ -68,7 +68,7 @@ export default function Footer() {
                         <ul className="space-y-3">
                             {footerLinks.company.map((link) => (
                                 <li key={link.name}>
-                                    <Link href={link.href} className="text-white/60 hover:text-amber-500 text-sm transition-colors">
+                                    <Link href={link.href} className="text-white/60 hover:text-red-400 text-sm transition-colors">
                                         {link.name}
                                     </Link>
                                 </li>
@@ -81,7 +81,7 @@ export default function Footer() {
                         <ul className="space-y-3">
                             {footerLinks.support.map((link) => (
                                 <li key={link.name}>
-                                    <Link href={link.href} className="text-white/60 hover:text-amber-500 text-sm transition-colors">
+                                    <Link href={link.href} className="text-white/60 hover:text-red-400 text-sm transition-colors">
                                         {link.name}
                                     </Link>
                                 </li>
@@ -94,7 +94,7 @@ export default function Footer() {
                         <ul className="space-y-3">
                             {footerLinks.legal.map((link) => (
                                 <li key={link.name}>
-                                    <Link href={link.href} className="text-white/60 hover:text-amber-500 text-sm transition-colors">
+                                    <Link href={link.href} className="text-white/60 hover:text-red-400 text-sm transition-colors">
                                         {link.name}
                                     </Link>
                                 </li>
@@ -113,7 +113,7 @@ export default function Footer() {
                             <Link
                                 key={social.name}
                                 href={social.href}
-                                className="p-2 text-white/40 hover:text-amber-500 hover:bg-white/5 rounded-full transition-colors"
+                                className="p-2 text-white/40 hover:text-red-400 hover:bg-white/5 rounded-full transition-colors"
                             >
                                 <social.icon className="h-5 w-5" />
                             </Link>

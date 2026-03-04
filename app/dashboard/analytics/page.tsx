@@ -62,8 +62,8 @@ export default function AnalyticsPage() {
                         className="bg-zinc-900 border border-white/5 rounded-xl p-5"
                     >
                         <div className="flex items-start justify-between mb-4">
-                            <div className="p-2.5 rounded-lg bg-amber-500/10">
-                                <metric.icon className="h-5 w-5 text-amber-500" />
+                            <div className="p-2.5 rounded-lg bg-red-600/10">
+                                <metric.icon className="h-5 w-5 text-red-400" />
                             </div>
                             <span className={`flex items-center gap-1 text-sm ${metric.trend === 'up' ? 'text-emerald-400' : 'text-red-400'
                                 }`}>
@@ -91,7 +91,7 @@ export default function AnalyticsPage() {
                                 </div>
                                 <div className="h-2 bg-white/5 rounded-full overflow-hidden">
                                     <div
-                                        className="h-full bg-gradient-to-r from-amber-500 to-amber-600 rounded-full"
+                                        className="h-full bg-gradient-to-r from-red-500 to-red-600 rounded-full"
                                         style={{ width: `${item.percentage * 5}%` }}
                                     />
                                 </div>
@@ -115,7 +115,7 @@ export default function AnalyticsPage() {
                                 <div className="w-28 text-sm text-white/60">{stage.stage}</div>
                                 <div className="flex-1 h-8 bg-white/5 rounded overflow-hidden relative">
                                     <div
-                                        className="h-full bg-gradient-to-r from-amber-500/80 to-amber-600/80 flex items-center"
+                                        className="h-full bg-gradient-to-r from-red-500/80 to-red-600/80 flex items-center"
                                         style={{ width: `${stage.percentage}%` }}
                                     >
                                         <span className="absolute left-3 text-sm font-medium text-white">{stage.value}</span>
@@ -141,7 +141,7 @@ export default function AnalyticsPage() {
                                 <p className="text-sm text-white/50">Buyer: {sale.buyer}</p>
                             </div>
                             <div className="text-right">
-                                <p className="font-semibold text-amber-500">{formatPrice(sale.price)}</p>
+                                <p className="font-semibold text-red-400">{formatPrice(sale.price)}</p>
                                 <p className="text-sm text-white/40">{sale.date}</p>
                             </div>
                         </div>

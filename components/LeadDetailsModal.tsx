@@ -95,7 +95,7 @@ export default function LeadDetailsModal({ lead, isOpen, onClose, onUpdate, empl
                     {/* Header */}
                     <div className="flex items-center justify-between p-6 border-b border-white/5">
                         <div className="flex items-center gap-4">
-                            <div className="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-500 font-bold text-xl">
+                            <div className="w-12 h-12 rounded-full bg-red-500/20 flex items-center justify-center text-red-400 font-bold text-xl">
                                 {lead.buyer_name?.charAt(0)}
                             </div>
                             <div>
@@ -105,7 +105,7 @@ export default function LeadDetailsModal({ lead, isOpen, onClose, onUpdate, empl
                                         value={lead.status}
                                         onChange={(e) => handleStatusChange(e.target.value)}
                                         disabled={isUpdating}
-                                        className="bg-zinc-800 border border-white/10 rounded-lg px-2 py-1 text-xs text-white focus:outline-none focus:border-amber-500"
+                                        className="bg-zinc-800 border border-white/10 rounded-lg px-2 py-1 text-xs text-white focus:outline-none focus:border-red-500"
                                     >
                                         <option value="NEW">New</option>
                                         <option value="CONTACTED">Contacted</option>
@@ -128,7 +128,7 @@ export default function LeadDetailsModal({ lead, isOpen, onClose, onUpdate, empl
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <a
                                 href={`tel:${lead.buyer_phone}`}
-                                className="flex items-center gap-3 p-4 bg-zinc-800/50 rounded-xl border border-white/5 hover:border-amber-500/30 transition-colors group"
+                                className="flex items-center gap-3 p-4 bg-zinc-800/50 rounded-xl border border-white/5 hover:border-red-500/30 transition-colors group"
                             >
                                 <div className="p-2 bg-emerald-500/20 rounded-lg text-emerald-400 group-hover:bg-emerald-500/30">
                                     <Phone className="w-5 h-5" />
@@ -140,7 +140,7 @@ export default function LeadDetailsModal({ lead, isOpen, onClose, onUpdate, empl
                             </a>
                             <a
                                 href={`mailto:${lead.buyer_email}`}
-                                className="flex items-center gap-3 p-4 bg-zinc-800/50 rounded-xl border border-white/5 hover:border-amber-500/30 transition-colors group"
+                                className="flex items-center gap-3 p-4 bg-zinc-800/50 rounded-xl border border-white/5 hover:border-red-500/30 transition-colors group"
                             >
                                 <div className="p-2 bg-blue-500/20 rounded-lg text-blue-400 group-hover:bg-blue-500/30">
                                     <Mail className="w-5 h-5" />
@@ -160,7 +160,7 @@ export default function LeadDetailsModal({ lead, isOpen, onClose, onUpdate, empl
                                 <Car className="w-4 h-4" /> Interested Vehicle
                             </h3>
                             <Link href={`/cars/${car.id}`} target="_blank" className="block group">
-                                <div className="flex gap-4 p-4 bg-zinc-800/50 rounded-xl border border-white/5 group-hover:border-amber-500/50 transition-colors">
+                                <div className="flex gap-4 p-4 bg-zinc-800/50 rounded-xl border border-white/5 group-hover:border-red-500/50 transition-colors">
                                     {car.featured_image_url && (
                                         <img
                                             src={car.featured_image_url}
@@ -169,10 +169,10 @@ export default function LeadDetailsModal({ lead, isOpen, onClose, onUpdate, empl
                                         />
                                     )}
                                     <div>
-                                        <h4 className="text-lg font-bold text-white mb-1 group-hover:text-amber-500 transition-colors">
+                                        <h4 className="text-lg font-bold text-white mb-1 group-hover:text-red-400 transition-colors">
                                             {car.year} {car.make} {car.model}
                                         </h4>
-                                        <p className="text-amber-500 font-medium mb-3">
+                                        <p className="text-red-400 font-medium mb-3">
                                             {formatPrice(car.price)}
                                         </p>
                                         <div className="flex flex-wrap gap-2 text-xs text-white/50">
@@ -201,7 +201,7 @@ export default function LeadDetailsModal({ lead, isOpen, onClose, onUpdate, empl
                                     <h3 className="text-sm font-medium text-white/40 uppercase tracking-wider mb-2 flex items-center gap-2">
                                         <Tag className="w-4 h-4" /> Interest Type
                                     </h3>
-                                    <span className="inline-flex items-center px-3 py-1.5 rounded-lg bg-amber-500/10 text-amber-500 text-sm font-medium border border-amber-500/20">
+                                    <span className="inline-flex items-center px-3 py-1.5 rounded-lg bg-red-500/10 text-red-400 text-sm font-medium border border-red-500/20">
                                         {lead.interest}
                                     </span>
                                 </div>

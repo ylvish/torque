@@ -26,13 +26,13 @@ export default function Header() {
     }
 
     return (
-        <header className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-black/80 to-transparent backdrop-blur-md">
+        <header className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md">
             <nav className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8">
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-2 group">
                     <div className="relative">
-                        <div className="absolute inset-0 bg-amber-500 blur-lg opacity-50 group-hover:opacity-75 transition-opacity" />
-                        <Car className="relative h-8 w-8 text-amber-500" />
+                        <div className="absolute inset-0 bg-red-500 blur-lg opacity-50 group-hover:opacity-75 transition-opacity" />
+                        <Car className="relative h-8 w-8 text-red-500" />
                     </div>
                     <span className="text-2xl font-bold text-white tracking-tight">
                         TORQUE
@@ -45,10 +45,10 @@ export default function Header() {
                         <Link
                             key={item.name}
                             href={item.href}
-                            className="text-sm font-medium text-white/80 hover:text-amber-500 transition-colors duration-200 relative group py-2"
+                            className="text-sm font-medium text-white/80 hover:text-red-500 transition-colors duration-200 relative group py-2"
                         >
                             {item.name}
-                            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-500 group-hover:w-full transition-all duration-300" />
+                            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 group-hover:w-full transition-all duration-300" />
                         </Link>
                     ))}
                 </div>
@@ -63,8 +63,8 @@ export default function Header() {
                                 onClick={() => setUserMenuOpen(!userMenuOpen)}
                                 className="flex items-center gap-2 text-sm font-medium text-white/80 hover:text-white transition-colors"
                             >
-                                <div className="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center">
-                                    <span className="text-sm font-medium text-amber-500">
+                                <div className="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center">
+                                    <span className="text-sm font-medium text-red-400">
                                         {profile?.name?.charAt(0) || user.email?.charAt(0) || 'U'}
                                     </span>
                                 </div>
@@ -111,10 +111,9 @@ export default function Header() {
                     )}
                     <Link
                         href="/sell"
-                        className="group relative inline-flex items-center gap-2 px-6 py-2.5 text-sm font-semibold text-black bg-gradient-to-r from-amber-400 to-amber-500 rounded-full overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-amber-500/25"
+                        className="group relative inline-flex items-center gap-2 px-6 py-2.5 text-sm font-semibold text-white bg-red-600 rounded-full overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-red-600/25 hover:bg-red-700"
                     >
                         <span className="relative z-10">Sell Your Car</span>
-                        <div className="absolute inset-0 bg-gradient-to-r from-amber-500 to-amber-600 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </Link>
                 </div>
 
@@ -142,7 +141,7 @@ export default function Header() {
                         <div className="fixed inset-y-0 right-0 w-full max-w-sm bg-zinc-900 px-6 py-6">
                             <div className="flex items-center justify-between mb-8">
                                 <Link href="/" className="flex items-center gap-2" onClick={() => setMobileMenuOpen(false)}>
-                                    <Car className="h-7 w-7 text-amber-500" />
+                                    <Car className="h-7 w-7 text-red-500" />
                                     <span className="text-xl font-bold text-white">
                                         TORQUE
                                     </span>
@@ -160,7 +159,7 @@ export default function Header() {
                                     <Link
                                         key={item.name}
                                         href={item.href}
-                                        className="block py-3 px-4 text-lg font-medium text-white/80 hover:text-amber-500 hover:bg-white/5 rounded-lg transition-colors"
+                                        className="block py-3 px-4 text-lg font-medium text-white/80 hover:text-red-400 hover:bg-white/5 rounded-lg transition-colors"
                                         onClick={() => setMobileMenuOpen(false)}
                                     >
                                         {item.name}
@@ -169,7 +168,7 @@ export default function Header() {
                                 {isStaff && (
                                     <Link
                                         href="/dashboard"
-                                        className="block py-3 px-4 text-lg font-medium text-amber-500 hover:bg-white/5 rounded-lg transition-colors"
+                                        className="block py-3 px-4 text-lg font-medium text-red-400 hover:bg-white/5 rounded-lg transition-colors"
                                         onClick={() => setMobileMenuOpen(false)}
                                     >
                                         Dashboard
@@ -180,8 +179,8 @@ export default function Header() {
                                 {user ? (
                                     <>
                                         <div className="flex items-center gap-3 px-4 py-2">
-                                            <div className="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center">
-                                                <span className="text-lg font-medium text-amber-500">
+                                            <div className="w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center">
+                                                <span className="text-lg font-medium text-red-400">
                                                     {profile?.name?.charAt(0) || user.email?.charAt(0) || 'U'}
                                                 </span>
                                             </div>
@@ -210,7 +209,7 @@ export default function Header() {
                                 )}
                                 <Link
                                     href="/sell"
-                                    className="flex items-center justify-center gap-2 w-full py-3 text-black font-semibold bg-gradient-to-r from-amber-400 to-amber-500 rounded-full"
+                                    className="flex items-center justify-center gap-2 w-full py-3 text-white font-semibold bg-red-600 rounded-full hover:bg-red-700 transition-colors"
                                     onClick={() => setMobileMenuOpen(false)}
                                 >
                                     Sell Your Car

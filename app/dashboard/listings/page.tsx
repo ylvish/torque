@@ -315,7 +315,7 @@ export default function ListingsPage() {
                     </button>
                     <button
                         onClick={openNewModal}
-                        className="inline-flex items-center gap-2 px-4 py-2.5 bg-amber-500 text-black font-medium rounded-lg hover:bg-amber-400 transition-colors"
+                        className="inline-flex items-center gap-2 px-4 py-2.5 bg-red-600 text-black font-medium rounded-lg hover:bg-red-700 transition-colors"
                     >
                         <Plus className="h-5 w-5" />
                         New Listing
@@ -332,7 +332,7 @@ export default function ListingsPage() {
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         placeholder="Search by make or model..."
-                        className="w-full pl-10 pr-4 py-2.5 bg-zinc-900 border border-white/10 rounded-lg text-white placeholder:text-white/30 focus:outline-none focus:border-amber-500/50"
+                        className="w-full pl-10 pr-4 py-2.5 bg-zinc-900 border border-white/10 rounded-lg text-white placeholder:text-white/30 focus:outline-none focus:border-red-500/50"
                     />
                 </div>
                 <div className="flex gap-2 overflow-x-auto">
@@ -347,7 +347,7 @@ export default function ListingsPage() {
                             key={filter.value}
                             onClick={() => setStatusFilter(filter.value)}
                             className={`px-4 py-2 text-sm rounded-lg whitespace-nowrap transition-colors ${statusFilter === filter.value
-                                ? 'bg-amber-500 text-black'
+                                ? 'bg-red-600 text-black'
                                 : 'bg-zinc-900 text-white/60 hover:text-white'
                                 }`}
                         >
@@ -360,7 +360,7 @@ export default function ListingsPage() {
             {/* Loading State */}
             {isLoading ? (
                 <div className="bg-zinc-900 border border-white/5 rounded-xl p-12 text-center">
-                    <Loader2 className="h-8 w-8 text-amber-500 animate-spin mx-auto mb-3" />
+                    <Loader2 className="h-8 w-8 text-red-400 animate-spin mx-auto mb-3" />
                     <p className="text-white/50">Loading listings...</p>
                 </div>
             ) : (
@@ -405,7 +405,7 @@ export default function ListingsPage() {
                                         {listing.year} {listing.make} {listing.model}
                                     </h3>
                                     <p className="text-sm text-white/50 mb-3">{listing.variant}</p>
-                                    <p className="text-lg font-bold text-amber-500 mb-4">{formatPrice(listing.price)}</p>
+                                    <p className="text-lg font-bold text-red-400 mb-4">{formatPrice(listing.price)}</p>
 
                                     {/* Stats */}
                                     <div className="flex items-center gap-4 text-sm text-white/50 mb-4">
@@ -443,7 +443,7 @@ export default function ListingsPage() {
                     <p className="text-white/50">No listings found</p>
                     <button
                         onClick={openNewModal}
-                        className="mt-4 inline-flex items-center gap-2 px-4 py-2 bg-amber-500 text-black font-medium rounded-lg hover:bg-amber-400 transition-colors"
+                        className="mt-4 inline-flex items-center gap-2 px-4 py-2 bg-red-600 text-black font-medium rounded-lg hover:bg-red-700 transition-colors"
                     >
                         <Plus className="h-5 w-5" />
                         Add Your First Listing
@@ -531,7 +531,7 @@ export default function ListingsPage() {
                                                     {selectedListing.year} {selectedListing.make} {selectedListing.model}
                                                 </h3>
                                                 <p className="text-white/60">{selectedListing.variant}</p>
-                                                <p className="text-3xl font-bold text-amber-500 mt-4">
+                                                <p className="text-3xl font-bold text-red-400 mt-4">
                                                     {formatPrice(selectedListing.price)}
                                                 </p>
                                             </div>
@@ -563,8 +563,8 @@ export default function ListingsPage() {
                                         )}
 
                                         {selectedListing.why_we_like_it && (
-                                            <div className="p-4 bg-amber-500/10 border border-amber-500/20 rounded-xl">
-                                                <h4 className="font-medium text-amber-400 mb-2">Why We Like It</h4>
+                                            <div className="p-4 bg-red-600/10 border border-red-500/20 rounded-xl">
+                                                <h4 className="font-medium text-red-400 mb-2">Why We Like It</h4>
                                                 <p className="text-white/70">{selectedListing.why_we_like_it}</p>
                                             </div>
                                         )}
@@ -574,7 +574,7 @@ export default function ListingsPage() {
                                                 onClick={() => {
                                                     openEditModal(selectedListing);
                                                 }}
-                                                className="flex-1 py-3 bg-amber-500 text-black font-medium rounded-xl hover:bg-amber-400 transition-colors"
+                                                className="flex-1 py-3 bg-red-600 text-black font-medium rounded-xl hover:bg-red-700 transition-colors"
                                             >
                                                 <Edit className="h-5 w-5 inline mr-2" />
                                                 Edit Listing
@@ -619,7 +619,7 @@ export default function ListingsPage() {
                                                         </button>
                                                     </div>
                                                 ))}
-                                                <label className="aspect-video rounded-lg border-2 border-dashed border-white/20 flex flex-col items-center justify-center cursor-pointer hover:border-amber-500/50 transition-colors">
+                                                <label className="aspect-video rounded-lg border-2 border-dashed border-white/20 flex flex-col items-center justify-center cursor-pointer hover:border-red-500/50 transition-colors">
                                                     <Upload className="h-6 w-6 text-white/40 mb-1" />
                                                     <span className="text-xs text-white/40">Add Photo</span>
                                                     <input
@@ -640,7 +640,7 @@ export default function ListingsPage() {
                                                 <select
                                                     value={formData.make}
                                                     onChange={(e) => setFormData(prev => ({ ...prev, make: e.target.value }))}
-                                                    className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-amber-500/50"
+                                                    className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-red-500/50"
                                                 >
                                                     <option value="" disabled>Select Make</option>
                                                     {carMakes.map(make => (
@@ -654,7 +654,7 @@ export default function ListingsPage() {
                                                     type="text"
                                                     value={formData.model}
                                                     onChange={(e) => setFormData(prev => ({ ...prev, model: e.target.value }))}
-                                                    className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-amber-500/50"
+                                                    className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-red-500/50"
                                                     placeholder="e.g. 3 Series"
                                                 />
                                             </div>
@@ -664,7 +664,7 @@ export default function ListingsPage() {
                                                     type="number"
                                                     value={formData.year}
                                                     onChange={(e) => setFormData(prev => ({ ...prev, year: parseInt(e.target.value) }))}
-                                                    className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-amber-500/50"
+                                                    className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-red-500/50"
                                                 />
                                             </div>
                                             <div>
@@ -673,7 +673,7 @@ export default function ListingsPage() {
                                                     type="text"
                                                     value={formData.variant}
                                                     onChange={(e) => setFormData(prev => ({ ...prev, variant: e.target.value }))}
-                                                    className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-amber-500/50"
+                                                    className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-red-500/50"
                                                     placeholder="e.g. 330i M Sport"
                                                 />
                                             </div>
@@ -687,7 +687,7 @@ export default function ListingsPage() {
                                                     type="number"
                                                     value={formData.price}
                                                     onChange={(e) => setFormData(prev => ({ ...prev, price: parseInt(e.target.value) || 0 }))}
-                                                    className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-amber-500/50"
+                                                    className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-red-500/50"
                                                     placeholder="e.g. 4500000"
                                                 />
                                             </div>
@@ -697,7 +697,7 @@ export default function ListingsPage() {
                                                     type="number"
                                                     value={formData.mileage}
                                                     onChange={(e) => setFormData(prev => ({ ...prev, mileage: parseInt(e.target.value) || 0 }))}
-                                                    className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-amber-500/50"
+                                                    className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-red-500/50"
                                                 />
                                             </div>
                                             <div>
@@ -705,7 +705,7 @@ export default function ListingsPage() {
                                                 <select
                                                     value={formData.fuel_type}
                                                     onChange={(e) => setFormData(prev => ({ ...prev, fuel_type: e.target.value }))}
-                                                    className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-amber-500/50"
+                                                    className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-red-500/50"
                                                 >
                                                     {fuelTypes.map(f => <option key={f} value={f}>{f}</option>)}
                                                 </select>
@@ -715,7 +715,7 @@ export default function ListingsPage() {
                                                 <select
                                                     value={formData.transmission}
                                                     onChange={(e) => setFormData(prev => ({ ...prev, transmission: e.target.value }))}
-                                                    className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-amber-500/50"
+                                                    className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-red-500/50"
                                                 >
                                                     {transmissionTypes.map(t => <option key={t} value={t}>{t}</option>)}
                                                 </select>
@@ -731,7 +731,7 @@ export default function ListingsPage() {
                                                     min="1"
                                                     value={formData.owners}
                                                     onChange={(e) => setFormData(prev => ({ ...prev, owners: parseInt(e.target.value) || 1 }))}
-                                                    className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-amber-500/50"
+                                                    className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-red-500/50"
                                                 />
                                             </div>
                                             <div>
@@ -739,7 +739,7 @@ export default function ListingsPage() {
                                                 <select
                                                     value={formData.registration_city}
                                                     onChange={(e) => setFormData(prev => ({ ...prev, registration_city: e.target.value }))}
-                                                    className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-amber-500/50"
+                                                    className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-red-500/50"
                                                 >
                                                     <option value="" disabled>Select City</option>
                                                     {cities.map(city => (
@@ -752,7 +752,7 @@ export default function ListingsPage() {
                                                 <select
                                                     value={formData.status}
                                                     onChange={(e) => setFormData(prev => ({ ...prev, status: e.target.value }))}
-                                                    className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-amber-500/50"
+                                                    className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-red-500/50"
                                                 >
                                                     <option value="DRAFT">Draft</option>
                                                     <option value="ACTIVE">Active</option>
@@ -769,7 +769,7 @@ export default function ListingsPage() {
                                                 rows={3}
                                                 value={formData.description}
                                                 onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
-                                                className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-amber-500/50 resize-none"
+                                                className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-red-500/50 resize-none"
                                                 placeholder="Detailed description of the car..."
                                             />
                                         </div>
@@ -781,7 +781,7 @@ export default function ListingsPage() {
                                                 rows={2}
                                                 value={formData.why_we_like_it}
                                                 onChange={(e) => setFormData(prev => ({ ...prev, why_we_like_it: e.target.value }))}
-                                                className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-amber-500/50 resize-none"
+                                                className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-red-500/50 resize-none"
                                                 placeholder="Highlight the best features..."
                                             />
                                         </div>
@@ -793,7 +793,7 @@ export default function ListingsPage() {
                                                 rows={2}
                                                 value={formData.inspection_summary}
                                                 onChange={(e) => setFormData(prev => ({ ...prev, inspection_summary: e.target.value }))}
-                                                className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-amber-500/50 resize-none"
+                                                className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-red-500/50 resize-none"
                                                 placeholder="Results of the inspection..."
                                             />
                                         </div>
@@ -803,7 +803,7 @@ export default function ListingsPage() {
                                             <button
                                                 onClick={handleSave}
                                                 disabled={isSaving || isUploading}
-                                                className="flex-1 py-3 bg-amber-500 text-black font-medium rounded-xl hover:bg-amber-400 transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
+                                                className="flex-1 py-3 bg-red-600 text-black font-medium rounded-xl hover:bg-red-700 transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
                                             >
                                                 {isSaving || isUploading ? (
                                                     <>

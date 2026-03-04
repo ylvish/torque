@@ -93,7 +93,7 @@ export default function SearchBar({ variant = 'hero' }: SearchBarProps) {
                                     <button
                                         key={m}
                                         onClick={() => { setMake(m); setIsMakeOpen(false); }}
-                                        className={`w-full px-4 py-2.5 text-left text-sm hover:bg-white/5 transition-colors ${make === m ? 'text-amber-500 bg-amber-500/10' : 'text-white/80'
+                                        className={`w-full px-4 py-2.5 text-left text-sm hover:bg-white/5 transition-colors ${make === m ? 'text-red-400 bg-red-500/10' : 'text-white/80'
                                             }`}
                                     >
                                         {m}
@@ -128,7 +128,7 @@ export default function SearchBar({ variant = 'hero' }: SearchBarProps) {
                                     <button
                                         key={range.label}
                                         onClick={() => { setPriceRange(range); setIsPriceOpen(false); }}
-                                        className={`w-full px-4 py-2.5 text-left text-sm hover:bg-white/5 transition-colors ${priceRange.label === range.label ? 'text-amber-500 bg-amber-500/10' : 'text-white/80'
+                                        className={`w-full px-4 py-2.5 text-left text-sm hover:bg-white/5 transition-colors ${priceRange.label === range.label ? 'text-red-400 bg-red-500/10' : 'text-white/80'
                                             }`}
                                     >
                                         {range.label}
@@ -163,7 +163,7 @@ export default function SearchBar({ variant = 'hero' }: SearchBarProps) {
                                     <button
                                         key={f}
                                         onClick={() => { setFuelType(f); setIsFuelOpen(false); }}
-                                        className={`w-full px-4 py-2.5 text-left text-sm hover:bg-white/5 transition-colors ${fuelType === f ? 'text-amber-500 bg-amber-500/10' : 'text-white/80'
+                                        className={`w-full px-4 py-2.5 text-left text-sm hover:bg-white/5 transition-colors ${fuelType === f ? 'text-red-400 bg-red-500/10' : 'text-white/80'
                                             }`}
                                     >
                                         {f}
@@ -177,12 +177,12 @@ export default function SearchBar({ variant = 'hero' }: SearchBarProps) {
                 {/* Search Button */}
                 <button
                     onClick={handleSearch}
-                    className="flex items-center justify-center gap-2 px-8 py-3 bg-gradient-to-r from-amber-500 to-amber-600 text-black font-semibold rounded-full lg:rounded-full hover:shadow-lg hover:shadow-amber-500/25 transition-all"
+                    className="flex items-center justify-center gap-2 px-8 py-3 bg-red-600 text-white font-semibold rounded-full lg:rounded-full hover:shadow-lg hover:shadow-red-600/25 hover:bg-red-700 transition-all"
                 >
                     <Search className="h-4 w-4" />
                     <span>Search</span>
                 </button>
             </div>
-        </div>
+        </div >
     );
 }

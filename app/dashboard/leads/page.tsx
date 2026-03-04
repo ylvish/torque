@@ -23,7 +23,7 @@ import { getLeads, updateLeadStatus, deleteLead } from '@/lib/actions';
 const initialLeads: any[] = [];
 
 const statusConfig = {
-    [LeadStatus.NEW]: { label: 'New', class: 'bg-amber-500/10 text-amber-400' },
+    [LeadStatus.NEW]: { label: 'New', class: 'bg-red-600/10 text-red-400' },
     [LeadStatus.CONTACTED]: { label: 'Contacted', class: 'bg-blue-500/10 text-blue-400' },
     [LeadStatus.QUALIFIED]: { label: 'Qualified', class: 'bg-purple-500/10 text-purple-400' },
     [LeadStatus.NEGOTIATING]: { label: 'Negotiating', class: 'bg-cyan-500/10 text-cyan-400' },
@@ -129,7 +129,7 @@ export default function LeadsPage() {
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         placeholder="Search by buyer name or car..."
-                        className="w-full pl-10 pr-4 py-2.5 bg-zinc-900 border border-white/10 rounded-lg text-white placeholder:text-white/30 focus:outline-none focus:border-amber-500/50"
+                        className="w-full pl-10 pr-4 py-2.5 bg-zinc-900 border border-white/10 rounded-lg text-white placeholder:text-white/30 focus:outline-none focus:border-red-500/50"
                     />
                 </div>
                 <div className="flex gap-2 overflow-x-auto">
@@ -143,7 +143,7 @@ export default function LeadsPage() {
                             key={filter.value}
                             onClick={() => setStatusFilter(filter.value as typeof statusFilter)}
                             className={`px-4 py-2 text-sm rounded-lg whitespace-nowrap transition-colors ${statusFilter === filter.value
-                                ? 'bg-amber-500 text-black'
+                                ? 'bg-red-600 text-black'
                                 : 'bg-zinc-900 text-white/60 hover:text-white'
                                 }`}
                         >
@@ -173,8 +173,8 @@ export default function LeadsPage() {
                                 {/* Buyer Info */}
                                 <div className="flex-1">
                                     <div className="flex items-center gap-3 mb-2">
-                                        <div className="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center">
-                                            <span className="text-sm font-medium text-amber-500">
+                                        <div className="w-10 h-10 rounded-full bg-red-600/20 flex items-center justify-center">
+                                            <span className="text-sm font-medium text-red-400">
                                                 {lead.buyer_name.charAt(0)}
                                             </span>
                                         </div>

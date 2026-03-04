@@ -49,7 +49,7 @@ export default function CarCard({ listing, index = 0 }: CarCardProps) {
             className="group"
         >
             <Link href={`/cars/${listing.id}`}>
-                <div className="relative bg-zinc-900/50 border border-white/5 rounded-2xl overflow-hidden hover:border-amber-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-amber-500/5">
+                <div className="relative bg-zinc-900/50 border border-white/5 rounded-2xl overflow-hidden hover:border-red-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-red-500/5">
                     {/* Image Container */}
                     <div className="relative aspect-[16/10] overflow-hidden">
                         <Image
@@ -69,7 +69,7 @@ export default function CarCard({ listing, index = 0 }: CarCardProps) {
                         {/* Price Tag */}
                         <div className="absolute bottom-3 right-3">
                             <div className="px-4 py-2 bg-black/70 backdrop-blur-sm rounded-lg">
-                                <span className="text-lg font-bold text-amber-500">{formatPrice(listing.price)}</span>
+                                <span className="text-lg font-bold text-red-400">{formatPrice(listing.price)}</span>
                             </div>
                         </div>
                     </div>
@@ -77,7 +77,7 @@ export default function CarCard({ listing, index = 0 }: CarCardProps) {
                     {/* Content */}
                     <div className="p-4">
                         {/* Title */}
-                        <h3 className="text-lg font-semibold text-white mb-1 group-hover:text-amber-500 transition-colors">
+                        <h3 className="text-lg font-semibold text-white mb-1 group-hover:text-red-400 transition-colors">
                             {listing.year} {listing.make} {listing.model}
                         </h3>
                         {listing.variant && (
@@ -87,19 +87,19 @@ export default function CarCard({ listing, index = 0 }: CarCardProps) {
                         {/* Specs Grid */}
                         <div className="grid grid-cols-2 gap-2 mb-3">
                             <div className="flex items-center gap-2 text-white/60 text-sm">
-                                <Gauge className="h-4 w-4 text-amber-500/70" />
+                                <Gauge className="h-4 w-4 text-red-500/70" />
                                 <span>{formatMileage(listing.mileage)}</span>
                             </div>
                             <div className="flex items-center gap-2 text-white/60 text-sm">
-                                <Fuel className="h-4 w-4 text-amber-500/70" />
+                                <Fuel className="h-4 w-4 text-red-500/70" />
                                 <span>{fuelTypeLabels[listing.fuel_type]}</span>
                             </div>
                             <div className="flex items-center gap-2 text-white/60 text-sm">
-                                <Calendar className="h-4 w-4 text-amber-500/70" />
+                                <Calendar className="h-4 w-4 text-red-500/70" />
                                 <span>{listing.year}</span>
                             </div>
                             <div className="flex items-center gap-2 text-white/60 text-sm">
-                                <MapPin className="h-4 w-4 text-amber-500/70" />
+                                <MapPin className="h-4 w-4 text-red-500/70" />
                                 <span>{listing.registration_city}</span>
                             </div>
                         </div>

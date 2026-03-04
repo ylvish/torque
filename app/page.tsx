@@ -93,15 +93,15 @@ export default function HomePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 text-sm font-medium text-amber-500 bg-amber-500/10 border border-amber-500/20 rounded-full">
-              <Star className="h-4 w-4 fill-amber-500" />
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 text-sm font-medium text-red-400 bg-red-500/10 border border-red-500/20 rounded-full">
+              <Star className="h-4 w-4 fill-red-400" />
               Trusted by 50,000+ Customers
             </span>
 
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
               Find Your Perfect
               <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-600">
                 Pre-Owned Car
               </span>
             </h1>
@@ -131,8 +131,8 @@ export default function HomePage() {
           >
             {stats.map((stat) => (
               <div key={stat.label} className="text-center">
-                <div className="inline-flex items-center justify-center w-12 h-12 mb-3 bg-amber-500/10 rounded-xl">
-                  <stat.icon className="h-6 w-6 text-amber-500" />
+                <div className="inline-flex items-center justify-center w-12 h-12 mb-3 bg-red-500/10 rounded-xl">
+                  <stat.icon className="h-6 w-6 text-red-500" />
                 </div>
                 <div className="text-2xl md:text-3xl font-bold text-white">{stat.value}</div>
                 <div className="text-sm text-white/50">{stat.label}</div>
@@ -152,7 +152,7 @@ export default function HomePage() {
             <motion.div
               animate={{ y: [0, 12, 0] }}
               transition={{ duration: 1.5, repeat: Infinity }}
-              className="w-1.5 h-3 bg-amber-500 rounded-full"
+              className="w-1.5 h-3 bg-red-500 rounded-full"
             />
           </div>
         </motion.div>
@@ -163,7 +163,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Why Choose <span className="text-amber-500">Torque</span>?
+              Why Choose <span className="text-red-500">Torque</span>?
             </h2>
             <p className="text-white/60 max-w-2xl mx-auto">
               We bring transparency, trust, and premium service to the pre-owned car market.
@@ -178,12 +178,12 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="relative group p-8 bg-zinc-900 border border-white/5 rounded-2xl hover:border-amber-500/30 transition-all duration-300"
+                className="relative group p-8 bg-zinc-900 border border-white/5 rounded-2xl hover:border-red-500/30 transition-all duration-300"
               >
-                <div className="absolute inset-0 bg-gradient-to-b from-amber-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl" />
+                <div className="absolute inset-0 bg-gradient-to-b from-red-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl" />
                 <div className="relative">
-                  <div className="inline-flex items-center justify-center w-14 h-14 mb-6 bg-amber-500/10 rounded-xl group-hover:scale-110 transition-transform">
-                    <feature.icon className="h-7 w-7 text-amber-500" />
+                  <div className="inline-flex items-center justify-center w-14 h-14 mb-6 bg-red-500/10 rounded-xl group-hover:scale-110 transition-transform">
+                    <feature.icon className="h-7 w-7 text-red-500" />
                   </div>
                   <h3 className="text-xl font-semibold text-white mb-3">{feature.title}</h3>
                   <p className="text-white/60">{feature.description}</p>
@@ -200,13 +200,13 @@ export default function HomePage() {
           <div className="flex items-end justify-between mb-12">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
-                Featured <span className="text-amber-500">Listings</span>
+                Featured <span className="text-red-500">Listings</span>
               </h2>
               <p className="text-white/60">Hand-picked premium cars, verified and ready for you.</p>
             </div>
             <Link
               href="/browse"
-              className="hidden md:flex items-center gap-2 text-amber-500 hover:text-amber-400 transition-colors"
+              className="hidden md:flex items-center gap-2 text-red-400 hover:text-red-300 transition-colors"
             >
               View All <ArrowRight className="h-4 w-4" />
             </Link>
@@ -225,7 +225,7 @@ export default function HomePage() {
           <div className="mt-8 text-center md:hidden">
             <Link
               href="/browse"
-              className="inline-flex items-center gap-2 px-6 py-3 text-amber-500 border border-amber-500/30 rounded-full hover:bg-amber-500/10 transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 text-red-400 border border-red-500/30 rounded-full hover:bg-red-500/10 transition-colors"
             >
               View All Cars <ArrowRight className="h-4 w-4" />
             </Link>
@@ -236,7 +236,7 @@ export default function HomePage() {
       {/* Sell Your Car CTA */}
       <section className="py-20 bg-gradient-to-b from-zinc-900/50 to-zinc-950">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="relative overflow-hidden bg-gradient-to-r from-amber-600 to-amber-500 rounded-3xl p-8 md:p-12 lg:p-16">
+          <div className="relative overflow-hidden bg-gradient-to-r from-red-800 to-red-600 rounded-3xl p-8 md:p-12 lg:p-16">
             {/* Background Pattern */}
             <div className="absolute inset-0 opacity-10">
               <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl" />
@@ -245,16 +245,16 @@ export default function HomePage() {
 
             <div className="relative grid md:grid-cols-2 gap-8 items-center">
               <div>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-4">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
                   Want to Sell Your Car?
                 </h2>
-                <p className="text-black/70 text-lg mb-8">
+                <p className="text-white/80 text-lg mb-8">
                   Submit your car details. Our experts will review, verify, and help you
                   get the best price. No hassle, complete transparency.
                 </p>
                 <Link
                   href="/sell"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-black text-white font-semibold rounded-full hover:bg-zinc-800 transition-colors"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-black text-white font-semibold rounded-full hover:bg-zinc-900 transition-colors"
                 >
                   Sell Your Car <ArrowRight className="h-5 w-5" />
                 </Link>

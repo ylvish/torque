@@ -34,7 +34,7 @@ export default function EmployeesPage() {
     if (isLoading || (!isCEO && isFetching)) {
         return (
             <div className="flex items-center justify-center min-h-[400px]">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-amber-500" />
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-red-500" />
             </div>
         );
     }
@@ -57,7 +57,7 @@ export default function EmployeesPage() {
                         className="bg-zinc-900 border border-white/5 rounded-xl p-4 flex flex-col md:flex-row md:items-center gap-4 hover:border-white/10 transition-colors"
                     >
                         {/* Avatar */}
-                        <div className="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-500 font-bold text-lg shrink-0">
+                        <div className="w-12 h-12 rounded-full bg-red-600/20 flex items-center justify-center text-red-400 font-bold text-lg shrink-0">
                             {employee.name.charAt(0)}
                         </div>
 

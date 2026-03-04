@@ -78,7 +78,7 @@ export default function DashboardLayout({
                 {/* Logo */}
                 <div className="flex items-center justify-between h-16 px-4 border-b border-white/5">
                     <Link href="/dashboard" className="flex items-center gap-2">
-                        <Car className="h-7 w-7 text-amber-500" />
+                        <Car className="h-7 w-7 text-red-400" />
                         <span className="text-xl font-bold text-white">
                             TORQUE
                         </span>
@@ -103,7 +103,7 @@ export default function DashboardLayout({
                                 href={link.href}
                                 onClick={() => setSidebarOpen(false)}
                                 className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors ${isActive
-                                    ? 'bg-amber-500/10 text-amber-500'
+                                    ? 'bg-red-600/10 text-red-400'
                                     : 'text-white/60 hover:text-white hover:bg-white/5'
                                     }`}
                             >
@@ -120,8 +120,8 @@ export default function DashboardLayout({
                         onClick={() => setUserMenuOpen(!userMenuOpen)}
                         className="flex items-center gap-3 w-full px-3 py-2 rounded-lg hover:bg-white/5 transition-colors"
                     >
-                        <div className="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center">
-                            <span className="text-sm font-medium text-amber-500">
+                        <div className="w-8 h-8 rounded-full bg-red-600/20 flex items-center justify-center">
+                            <span className="text-sm font-medium text-red-400">
                                 {user.name.charAt(0)}
                             </span>
                         </div>
@@ -177,13 +177,13 @@ export default function DashboardLayout({
                         {/* Notifications */}
                         <button className="relative p-2 text-white/60 hover:text-white">
                             <Bell className="h-5 w-5" />
-                            <span className="absolute top-1 right-1 w-2 h-2 bg-amber-500 rounded-full" />
+                            <span className="absolute top-1 right-1 w-2 h-2 bg-red-600 rounded-full" />
                         </button>
 
                         {/* User Avatar (Desktop) */}
                         <div className="hidden lg:flex items-center gap-3">
-                            <div className="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center">
-                                <span className="text-sm font-medium text-amber-500">
+                            <div className="w-8 h-8 rounded-full bg-red-600/20 flex items-center justify-center">
+                                <span className="text-sm font-medium text-red-400">
                                     {user.name.charAt(0)}
                                 </span>
                             </div>

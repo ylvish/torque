@@ -21,7 +21,7 @@ const stats = [
         trend: 'up',
         icon: FileText,
         href: '/dashboard/submissions',
-        color: 'amber'
+        color: 'red'
     },
     {
         label: 'Active Listings',
@@ -105,7 +105,7 @@ export default function DashboardPage() {
                 <div className="bg-zinc-900 border border-white/5 rounded-xl">
                     <div className="flex items-center justify-between p-4 border-b border-white/5">
                         <h2 className="font-semibold text-white">Recent Submissions</h2>
-                        <Link href="/dashboard/submissions" className="text-sm text-amber-500 hover:text-amber-400">
+                        <Link href="/dashboard/submissions" className="text-sm text-red-400 hover:text-red-400">
                             View All
                         </Link>
                     </div>
@@ -119,7 +119,7 @@ export default function DashboardPage() {
                                     </div>
                                     <div className="text-right">
                                         <span className={`inline-flex items-center gap-1 px-2 py-0.5 text-xs rounded-full ${submission.status === 'pending'
-                                                ? 'bg-amber-500/10 text-amber-400'
+                                                ? 'bg-red-600/10 text-red-400'
                                                 : 'bg-emerald-500/10 text-emerald-400'
                                             }`}>
                                             {submission.status === 'pending' ? <Clock className="h-3 w-3" /> : <CheckCircle2 className="h-3 w-3" />}
@@ -137,7 +137,7 @@ export default function DashboardPage() {
                 <div className="bg-zinc-900 border border-white/5 rounded-xl">
                     <div className="flex items-center justify-between p-4 border-b border-white/5">
                         <h2 className="font-semibold text-white">Recent Leads</h2>
-                        <Link href="/dashboard/leads" className="text-sm text-amber-500 hover:text-amber-400">
+                        <Link href="/dashboard/leads" className="text-sm text-red-400 hover:text-red-400">
                             View All
                         </Link>
                     </div>
@@ -168,7 +168,7 @@ export default function DashboardPage() {
                 <div className="flex flex-wrap gap-3">
                     <Link
                         href="/dashboard/submissions"
-                        className="px-4 py-2.5 bg-amber-500/10 text-amber-500 rounded-lg hover:bg-amber-500/20 transition-colors flex items-center gap-2"
+                        className="px-4 py-2.5 bg-red-600/10 text-red-400 rounded-lg hover:bg-red-600/20 transition-colors flex items-center gap-2"
                     >
                         <AlertCircle className="h-4 w-4" />
                         Review Pending ({stats[0].value})

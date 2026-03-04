@@ -35,7 +35,7 @@ import { SubmissionStatus, FuelType, TransmissionType, SellerSubmission } from '
 import { getSubmissions, updateSubmissionStatus, createListingFromSubmission } from '@/lib/actions';
 
 const statusConfig: Record<string, { label: string; icon: React.ElementType; class: string }> = {
-    'PENDING_REVIEW': { label: 'Pending', icon: Clock, class: 'bg-amber-500/10 text-amber-400' },
+    'PENDING_REVIEW': { label: 'Pending', icon: Clock, class: 'bg-red-600/10 text-red-400' },
     'UNDER_EVALUATION': { label: 'Evaluating', icon: Clock, class: 'bg-blue-500/10 text-blue-400' },
     'INFO_REQUESTED': { label: 'Info Needed', icon: AlertCircle, class: 'bg-purple-500/10 text-purple-400' },
     'APPROVED': { label: 'Approved', icon: CheckCircle2, class: 'bg-emerald-500/10 text-emerald-400' },
@@ -188,7 +188,7 @@ export default function SubmissionsPage() {
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         placeholder="Search by seller, make, model, or ID..."
-                        className="w-full pl-10 pr-4 py-2.5 bg-zinc-900 border border-white/10 rounded-lg text-white placeholder:text-white/30 focus:outline-none focus:border-amber-500/50"
+                        className="w-full pl-10 pr-4 py-2.5 bg-zinc-900 border border-white/10 rounded-lg text-white placeholder:text-white/30 focus:outline-none focus:border-red-500/50"
                     />
                 </div>
                 <div className="flex gap-2 flex-wrap">
@@ -203,7 +203,7 @@ export default function SubmissionsPage() {
                             key={filter.value}
                             onClick={() => setStatusFilter(filter.value)}
                             className={`px-4 py-2 text-sm rounded-lg transition-colors ${statusFilter === filter.value
-                                ? 'bg-amber-500 text-black'
+                                ? 'bg-red-600 text-black'
                                 : 'bg-zinc-900 text-white/60 hover:text-white'
                                 }`}
                         >
@@ -216,7 +216,7 @@ export default function SubmissionsPage() {
             {/* Loading State */}
             {isLoading ? (
                 <div className="bg-zinc-900 border border-white/5 rounded-xl p-12 text-center">
-                    <Loader2 className="h-8 w-8 text-amber-500 animate-spin mx-auto mb-3" />
+                    <Loader2 className="h-8 w-8 text-red-400 animate-spin mx-auto mb-3" />
                     <p className="text-white/50">Loading submissions...</p>
                 </div>
             ) : (
@@ -280,7 +280,7 @@ export default function SubmissionsPage() {
                                                         setSelectedSubmission(submission);
                                                         setCurrentPhotoIndex(0);
                                                     }}
-                                                    className="inline-flex items-center gap-1 px-3 py-1.5 text-sm text-amber-500 hover:text-amber-400 hover:bg-amber-500/10 rounded-lg transition-colors"
+                                                    className="inline-flex items-center gap-1 px-3 py-1.5 text-sm text-red-400 hover:text-red-400 hover:bg-red-600/10 rounded-lg transition-colors"
                                                 >
                                                     <Eye className="h-4 w-4" />
                                                     View
@@ -380,7 +380,7 @@ export default function SubmissionsPage() {
                                                     <button
                                                         key={index}
                                                         onClick={() => setCurrentPhotoIndex(index)}
-                                                        className={`relative w-20 h-14 rounded-lg overflow-hidden flex-shrink-0 ${index === currentPhotoIndex ? 'ring-2 ring-amber-500' : 'opacity-60 hover:opacity-100'
+                                                        className={`relative w-20 h-14 rounded-lg overflow-hidden flex-shrink-0 ${index === currentPhotoIndex ? 'ring-2 ring-red-500' : 'opacity-60 hover:opacity-100'
                                                             }`}
                                                     >
                                                         <Image
@@ -408,7 +408,7 @@ export default function SubmissionsPage() {
                                     {/* Left Column - Car Info */}
                                     <div className="space-y-4">
                                         <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-                                            <Car className="h-5 w-5 text-amber-500" />
+                                            <Car className="h-5 w-5 text-red-400" />
                                             {selectedSubmission.year} {selectedSubmission.make} {selectedSubmission.model}
                                         </h3>
 
@@ -420,35 +420,35 @@ export default function SubmissionsPage() {
                                             <div className="p-3 bg-white/5 rounded-lg">
                                                 <p className="text-xs text-white/50 mb-1">Fuel Type</p>
                                                 <p className="text-white font-medium flex items-center gap-1">
-                                                    <Fuel className="h-4 w-4 text-amber-500" />
+                                                    <Fuel className="h-4 w-4 text-red-400" />
                                                     {selectedSubmission.fuel_type}
                                                 </p>
                                             </div>
                                             <div className="p-3 bg-white/5 rounded-lg">
                                                 <p className="text-xs text-white/50 mb-1">Transmission</p>
                                                 <p className="text-white font-medium flex items-center gap-1">
-                                                    <Settings className="h-4 w-4 text-amber-500" />
+                                                    <Settings className="h-4 w-4 text-red-400" />
                                                     {selectedSubmission.transmission}
                                                 </p>
                                             </div>
                                             <div className="p-3 bg-white/5 rounded-lg">
                                                 <p className="text-xs text-white/50 mb-1">Mileage</p>
                                                 <p className="text-white font-medium flex items-center gap-1">
-                                                    <Gauge className="h-4 w-4 text-amber-500" />
+                                                    <Gauge className="h-4 w-4 text-red-400" />
                                                     {selectedSubmission.mileage.toLocaleString()} km
                                                 </p>
                                             </div>
                                             <div className="p-3 bg-white/5 rounded-lg">
                                                 <p className="text-xs text-white/50 mb-1">Owners</p>
                                                 <p className="text-white font-medium flex items-center gap-1">
-                                                    <User className="h-4 w-4 text-amber-500" />
+                                                    <User className="h-4 w-4 text-red-400" />
                                                     {selectedSubmission.owners} Owner{selectedSubmission.owners > 1 ? 's' : ''}
                                                 </p>
                                             </div>
                                             <div className="p-3 bg-white/5 rounded-lg">
                                                 <p className="text-xs text-white/50 mb-1">Registration</p>
                                                 <p className="text-white font-medium flex items-center gap-1">
-                                                    <MapPin className="h-4 w-4 text-amber-500" />
+                                                    <MapPin className="h-4 w-4 text-red-400" />
                                                     {selectedSubmission.registration_city}
                                                 </p>
                                             </div>
@@ -489,9 +489,9 @@ export default function SubmissionsPage() {
                                     {/* Right Column - Seller Info */}
                                     <div className="space-y-4">
                                         {/* Seller Contact */}
-                                        <div className="p-4 bg-gradient-to-br from-amber-500/10 to-amber-500/5 border border-amber-500/20 rounded-xl">
+                                        <div className="p-4 bg-gradient-to-br from-red-500/10 to-red-500/5 border border-red-500/20 rounded-xl">
                                             <h4 className="font-medium text-white mb-4 flex items-center gap-2">
-                                                <User className="h-5 w-5 text-amber-500" />
+                                                <User className="h-5 w-5 text-red-400" />
                                                 Seller Information
                                             </h4>
                                             <div className="space-y-3">
@@ -501,26 +501,26 @@ export default function SubmissionsPage() {
                                                 </div>
                                                 <div className="space-y-2">
                                                     <div className="flex items-center gap-3">
-                                                        <Phone className="h-4 w-4 text-amber-500" />
-                                                        <a href={`tel:${selectedSubmission.seller_phone}`} className="text-white hover:text-amber-400">
+                                                        <Phone className="h-4 w-4 text-red-400" />
+                                                        <a href={`tel:${selectedSubmission.seller_phone}`} className="text-white hover:text-red-400">
                                                             {selectedSubmission.seller_phone}
                                                         </a>
                                                     </div>
                                                     <div className="flex items-center gap-3">
-                                                        <Mail className="h-4 w-4 text-amber-500" />
-                                                        <a href={`mailto:${selectedSubmission.seller_email}`} className="text-white hover:text-amber-400">
+                                                        <Mail className="h-4 w-4 text-red-400" />
+                                                        <a href={`mailto:${selectedSubmission.seller_email}`} className="text-white hover:text-red-400">
                                                             {selectedSubmission.seller_email}
                                                         </a>
                                                     </div>
                                                     <div className="flex items-center gap-3">
-                                                        <MessageCircle className="h-4 w-4 text-amber-500" />
+                                                        <MessageCircle className="h-4 w-4 text-red-400" />
                                                         <span className={selectedSubmission.whatsapp_consent ? 'text-green-400' : 'text-white/50'}>
                                                             WhatsApp: {selectedSubmission.whatsapp_consent ? 'Allowed ✓' : 'Not preferred'}
                                                         </span>
                                                     </div>
                                                     {selectedSubmission.preferred_contact_time && (
                                                         <div className="flex items-center gap-3">
-                                                            <Clock className="h-4 w-4 text-amber-500" />
+                                                            <Clock className="h-4 w-4 text-red-400" />
                                                             <span className="text-white/80">
                                                                 Preferred: {selectedSubmission.preferred_contact_time}
                                                             </span>
@@ -561,7 +561,7 @@ export default function SubmissionsPage() {
                                         {selectedSubmission.documents && selectedSubmission.documents.length > 0 && (
                                             <div className="p-4 bg-white/5 rounded-xl">
                                                 <h4 className="font-medium text-white mb-3 flex items-center gap-2">
-                                                    <FileCheck className="h-5 w-5 text-amber-500" />
+                                                    <FileCheck className="h-5 w-5 text-red-400" />
                                                     Documents ({selectedSubmission.documents.length})
                                                 </h4>
                                                 <div className="space-y-2">
@@ -572,7 +572,7 @@ export default function SubmissionsPage() {
                                                             target="_blank"
                                                             className="flex items-center gap-2 p-2 bg-white/5 rounded-lg hover:bg-white/10 transition-colors"
                                                         >
-                                                            <FileText className="h-4 w-4 text-amber-500" />
+                                                            <FileText className="h-4 w-4 text-red-400" />
                                                             <span className="text-white/80 text-sm">Document {index + 1}</span>
                                                         </a>
                                                     ))}
@@ -601,11 +601,11 @@ export default function SubmissionsPage() {
                                                     value={newNote}
                                                     onChange={(e) => setNewNote(e.target.value)}
                                                     placeholder="Add a note..."
-                                                    className="flex-1 px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-amber-500/50"
+                                                    className="flex-1 px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-red-500/50"
                                                 />
                                                 <button
                                                     onClick={() => {/* TODO: Add note */ }}
-                                                    className="px-4 py-2 bg-amber-500 text-black font-medium rounded-lg hover:bg-amber-400 transition-colors"
+                                                    className="px-4 py-2 bg-red-600 text-black font-medium rounded-lg hover:bg-red-700 transition-colors"
                                                 >
                                                     <Plus className="h-5 w-5" />
                                                 </button>
@@ -627,7 +627,7 @@ export default function SubmissionsPage() {
                                     <button
                                         onClick={() => handleStatusUpdate(selectedSubmission.id, SubmissionStatus.ON_HOLD)}
                                         disabled={isUpdating}
-                                        className="px-6 py-3 bg-amber-500/20 text-amber-400 font-medium rounded-xl hover:bg-amber-500/30 transition-colors disabled:opacity-50"
+                                        className="px-6 py-3 bg-red-600/20 text-red-400 font-medium rounded-xl hover:bg-red-600/30 transition-colors disabled:opacity-50"
                                     >
                                         Put On Hold
                                     </button>
