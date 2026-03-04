@@ -21,7 +21,6 @@ const footerLinks = [
     { name: 'Service Center', href: '/service' },
     { name: 'About Us', href: '/about' },
     { name: 'Contact', href: '/contact' },
-    { name: 'Dashboard', href: '/dashboard' },
 ];
 
 const socialLinks = [
@@ -70,31 +69,31 @@ export default function Footer() {
                     </div>
 
                     {/* Links Columns */}
-                    <div className="lg:col-span-3 lg:ml-auto">
-                        <h3 className="text-white font-semibold mb-4">Navigation</h3>
-                        <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
-                            <ul className="space-y-3">
+                    <div className="lg:col-span-3 lg:ml-auto w-full lg:w-3/4">
+                        <h3 className="text-white font-semibold mb-6">Navigation</h3>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 sm:gap-8">
+                            <ul className="space-y-4">
                                 {footerLinks.slice(0, 3).map((link) => (
                                     <li key={link.name}>
-                                        <Link href={link.href} className="text-white/60 hover:text-red-400 text-sm transition-colors">
+                                        <Link href={link.href} className="text-white/60 hover:text-red-400 text-sm transition-colors whitespace-nowrap">
                                             {link.name}
                                         </Link>
                                     </li>
                                 ))}
                             </ul>
-                            <ul className="space-y-3">
+                            <ul className="space-y-4">
                                 {footerLinks.slice(3, 6).map((link) => (
                                     <li key={link.name}>
-                                        <Link href={link.href} className="text-white/60 hover:text-red-400 text-sm transition-colors">
+                                        <Link href={link.href} className="text-white/60 hover:text-red-400 text-sm transition-colors whitespace-nowrap">
                                             {link.name}
                                         </Link>
                                     </li>
                                 ))}
                             </ul>
-                            <ul className="space-y-3">
+                            <ul className="space-y-4">
                                 {footerLinks.slice(6).map((link) => (
                                     <li key={link.name}>
-                                        <Link href={link.href} className="text-white/60 hover:text-red-400 text-sm transition-colors">
+                                        <Link href={link.href} className="text-white/60 hover:text-red-400 text-sm transition-colors whitespace-nowrap">
                                             {link.name}
                                         </Link>
                                     </li>

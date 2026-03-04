@@ -19,9 +19,6 @@ export const metadata: Metadata = {
     description: "India's most trusted premium pre-owned car marketplace.",
     type: "website",
   },
-  icons: {
-    icon: "https://okdvpidwuhawowepxucq.supabase.co/storage/v1/object/public/car-images/logo/dsfsds.png",
-  },
 };
 
 export default function RootLayout({

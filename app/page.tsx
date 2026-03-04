@@ -163,9 +163,8 @@ export default function HomePage() {
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Why Choose <span className="text-red-500">Torque</span>?
             </h2>
-            <p className="text-white/60 max-w-3xl mx-auto leading-relaxed">
-              Since 2011, Torque Chennai has provided expert-inspected luxury and standard pre-owned cars backed by transparent, hassle-free service.<br className="hidden md:block" />
-              From doorstep inspections to seamless exchanges, we offer a trusted, all-in-one destination for buying and selling quality vehicles.
+            <p className="text-white/60 max-w-4xl mx-auto leading-relaxed">
+              Since 2011, Torque Chennai has provided expert-inspected luxury and standard pre-owned cars backed by transparent, hassle-free service. From doorstep inspections to seamless exchanges, we offer a trusted, all-in-one destination for buying and selling quality vehicles.
             </p>
           </div>
 
