@@ -345,6 +345,7 @@ export default function SubmissionsPage() {
                                                 src={selectedSubmission.photos[currentPhotoIndex]}
                                                 alt={`Car photo ${currentPhotoIndex + 1}`}
                                                 fill
+                                                sizes="(max-width: 768px) 100vw, 80vw"
                                                 className="object-contain"
                                             />
                                             {selectedSubmission.photos.length > 1 && (
@@ -387,6 +388,7 @@ export default function SubmissionsPage() {
                                                             src={photo}
                                                             alt={`Thumbnail ${index + 1}`}
                                                             fill
+                                                            sizes="100px"
                                                             className="object-cover"
                                                         />
                                                     </button>

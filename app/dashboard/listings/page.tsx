@@ -375,6 +375,7 @@ export default function ListingsPage() {
                                             src={listing.featured_image_url}
                                             alt={`${listing.make} ${listing.model}`}
                                             fill
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                                             className="object-cover"
                                         />
                                     ) : (
@@ -489,6 +490,7 @@ export default function ListingsPage() {
                                                         src={selectedListing.gallery_images[currentPhotoIndex]}
                                                         alt={`${selectedListing.make} ${selectedListing.model}`}
                                                         fill
+                                                        sizes="(max-width: 768px) 100vw, 80vw"
                                                         className="object-contain"
                                                     />
                                                     {selectedListing.gallery_images.length > 1 && (
@@ -604,6 +606,7 @@ export default function ListingsPage() {
                                                             src={img}
                                                             alt={`Photo ${index + 1}`}
                                                             fill
+                                                            sizes="150px"
                                                             className="object-cover"
                                                         />
                                                         <button

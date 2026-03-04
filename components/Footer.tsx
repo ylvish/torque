@@ -1,4 +1,7 @@
+'use client';
+
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Car, Mail, Phone, MapPin, Facebook, Instagram, Youtube } from 'lucide-react';
 
 const WhatsappIcon = ({ className }: { className?: string }) => (
@@ -31,6 +34,13 @@ const socialLinks = [
 ];
 
 export default function Footer() {
+    const pathname = usePathname();
+
+    // Don't show footer on dashboard pages
+    if (pathname?.startsWith('/dashboard')) {
+        return null;
+    }
+
     return (
         <footer className="bg-black border-t border-white/10">
             <div className="mx-auto max-w-7xl px-4 py-12 lg:py-16 lg:px-8">

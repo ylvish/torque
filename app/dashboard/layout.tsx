@@ -72,16 +72,21 @@ export default function DashboardLayout({
 
             {/* Sidebar */}
             <aside className={`
-        fixed top-0 left-0 z-50 h-full w-64 bg-zinc-900 border-r border-white/5 transform transition-transform duration-300 lg:translate-x-0
+        fixed top-0 left-0 z-50 h-full w-64 bg-black border-r border-white/5 transform transition-transform duration-300 lg:translate-x-0
         ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
       `}>
                 {/* Logo */}
                 <div className="flex items-center justify-between h-16 px-4 border-b border-white/5">
-                    <Link href="/dashboard" className="flex items-center gap-2">
-                        <Car className="h-7 w-7 text-red-400" />
-                        <span className="text-xl font-bold text-white">
-                            TORQUE
-                        </span>
+                    <Link href="/" className="flex items-center h-10">
+                        <img
+                            src="https://okdvpidwuhawowepxucq.supabase.co/storage/v1/object/public/car-images/logo/dsfsds.png"
+                            alt="The Torque"
+                            className="h-full object-contain"
+                            onError={(e) => {
+                                e.currentTarget.style.display = 'none';
+                                e.currentTarget.parentElement?.classList.add('fallback-text');
+                            }}
+                        />
                     </Link>
                     <button
                         onClick={() => setSidebarOpen(false)}
@@ -163,7 +168,7 @@ export default function DashboardLayout({
             {/* Main Content */}
             <div className="lg:ml-64">
                 {/* Top Bar */}
-                <header className="sticky top-0 z-30 flex items-center justify-between h-16 px-4 bg-zinc-950/80 backdrop-blur-md border-b border-white/5">
+                <header className="sticky top-0 z-30 flex items-center justify-between h-16 px-4 bg-black/80 backdrop-blur-md border-b border-white/5">
                     <button
                         onClick={() => setSidebarOpen(true)}
                         className="lg:hidden p-2 text-white/60 hover:text-white"

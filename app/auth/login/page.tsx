@@ -53,11 +53,12 @@ function LoginForm() {
             className="w-full max-w-md"
         >
             {/* Logo */}
-            <Link href="/" className="flex items-center justify-center gap-2 mb-8">
-                <Car className="h-10 w-10 text-red-500" />
-                <span className="text-3xl font-bold text-white">
-                    TORQUE
-                </span>
+            <Link href="/" className="flex items-center justify-center h-12 mb-8">
+                <img
+                    src="https://okdvpidwuhawowepxucq.supabase.co/storage/v1/object/public/car-images/logo/dsfsds.png"
+                    alt="The Torque"
+                    className="h-full object-contain"
+                />
             </Link>
 
             {/* Card */}
