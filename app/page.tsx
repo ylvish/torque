@@ -28,7 +28,6 @@ const initialListings: Listing[] = [];
 const stats = [
   { value: '5000+', label: 'Cars Sold', icon: Car },
   { value: '98%', label: 'Happy Customers', icon: ThumbsUp },
-  { value: '150+', label: 'Expert Staff', icon: Users },
   { value: '24hrs', label: 'Avg. Response', icon: Clock },
 ];
 
@@ -95,20 +94,19 @@ export default function HomePage() {
           >
             <span className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 text-sm font-medium text-red-400 bg-red-500/10 border border-red-500/20 rounded-full">
               <Star className="h-4 w-4 fill-red-400" />
-              Trusted by 50,000+ Customers
+              Trusted by 1,00,000+ of Customers Since 2011
             </span>
 
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
               Find Your Perfect
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-600">
-                Pre-Owned Car
+                Premium Pre-Owned Car
               </span>
             </h1>
 
             <p className="max-w-2xl mx-auto text-lg md:text-xl text-white/70 mb-10">
-              Chennai's most trusted marketplace. Every car is expert-verified.
-              Experience the premium way to buy pre-owned cars.
+              Chennai's trusted destination for premium pre-owned luxury cars, superbikes, and quality vehicles. Every vehicle is carefully inspected and handpicked to ensure performance, reliability, and a seamless ownership experience.
             </p>
           </motion.div>
 
@@ -127,7 +125,7 @@ export default function HomePage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto"
+            className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto"
           >
             {stats.map((stat) => (
               <div key={stat.label} className="text-center">

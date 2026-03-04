@@ -54,9 +54,6 @@ export default function Footer() {
                                 src="/logo.png"
                                 alt="The Torque"
                                 className="h-full object-contain"
-                                onError={(e) => {
-                                    e.currentTarget.style.display = 'none';
-                                }}
                             />
                         </Link>
                         <p className="text-white/60 text-sm leading-relaxed mb-6 max-w-sm">
