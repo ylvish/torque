@@ -14,26 +14,15 @@ const WhatsappIcon = ({ className }: { className?: string }) => (
     </svg>
 );
 
-const footerLinks = {
-    company: [
-        { name: 'About Us', href: '/about' },
-        { name: 'Careers', href: '/careers' },
-        { name: 'Press', href: '/press' },
-        { name: 'Blog', href: '/blog' },
-    ],
-    support: [
-        { name: 'Help Center', href: '/help' },
-        { name: 'Contact Us', href: '/contact' },
-        { name: 'FAQs', href: '/faqs' },
-        { name: 'How It Works', href: '/how-it-works' },
-    ],
-    legal: [
-        { name: 'Privacy Policy', href: '/privacy' },
-        { name: 'Terms of Service', href: '/terms' },
-        { name: 'Cookie Policy', href: '/cookies' },
-        { name: 'Disclaimer', href: '/disclaimer' },
-    ],
-};
+const footerLinks = [
+    { name: 'Home', href: '/' },
+    { name: 'Inventory', href: '/cars' },
+    { name: 'Sell Your Car', href: '/sell' },
+    { name: 'Service Center', href: '/service' },
+    { name: 'About Us', href: '/about' },
+    { name: 'Contact', href: '/contact' },
+    { name: 'Dashboard', href: '/dashboard' },
+];
 
 const socialLinks = [
     { name: 'Facebook', href: 'https://www.facebook.com/thetorquechennai/', icon: Facebook },
@@ -69,55 +58,49 @@ export default function Footer() {
                                 <WhatsappIcon className="h-4 w-4 text-red-500 flex-shrink-0" />
                                 <span>+91 90031 11366</span>
                             </a>
-                            <a href="mailto:hello@torque.in" className="flex items-center gap-3 text-white/60 text-sm hover:text-red-400 transition-colors">
+                            <a href="mailto:info@thetorque.in" className="flex items-center gap-3 text-white/60 text-sm hover:text-red-400 transition-colors">
                                 <Mail className="h-4 w-4 text-red-500 flex-shrink-0" />
-                                <span>hello@torque.in</span>
+                                <span>info@thetorque.in</span>
                             </a>
-                            <div className="flex items-center gap-3 text-white/60 text-sm">
-                                <MapPin className="h-4 w-4 text-red-500 flex-shrink-0" />
-                                <span>Chennai, Tamil Nadu, India</span>
+                            <div className="flex items-start gap-3 text-white/60 text-sm">
+                                <MapPin className="h-4 w-4 text-red-500 flex-shrink-0 mt-1" />
+                                <span>861, Poonamallee High Rd, Kilpauk<br />Chennai, Tamil Nadu 600010</span>
                             </div>
                         </div>
                     </div>
 
                     {/* Links Columns */}
-                    <div>
-                        <h3 className="text-white font-semibold mb-4">Company</h3>
-                        <ul className="space-y-3">
-                            {footerLinks.company.map((link) => (
-                                <li key={link.name}>
-                                    <Link href={link.href} className="text-white/60 hover:text-red-400 text-sm transition-colors">
-                                        {link.name}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h3 className="text-white font-semibold mb-4">Support</h3>
-                        <ul className="space-y-3">
-                            {footerLinks.support.map((link) => (
-                                <li key={link.name}>
-                                    <Link href={link.href} className="text-white/60 hover:text-red-400 text-sm transition-colors">
-                                        {link.name}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h3 className="text-white font-semibold mb-4">Legal</h3>
-                        <ul className="space-y-3">
-                            {footerLinks.legal.map((link) => (
-                                <li key={link.name}>
-                                    <Link href={link.href} className="text-white/60 hover:text-red-400 text-sm transition-colors">
-                                        {link.name}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
+                    <div className="lg:col-span-3 lg:ml-auto">
+                        <h3 className="text-white font-semibold mb-4">Navigation</h3>
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
+                            <ul className="space-y-3">
+                                {footerLinks.slice(0, 3).map((link) => (
+                                    <li key={link.name}>
+                                        <Link href={link.href} className="text-white/60 hover:text-red-400 text-sm transition-colors">
+                                            {link.name}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                            <ul className="space-y-3">
+                                {footerLinks.slice(3, 6).map((link) => (
+                                    <li key={link.name}>
+                                        <Link href={link.href} className="text-white/60 hover:text-red-400 text-sm transition-colors">
+                                            {link.name}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                            <ul className="space-y-3">
+                                {footerLinks.slice(6).map((link) => (
+                                    <li key={link.name}>
+                                        <Link href={link.href} className="text-white/60 hover:text-red-400 text-sm transition-colors">
+                                            {link.name}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
                     </div>
                 </div>
 

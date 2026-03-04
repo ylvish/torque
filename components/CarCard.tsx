@@ -46,10 +46,10 @@ export default function CarCard({ listing, index = 0 }: CarCardProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: index * 0.1 }}
-            className="group"
+            className="group h-full flex flex-col"
         >
-            <Link href={`/cars/${listing.id}`}>
-                <div className="relative bg-zinc-900/50 border border-white/5 rounded-2xl overflow-hidden hover:border-red-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-red-500/5">
+            <Link href={`/cars/${listing.id}`} className="flex-1 flex flex-col">
+                <div className="relative bg-zinc-900/50 border border-white/5 rounded-2xl overflow-hidden hover:border-red-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-red-500/5 flex-1 flex flex-col">
                     {/* Image Container */}
                     <div className="relative aspect-[16/10] overflow-hidden">
                         <Image
@@ -75,7 +75,7 @@ export default function CarCard({ listing, index = 0 }: CarCardProps) {
                     </div>
 
                     {/* Content */}
-                    <div className="p-4">
+                    <div className="p-4 flex-1 flex flex-col">
                         {/* Title */}
                         <h3 className="text-lg font-semibold text-white mb-1 group-hover:text-red-400 transition-colors">
                             {listing.year} {listing.make} {listing.model}
@@ -105,7 +105,7 @@ export default function CarCard({ listing, index = 0 }: CarCardProps) {
                         </div>
 
                         {/* Tags */}
-                        <div className="flex flex-wrap gap-2">
+                        <div className="flex flex-wrap gap-2 mt-auto">
                             <span className="px-2 py-0.5 text-xs bg-white/5 text-white/60 rounded">
                                 {transmissionLabels[listing.transmission]}
                             </span>
