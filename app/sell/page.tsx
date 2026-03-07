@@ -469,8 +469,8 @@ export default function SellPage() {
                                         <label className="block text-sm text-white/60 mb-1.5">Kilometers Driven *</label>
                                         <input
                                             type="number"
-                                            value={formData.mileage || ''}
-                                            onChange={(e) => updateFormData('mileage', parseInt(e.target.value) || 0)}
+                                            value={formData.mileage === 0 && formData.mileage !== 0 ? '' : formData.mileage ?? ''}
+                                            onChange={(e) => updateFormData('mileage', e.target.value === '' ? undefined : parseInt(e.target.value))}
                                             className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/30 focus:outline-none focus:border-red-500/50"
                                             placeholder="e.g., 45000"
                                         />
@@ -509,7 +509,7 @@ export default function SellPage() {
                                             className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-red-500/50"
                                         >
                                             {[1, 2, 3, 4, 5].map(num => (
-                                                <option key={num} value={num}>{num}{num === 1 ? 'st' : num === 2 ? 'nd' : num === 3 ? 'rd' : 'th'} Owner</option>
+                                                <option key={num} value={num} className="bg-zinc-900 text-white">{num}{num === 1 ? 'st' : num === 2 ? 'nd' : num === 3 ? 'rd' : 'th'} Owner</option>
                                             ))}
                                         </select>
                                     </div>
@@ -520,10 +520,10 @@ export default function SellPage() {
                                             onChange={(e) => updateFormData('insurance_status', e.target.value)}
                                             className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-red-500/50"
                                         >
-                                            <option value="">Select status</option>
-                                            <option value="comprehensive">Comprehensive</option>
-                                            <option value="third_party">Third Party</option>
-                                            <option value="expired">Expired</option>
+                                            <option value="" className="bg-zinc-900 text-white/40">Select status</option>
+                                            <option value="comprehensive" className="bg-zinc-900 text-white">Comprehensive</option>
+                                            <option value="third_party" className="bg-zinc-900 text-white">Third Party</option>
+                                            <option value="expired" className="bg-zinc-900 text-white">Expired</option>
                                         </select>
                                     </div>
                                 </div>

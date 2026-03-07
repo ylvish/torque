@@ -58,10 +58,10 @@ interface ListingFormData {
     variant: string;
     fuel_type: string;
     transmission: string;
-    mileage: number;
+    mileage: number | '';
     registration_city: string;
-    owners: number;
-    price: number;
+    owners: number | '';
+    price: number | '';
     description: string;
     why_we_like_it: string;
     inspection_summary: string;
@@ -75,10 +75,10 @@ const emptyFormData: ListingFormData = {
     variant: '',
     fuel_type: 'PETROL',
     transmission: 'MANUAL',
-    mileage: 0,
+    mileage: '',
     registration_city: '',
-    owners: 1,
-    price: 0,
+    owners: '',
+    price: '',
     description: '',
     why_we_like_it: '',
     inspection_summary: '',
@@ -217,10 +217,10 @@ export default function ListingsPage() {
                 variant: formData.variant ?? undefined,
                 fuel_type: formData.fuel_type as FuelType,
                 transmission: formData.transmission as TransmissionType,
-                mileage: formData.mileage,
+                mileage: Number(formData.mileage) || 0,
                 registration_city: formData.registration_city,
-                owners: formData.owners,
-                price: formData.price,
+                owners: Number(formData.owners) || 1,
+                price: Number(formData.price) || 0,
                 description: formData.description ?? undefined,
                 why_we_like_it: formData.why_we_like_it ?? undefined,
                 inspection_summary: formData.inspection_summary ?? undefined,
@@ -684,7 +684,7 @@ export default function ListingsPage() {
                                                 <input
                                                     type="number"
                                                     value={formData.price}
-                                                    onChange={(e) => setFormData(prev => ({ ...prev, price: parseInt(e.target.value) || 0 }))}
+                                                    onChange={(e) => setFormData(prev => ({ ...prev, price: e.target.value === '' ? '' : parseInt(e.target.value) }))}
                                                     className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-red-500/50"
                                                     placeholder="e.g. 4500000"
                                                 />
@@ -694,7 +694,7 @@ export default function ListingsPage() {
                                                 <input
                                                     type="number"
                                                     value={formData.mileage}
-                                                    onChange={(e) => setFormData(prev => ({ ...prev, mileage: parseInt(e.target.value) || 0 }))}
+                                                    onChange={(e) => setFormData(prev => ({ ...prev, mileage: e.target.value === '' ? '' : parseInt(e.target.value) }))}
                                                     className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-red-500/50"
                                                 />
                                             </div>
@@ -705,7 +705,7 @@ export default function ListingsPage() {
                                                     onChange={(e) => setFormData(prev => ({ ...prev, fuel_type: e.target.value }))}
                                                     className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-red-500/50"
                                                 >
-                                                    {fuelTypes.map(f => <option key={f} value={f}>{f}</option>)}
+                                                    {fuelTypes.map(f => <option key={f} value={f} className="bg-zinc-900 text-white">{f}</option>)}
                                                 </select>
                                             </div>
                                             <div>
@@ -715,7 +715,7 @@ export default function ListingsPage() {
                                                     onChange={(e) => setFormData(prev => ({ ...prev, transmission: e.target.value }))}
                                                     className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-red-500/50"
                                                 >
-                                                    {transmissionTypes.map(t => <option key={t} value={t}>{t}</option>)}
+                                                    {transmissionTypes.map(t => <option key={t} value={t} className="bg-zinc-900 text-white">{t}</option>)}
                                                 </select>
                                             </div>
                                         </div>
@@ -728,7 +728,7 @@ export default function ListingsPage() {
                                                     type="number"
                                                     min="1"
                                                     value={formData.owners}
-                                                    onChange={(e) => setFormData(prev => ({ ...prev, owners: parseInt(e.target.value) || 1 }))}
+                                                    onChange={(e) => setFormData(prev => ({ ...prev, owners: e.target.value === '' ? '' : parseInt(e.target.value) }))}
                                                     className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-red-500/50"
                                                 />
                                             </div>
@@ -749,10 +749,10 @@ export default function ListingsPage() {
                                                     onChange={(e) => setFormData(prev => ({ ...prev, status: e.target.value }))}
                                                     className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-red-500/50"
                                                 >
-                                                    <option value="DRAFT">Draft</option>
-                                                    <option value="ACTIVE">Active</option>
-                                                    <option value="RESERVED">Reserved</option>
-                                                    <option value="SOLD">Sold</option>
+                                                    <option value="DRAFT" className="bg-zinc-900 text-white">Draft</option>
+                                                    <option value="ACTIVE" className="bg-zinc-900 text-white">Active</option>
+                                                    <option value="RESERVED" className="bg-zinc-900 text-white">Reserved</option>
+                                                    <option value="SOLD" className="bg-zinc-900 text-white">Sold</option>
                                                 </select>
                                             </div>
                                         </div>
