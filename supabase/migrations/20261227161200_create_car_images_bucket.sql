@@ -25,8 +25,13 @@ with check (
   bucket_id = 'car-images' 
 );
 
--- Policy 3: Allow users to update their own uploads (optional, but good for robust pipelines)
-create policy "Allow generic updates"
+-- Policy 3: Allow users to update ONLY their own uploads (owner-scoped)
+-- 'owner' is automatically set by Supabase to auth.uid() on insert.
+-- Anonymous uploads have owner = NULL so they cannot be updated by anyone.
+create policy "Allow owner updates"
 on storage.objects for update
 to public
-using ( bucket_id = 'car-images' );
+using (
+  bucket_id = 'car-images'
+  AND owner = auth.uid()
+);
