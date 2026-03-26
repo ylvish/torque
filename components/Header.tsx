@@ -10,7 +10,7 @@ import { useAuth } from '@/lib/auth-context';
 const navigation = [
     { name: 'Home', href: '/' },
     { name: 'Inventory', href: '/browse' },
-    { name: 'Sell Your Car', href: '/sell' },
+    { name: 'Park & Sell', href: '/park-and-sell' },
     { name: 'Service Center', href: '/service' },
     { name: 'About Us', href: '/about' },
     { name: 'Contact', href: '/contact' },
