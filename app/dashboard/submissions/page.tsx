@@ -456,35 +456,87 @@ export default function SubmissionsPage() {
                                             </div>
                                         </div>
 
-                                        {/* Condition Info */}
-                                        <div className="p-4 bg-white/5 rounded-xl space-y-3">
-                                            <h4 className="font-medium text-white">Condition Details</h4>
-                                            <div className="space-y-2 text-sm">
-                                                <div className="flex justify-between">
-                                                    <span className="text-white/60">Accident History</span>
-                                                    <span className={selectedSubmission.accident_history ? 'text-red-400' : 'text-green-400'}>
-                                                        {selectedSubmission.accident_history ? 'Yes' : 'No'}
-                                                    </span>
-                                                </div>
-                                                {selectedSubmission.service_history && (
-                                                    <div className="flex justify-between">
-                                                        <span className="text-white/60">Service History</span>
-                                                        <span className="text-white">{selectedSubmission.service_history}</span>
+                                        {/* Condition Info Visual Overhaul */}
+                                        <div className="p-4 bg-zinc-950 border border-zinc-800 rounded-xl space-y-4">
+                                            <h4 className="font-medium text-white flex items-center gap-2">
+                                                <AlertCircle className="h-5 w-5 text-red-400" />
+                                                Condition & Source Details
+                                            </h4>
+
+                                            {(() => {
+                                                const historyText = selectedSubmission.service_history || '';
+                                                const isParkAndSell = historyText.includes('Park & Sell');
+
+                                                // Parse data
+                                                const extractField = (label: string) => {
+                                                    const match = historyText.match(new RegExp(`${label}:\\s*(.+)`));
+                                                    return match ? match[1].trim() : null;
+                                                };
+
+                                                const leadSource = extractField('Lead Source') || 'Instant Valuation Form';
+                                                
+                                                // Standard sell fields
+                                                const overallCondition = extractField('Overall Condition');
+                                                const accidentDamage = extractField('Accident/Damage') || (selectedSubmission.accident_history ? 'Yes' : 'No reported accidents');
+                                                const modifications = extractField('Modifications');
+                                                
+                                                // Shared or Park & Sell fields
+                                                const expectedPrice = extractField('Expected Price');
+                                                const sellingReason = selectedSubmission.selling_reason || extractField('Reason for Selling');
+                                                const notesMatch = historyText.match(/Additional Notes:\s*([\s\S]+)/);
+                                                const additionalNotes = notesMatch ? notesMatch[1].trim() : null;
+
+                                                return (
+                                                    <div className="space-y-4 text-sm">
+                                                        <div className="flex flex-col gap-1 pb-3 border-b border-zinc-800">
+                                                            <span className="text-zinc-500 uppercase text-xs font-bold tracking-wider">Lead Source</span>
+                                                            <span className={`inline-flex items-center w-fit px-2.5 py-1 rounded-md text-xs font-bold ${isParkAndSell ? 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/20' : 'bg-orange-500/10 text-orange-400 border border-orange-500/20'}`}>
+                                                                {leadSource}
+                                                            </span>
+                                                        </div>
+
+                                                        {overallCondition && (
+                                                            <div className="flex justify-between items-center pb-2 border-b border-zinc-900">
+                                                                <span className="text-zinc-400">Condition Grade</span>
+                                                                <span className={`px-2 py-1 rounded text-xs font-bold ${overallCondition.includes('Excellent') ? 'bg-emerald-500/10 text-emerald-400' : overallCondition.includes('Good') ? 'bg-blue-500/10 text-blue-400' : 'bg-yellow-500/10 text-yellow-400'}`}>
+                                                                    {overallCondition}
+                                                                </span>
+                                                            </div>
+                                                        )}
+
+                                                        <div className="grid grid-cols-2 gap-4">
+                                                            <div>
+                                                                <span className="text-zinc-500 block text-xs mb-1">Accident History</span>
+                                                                <span className={`font-medium ${accidentDamage.toLowerCase().includes('yes') ? 'text-red-400' : 'text-zinc-300'}`}>{accidentDamage}</span>
+                                                            </div>
+                                                            {expectedPrice && (
+                                                                <div>
+                                                                    <span className="text-zinc-500 block text-xs mb-1">Expected Price</span>
+                                                                    <span className="font-bold text-emerald-400">{expectedPrice}</span>
+                                                                </div>
+                                                            )}
+                                                            {sellingReason && sellingReason !== 'PARK & SELL ENQUIRY' && (
+                                                                <div className="col-span-2">
+                                                                    <span className="text-zinc-500 block text-xs mb-1">Reason for Selling</span>
+                                                                    <span className="text-zinc-300">{sellingReason}</span>
+                                                                </div>
+                                                            )}
+                                                            {modifications && (
+                                                                <div className="col-span-2">
+                                                                    <span className="text-zinc-500 block text-xs mb-1">Modifications</span>
+                                                                    <span className="text-zinc-300 bg-zinc-900 p-2 rounded block border border-zinc-800">{modifications}</span>
+                                                                </div>
+                                                            )}
+                                                            {additionalNotes && (
+                                                                <div className="col-span-2">
+                                                                    <span className="text-zinc-500 block text-xs mb-1">Additional Notes</span>
+                                                                    <span className="text-zinc-400 bg-zinc-900 p-3 rounded block border border-zinc-800 italic">{additionalNotes}</span>
+                                                                </div>
+                                                            )}
+                                                        </div>
                                                     </div>
-                                                )}
-                                                {selectedSubmission.insurance_status && (
-                                                    <div className="flex justify-between">
-                                                        <span className="text-white/60">Insurance</span>
-                                                        <span className="text-white">{selectedSubmission.insurance_status}</span>
-                                                    </div>
-                                                )}
-                                                {selectedSubmission.selling_reason && (
-                                                    <div>
-                                                        <span className="text-white/60 block mb-1">Reason for Selling</span>
-                                                        <span className="text-white">{selectedSubmission.selling_reason}</span>
-                                                    </div>
-                                                )}
-                                            </div>
+                                                );
+                                            })()}
                                         </div>
                                     </div>
 

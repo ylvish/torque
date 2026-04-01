@@ -20,7 +20,7 @@ const WhatsappIcon = ({ className }: { className?: string }) => (
 const footerLinks = [
     { name: 'Home', href: '/' },
     { name: 'Inventory', href: '/browse' },
-    { name: 'Park & Sell', href: '/park-and-sell' },
+    { name: 'Sell Your Car', href: '/sell' },
     { name: 'Service Center', href: '/service' },
     { name: 'About Us', href: '/about' },
     { name: 'Contact', href: '/contact' },

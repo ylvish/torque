@@ -493,3 +493,48 @@ export async function deleteListing(listingId: string) {
     revalidatePath('/browse');
     return { success: true };
 }
+
+// ============================================
+// CONTACT MESSAGES
+// ============================================
+
+export async function createContactMessage(data: { name: string; email?: string; phone: string; interest: string; message?: string }) {
+    const supabase = await createClient();
+    const { error } = await supabase.from('contact_messages').insert({
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        interest: data.interest,
+        message: data.message,
+        status: 'NEW',
+    });
+
+    if (error) {
+        console.error('Error creating contact message:', error);
+        return { success: false, error: error.message };
+    }
+
+    revalidatePath('/dashboard/messages');
+    return { success: true };
+}
+
+export async function getContactMessages(status?: string) {
+    const supabase = await createClient();
+    let query = supabase.from('contact_messages').select('*').order('created_at', { ascending: false });
+    if (status) query = query.eq('status', status);
+    
+    const { data, error } = await query;
+    if (error) {
+        console.error('Error fetching contact messages:', error);
+        return [];
+    }
+    return data;
+}
+
+export async function updateContactMessageStatus(id: string, status: string) {
+    const supabase = await createClient();
+    const { error } = await supabase.from('contact_messages').update({ status }).eq('id', id);
+    if (error) return { success: false, error: error.message };
+    revalidatePath('/dashboard/messages');
+    return { success: true };
+}

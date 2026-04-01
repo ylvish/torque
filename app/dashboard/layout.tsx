@@ -17,7 +17,8 @@ import {
     X,
     Bell,
     ChevronDown,
-    UserCog
+    UserCog,
+    MessageSquare
 } from 'lucide-react';
 import { useAuth } from '@/lib/auth-context';
 
@@ -26,6 +27,7 @@ const baseLinks = [
     { name: 'Submissions', href: '/dashboard/submissions', icon: FileText },
     { name: 'Listings', href: '/dashboard/listings', icon: List },
     { name: 'Leads', href: '/dashboard/leads', icon: Users },
+    { name: 'Contact us Page', href: '/dashboard/messages', icon: MessageSquare },
 ];
 
 export default function DashboardLayout({

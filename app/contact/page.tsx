@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Phone, Mail, MapPin, Clock, Facebook, Instagram, Youtube, MessageCircle, Navigation, Send, Loader2 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { createContactMessage } from '@/lib/actions';
 
 const WhatsappIcon = ({ className }: { className?: string }) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
@@ -26,13 +27,25 @@ export default function ContactPage() {
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitted, setSubmitted] = useState(false);
+    const [error, setError] = useState('');
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setError('');
         setIsSubmitting(true);
-        await new Promise((res) => setTimeout(res, 1000));
-        setIsSubmitting(false);
-        setSubmitted(true);
+        
+        try {
+            const result = await createContactMessage(formData);
+            if (result.success) {
+                setSubmitted(true);
+            } else {
+                setError(result.error || 'Something went wrong');
+            }
+        } catch (err) {
+            setError('An unexpected error occurred');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -218,6 +231,16 @@ export default function ContactPage() {
                             </div>
                         ) : (
                             <form onSubmit={handleSubmit} className="space-y-4">
+                                {error && (
+                                    <div className="bg-red-500/10 border border-red-500/50 text-red-500 px-4 py-3 rounded-xl mb-4 text-sm font-medium">
+                                        {error}
+                                        {error.includes('relation "public.contact_messages" does not exist') && (
+                                            <div className="mt-2 text-xs opacity-80">
+                                                Please run the Supabase SQL migration for the contact_messages table to store responses.
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
                                 <div className="grid sm:grid-cols-2 gap-4">
                                     <div>
                                         <label className="block text-sm text-white/60 mb-1.5">Name</label>

@@ -61,6 +61,13 @@ export enum LeadStatus {
     LOST = 'LOST',
 }
 
+export enum MessageStatus {
+    NEW = 'NEW',
+    READ = 'READ',
+    REPLIED = 'REPLIED',
+    ARCHIVED = 'ARCHIVED'
+}
+
 export enum LeadInterest {
     TEST_DRIVE = 'TEST_DRIVE',
     PRICE_INFO = 'PRICE_INFO',
@@ -176,6 +183,19 @@ export interface Lead {
     // Staff
     assigned_to?: string;
 
+    created_at: string;
+    updated_at: string;
+}
+
+// Contact Message
+export interface ContactMessage {
+    id: string;
+    name: string;
+    email?: string;
+    phone: string;
+    interest: string;
+    message?: string;
+    status: MessageStatus;
     created_at: string;
     updated_at: string;
 }
