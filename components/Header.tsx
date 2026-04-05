@@ -9,11 +9,11 @@ import { useAuth } from '@/lib/auth-context';
 
 const navigation = [
     { name: 'Home', href: '/' },
-    { name: 'Inventory', href: '/browse' },
+    { name: 'Inventory', href: '/used-cars-chennai' },
     { name: 'Sell Your Car', href: '/sell' },
-    { name: 'Service Center', href: '/service' },
-    { name: 'About Us', href: '/about' },
-    { name: 'Contact', href: '/contact' },
+    { name: 'Service Center', href: '/car-service-inspection-chennai' },
+    { name: 'About Us', href: '/about-torque-chennai' },
+    { name: 'Contact', href: '/contact-torque-chennai' },
 ];
 
 export default function Header() {

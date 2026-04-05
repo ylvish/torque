@@ -24,11 +24,23 @@ CREATE POLICY "Anyone can insert contact messages" ON public.contact_messages
 -- Only employees/CEO can view and update
 CREATE POLICY "Staff can view messages" ON public.contact_messages
     FOR SELECT TO authenticated
-    USING ((EXISTS ( SELECT 1 FROM employee_roles WHERE ((employee_roles.user_id = auth.uid()) AND (employee_roles.role = ANY (ARRAY['EMPLOYEE'::text, 'CEO'::text]))))));
+    USING (
+        EXISTS (
+            SELECT 1 FROM profiles 
+            WHERE profiles.id = auth.uid() 
+            AND profiles.role IN ('EMPLOYEE', 'CEO')
+        )
+    );
 
 CREATE POLICY "Staff can update messages" ON public.contact_messages
     FOR UPDATE TO authenticated
-    USING ((EXISTS ( SELECT 1 FROM employee_roles WHERE ((employee_roles.user_id = auth.uid()) AND (employee_roles.role = ANY (ARRAY['EMPLOYEE'::text, 'CEO'::text]))))));
+    USING (
+        EXISTS (
+            SELECT 1 FROM profiles 
+            WHERE profiles.id = auth.uid() 
+            AND profiles.role IN ('EMPLOYEE', 'CEO')
+        )
+    );
 
 -- Trigger for updated_at
 CREATE TRIGGER handle_updated_at BEFORE UPDATE ON public.contact_messages

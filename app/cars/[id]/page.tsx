@@ -99,7 +99,7 @@ export default function CarDetailPage() {
                         The car you are looking for might have been sold or removed from our listings.
                     </p>
                     <Link
-                        href="/browse"
+                        href="/used-cars-chennai"
                         className="px-8 py-3 bg-red-500 text-black font-semibold rounded-full hover:bg-red-500 transition-colors"
                     >
                         Browse Other Cars
@@ -187,7 +187,7 @@ export default function CarDetailPage() {
                 <nav className="flex items-center gap-2 text-sm text-white/50">
                     <Link href="/" className="hover:text-white">Home</Link>
                     <span>/</span>
-                    <Link href="/browse" className="hover:text-white">Browse</Link>
+                    <Link href="/used-cars-chennai" className="hover:text-white">Browse</Link>
                     <span>/</span>
                     <span className="text-white">{listing.make} {listing.model}</span>
                 </nav>

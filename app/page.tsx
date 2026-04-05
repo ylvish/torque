@@ -203,7 +203,7 @@ export default function HomePage() {
               <p className="text-white/60">Hand-picked premium cars, verified and ready for you.</p>
             </div>
             <Link
-              href="/browse"
+              href="/used-cars-chennai"
               className="hidden md:flex items-center gap-2 text-red-400 hover:text-red-300 transition-colors"
             >
               View All <ArrowRight className="h-4 w-4" />
@@ -222,7 +222,7 @@ export default function HomePage() {
 
           <div className="mt-8 text-center md:hidden">
             <Link
-              href="/browse"
+              href="/used-cars-chennai"
               className="inline-flex items-center gap-2 px-6 py-3 text-red-400 border border-red-500/30 rounded-full hover:bg-red-500/10 transition-colors"
             >
               View All Cars <ArrowRight className="h-4 w-4" />

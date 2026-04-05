@@ -58,7 +58,7 @@ export default function SearchBar({ variant = 'hero' }: SearchBarProps) {
         if (priceRange.min > 0) params.set('minPrice', priceRange.min.toString());
         if (priceRange.max > 0) params.set('maxPrice', priceRange.max.toString());
 
-        router.push(`/browse?${params.toString()}`);
+        router.push(`/used-cars-chennai?${params.toString()}`);
     };
 
     const isHero = variant === 'hero';

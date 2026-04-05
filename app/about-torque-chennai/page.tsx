@@ -2,8 +2,17 @@ import { Metadata } from 'next';
 import { Award, ShieldCheck, HeartHandshake, Phone } from 'lucide-react';
 
 export const metadata: Metadata = {
-    title: 'About Us | The Torque',
-    description: 'Learn about The Torque, Chennai\'s trusted premium pre-owned luxury car destination since 2011.',
+    title: 'About Torque Cars Chennai | Used & Luxury Car Experts',
+    description: 'Learn how to buy used luxury cars in Chennai. Expert tips, inspection checklist, cost insights & best models to choose for smart buying.',
+    keywords: "how to buy a used luxury car in chennai, things to check before buying a used car in chennai, used car vs new car which is better chennai, best luxury cars to buy second hand in chennai, most reliable used luxury cars in chennai, luxury car depreciation value chennai, pre owned car buying guide chennai, red flags when buying used car chennai, how to negotiate used car price in chennai, top used luxury cars to buy in chennai".split(", "),
+    openGraph: {
+        title: "Used Luxury Cars Chennai | Expert Buying Guide",
+        description: "Discover expert tips to buy used luxury cars in Chennai. Compare models, check resale value & avoid common mistakes with our complete guide.",
+    },
+    twitter: {
+        title: "Used Luxury Car Buying Guide Chennai",
+        description: "Planning to buy a used luxury car in Chennai? Get expert tips, comparisons & smart buying advice to make the right choice.",
+    }
 };
 
 export default function AboutPage() {

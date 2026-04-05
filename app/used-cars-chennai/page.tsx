@@ -22,26 +22,26 @@ const sortOptions = [
     { value: 'mileage_asc', label: 'Mileage: Low to High' },
 ];
 
-export default function BrowsePage() {
+export default function BrowsePage({ initialMake }: { initialMake?: string }) {
     return (
         <Suspense fallback={
             <div className="min-h-screen pt-20 flex items-center justify-center bg-[#0a0a0a]">
                 <div className="w-8 h-8 rounded-full border-2 border-red-500 border-t-transparent animate-spin"></div>
             </div>
         }>
-            <BrowseContent />
+            <BrowseContent initialMake={initialMake} />
         </Suspense>
     );
 }
 
-function BrowseContent() {
+function BrowseContent({ initialMake }: { initialMake?: string }) {
     const searchParams = useSearchParams();
 
     const [listings, setListings] = useState<Listing[]>(initialListings);
     const [isLoading, setIsLoading] = useState(true);
     const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
     const [showFilters, setShowFilters] = useState(false);
-    const [selectedMake, setSelectedMake] = useState('All');
+    const [selectedMake, setSelectedMake] = useState(initialMake || 'All');
     const [selectedFuel, setSelectedFuel] = useState('All');
     const [selectedTransmission, setSelectedTransmission] = useState('All');
     const [sortBy, setSortBy] = useState('newest');

@@ -12,14 +12,18 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Torque - Premium Pre-Owned Cars in Chennai',
-  description: 'Find your dream car at Torque. Chennai\'s most trusted marketplace for verified pre-owned luxury vehicles.',
-  keywords: ["used cars", "pre-owned cars", "luxury cars", "verified cars", "car marketplace"],
+  title: 'Premium Used Cars in Chennai | Trusted Torque Cars Dealer',
+  description: 'Buy certified pre-owned cars in Chennai at Torque. Trusted showroom in Kilpauk offering quality used cars, best prices & easy exchange.',
+  keywords: "torque cars chennai, the torque chennai, torque pre owned cars chennai, torque used cars kilpauk chennai, best used car dealer chennai, trusted used car showroom chennai, certified pre owned cars chennai, second hand cars chennai, used cars showroom kilpauk, torque luxury cars reviews chennai".split(", "),
   openGraph: {
-    title: "Torque | Premium Pre-Owned Cars",
-    description: "India's most trusted premium pre-owned car marketplace.",
+    title: "Torque Cars Chennai | Certified Pre-Owned Cars",
+    description: "Explore premium used cars in Chennai at Torque. Trusted dealer in Kilpauk offering certified vehicles, best prices, and hassle-free buying.",
     type: "website",
   },
+  twitter: {
+    title: "Torque Cars Chennai | Best Used Car Dealer",
+    description: "Find trusted pre-owned cars in Chennai at Torque. Quality vehicles, best deals & smooth buying experience in Kilpauk.",
+  }
 };
 
 export default function RootLayout({

@@ -413,7 +413,7 @@ export async function publishListing(listingId: string) {
     }
 
     revalidatePath('/dashboard/listings');
-    revalidatePath('/browse');
+    revalidatePath('/used-cars-chennai');
     return { success: true };
 }
 
@@ -440,7 +440,7 @@ export async function createListing(data: Partial<Listing>) {
     }
 
     revalidatePath('/dashboard/listings');
-    revalidatePath('/browse');
+    revalidatePath('/used-cars-chennai');
     return { success: true, data: newListing };
 }
 
@@ -466,7 +466,7 @@ export async function updateListing(listingId: string, data: Partial<Listing>) {
 
     revalidatePath('/dashboard/listings');
     // Also revalidate the main browse page in case status changed
-    revalidatePath('/browse');
+    revalidatePath('/used-cars-chennai');
     revalidatePath(`/cars/${listingId}`);
     return { success: true, data: updatedData };
 }
@@ -490,7 +490,7 @@ export async function deleteListing(listingId: string) {
     }
 
     revalidatePath('/dashboard/listings');
-    revalidatePath('/browse');
+    revalidatePath('/used-cars-chennai');
     return { success: true };
 }
 

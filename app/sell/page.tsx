@@ -658,7 +658,7 @@ Additional Notes: ${additionalNotes || 'None'}`;
                             </p>
                         </div>
                         <div className="md:col-span-2 flex flex-col gap-4">
-                            <button onClick={() => router.push('/park-and-sell')} className="w-full py-4 bg-white text-red-600 font-bold rounded-full hover:bg-zinc-100 transition-colors shadow-xl text-center">
+                            <button onClick={() => router.push('/park-and-sell-car-chennai')} className="w-full py-4 bg-white text-red-600 font-bold rounded-full hover:bg-zinc-100 transition-colors shadow-xl text-center">
                                 Learn About Park & Sell
                             </button>
                             <a href="tel:+919940419999" className="w-full py-4 bg-black/20 text-white font-bold rounded-full hover:bg-black/30 border border-white/20 transition-colors text-center">

@@ -2,9 +2,17 @@ import { Metadata } from 'next';
 import { Phone, CheckCircle2, Wrench, Star } from 'lucide-react';
 
 export const metadata: Metadata = {
-    title: 'Car Service | The Torque Service Centre',
-    description:
-        'Professional car servicing at The Torque — expert care for premium luxury vehicles and everyday standard cars in Chennai.',
+    title: 'Car Service in Chennai | Multi-Brand & Luxury Car Care',
+    description: 'Get expert car service in Chennai. We offer multi-brand car repair, AC service, diagnostics, denting & painting, and luxury car care at affordable prices.',
+    keywords: "Car service in Chennai, luxury car service Chennai, car repair services Chennai, multi-brand car service center Chennai, car AC repair Chennai, car denting and painting services, car diagnostics service Chennai, preventive car maintenance services, car electrical repair services, car bodywork restoration Chennai".split(", "),
+    openGraph: {
+        title: "Car Service in Chennai | Multi-Brand & Luxury Car Care",
+        description: "Expert car service in Chennai including repair, AC service, diagnostics, denting & painting, and luxury car care. Book your service today!",
+    },
+    twitter: {
+        title: "Car Service in Chennai | Multi-Brand & Luxury Car Care",
+        description: "Professional car service in Chennai for all brands. Repair, AC service, diagnostics, denting & painting, and more.",
+    }
 };
 
 const SERVICE_PHONE = '+919003166499';
