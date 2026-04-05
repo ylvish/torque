@@ -8,7 +8,7 @@ import {
     CheckCircle2, AlertCircle, Loader2, ArrowRight, Star, Clock, FileKey, XCircle, Check
 } from 'lucide-react';
 import { FuelType, TransmissionType, SellerFormData } from '@/types';
-import { createSubmission } from '@/lib/actions';
+import { createParkAndSellEnquiry } from '@/lib/actions';
 
 export default function ParkAndSellPage() {
     const [focusedFaq, setFocusedFaq] = useState<number | null>(null);
@@ -33,23 +33,15 @@ export default function ParkAndSellPage() {
         setIsSubmitting(true);
 
         try {
-            // Simplified submission pointing to the same seller_submissions table
-            // but wrapped in a generic "service_history" note so staff knows it's a Park&Sell enquiry
-            const payload: Partial<SellerFormData> = {
+            const result = await createParkAndSellEnquiry({
                 seller_name: formData.seller_name,
                 seller_phone: formData.seller_phone,
                 make: formData.make,
-                model: formData.model, // E.g. "BMW X5 2020"
-                year: new Date().getFullYear(), // Fallback
-                fuel_type: FuelType.PETROL, // Fallback
-                transmission: TransmissionType.AUTOMATIC, // Fallback
-                mileage: parseInt(formData.mileage.replace(/\D/g, '') || '0', 10),
-                selling_reason: 'PARK & SELL ENQUIRY',
-                service_history: `Lead Source: Park & Sell Page Enquiry Form\nExpected Price: ${formData.expected_price}\nAdditional Notes: ${formData.additional_notes}`,
-                registration_city: 'Chennai',
-            };
-
-            const result = await createSubmission(payload as any);
+                model: formData.model,
+                mileage: formData.mileage,
+                expected_price: formData.expected_price,
+                additional_notes: formData.additional_notes
+            });
 
             if (result.success) {
                 setSubmitted(true);
@@ -62,6 +54,7 @@ export default function ParkAndSellPage() {
             setIsSubmitting(false);
         }
     };
+
 
     const scrollToForm = () => {
         document.getElementById('enquiry-form')?.scrollIntoView({ behavior: 'smooth' });

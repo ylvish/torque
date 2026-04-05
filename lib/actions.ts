@@ -538,3 +538,59 @@ export async function updateContactMessageStatus(id: string, status: string) {
     revalidatePath('/dashboard/messages');
     return { success: true };
 }
+
+// ============================================
+// PARK & SELL ENQUIRIES
+// ============================================
+
+export async function createParkAndSellEnquiry(data: { 
+    seller_name: string; 
+    seller_phone: string; 
+    make: string; 
+    model: string; 
+    mileage: string; 
+    expected_price?: string; 
+    additional_notes?: string; 
+}) {
+    const supabase = await createClient();
+    const { error } = await supabase.from('park_and_sell_enquiries').insert({
+        seller_name: data.seller_name,
+        seller_phone: data.seller_phone,
+        make: data.make,
+        model: data.model,
+        mileage: data.mileage,
+        expected_price: data.expected_price,
+        additional_notes: data.additional_notes,
+        status: 'NEW',
+    });
+
+    if (error) {
+        console.error('Error creating park and sell enquiry:', error);
+        return { success: false, error: error.message };
+    }
+
+    revalidatePath('/dashboard/park-and-sell');
+    return { success: true };
+}
+
+export async function getParkAndSellEnquiries(status?: string) {
+    const supabase = await createClient();
+    let query = supabase.from('park_and_sell_enquiries').select('*').order('created_at', { ascending: false });
+    if (status) query = query.eq('status', status);
+    
+    const { data, error } = await query;
+    if (error) {
+        console.error('Error fetching park and sell enquiries:', error);
+        return [];
+    }
+    return data;
+}
+
+export async function updateParkAndSellStatus(id: string, status: string) {
+    const supabase = await createClient();
+    const { error } = await supabase.from('park_and_sell_enquiries').update({ status }).eq('id', id);
+    if (error) return { success: false, error: error.message };
+    revalidatePath('/dashboard/park-and-sell');
+    return { success: true };
+}
+

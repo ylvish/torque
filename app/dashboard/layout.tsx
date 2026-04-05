@@ -28,6 +28,7 @@ const baseLinks = [
     { name: 'Listings', href: '/dashboard/listings', icon: List },
     { name: 'Leads', href: '/dashboard/leads', icon: Users },
     { name: 'Contact us Page', href: '/dashboard/messages', icon: MessageSquare },
+    { name: 'Park & Sell', href: '/dashboard/park-and-sell', icon: Car },
 ];
 
 export default function DashboardLayout({

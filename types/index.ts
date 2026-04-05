@@ -249,3 +249,26 @@ export interface StaffMember {
     role: 'CEO' | 'EMPLOYEE';
     phone?: string;
 }
+
+// Park & Sell Enquiry
+export enum ParkSellStatus {
+    NEW = 'NEW',
+    CONTACTED = 'CONTACTED',
+    INSPECTED = 'INSPECTED',
+    LISTED = 'LISTED',
+    REJECTED = 'REJECTED',
+}
+
+export interface ParkAndSellEnquiry {
+    id: string;
+    seller_name: string;
+    seller_phone: string;
+    make: string;
+    model: string;
+    mileage: string;
+    expected_price?: string;
+    additional_notes?: string;
+    status: ParkSellStatus;
+    created_at: string;
+    updated_at: string;
+}
