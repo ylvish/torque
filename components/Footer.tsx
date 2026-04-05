@@ -24,7 +24,7 @@ const footerLinks = [
     { name: 'Service Center', href: '/car-service-inspection-chennai' },
     { name: 'About Us', href: '/about-torque-chennai' },
     { name: 'Contact', href: '/contact-torque-chennai' },
-    { name: 'Blogs', href: '/blogs' },
+    { name: 'Blogs', href: 'https://cars.thetorque.in/' },
 ];
 
 const socialLinks = [
