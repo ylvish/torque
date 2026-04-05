@@ -11,6 +11,7 @@ const navigation = [
     { name: 'Home', href: '/' },
     { name: 'Inventory', href: '/used-cars-chennai' },
     { name: 'Sell Your Car', href: '/sell' },
+    { name: 'Park & Sell', href: '/park-and-sell-car-chennai' },
     { name: 'Service Center', href: '/car-service-inspection-chennai' },
     { name: 'About Us', href: '/about-torque-chennai' },
     { name: 'Contact', href: '/contact-torque-chennai' },
