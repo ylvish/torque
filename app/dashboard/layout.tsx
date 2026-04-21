@@ -17,7 +17,6 @@ import {
     X,
     Bell,
     ChevronDown,
-    UserCog,
     MessageSquare
 } from 'lucide-react';
 import { useAuth } from '@/lib/auth-context';
@@ -48,10 +47,7 @@ export default function DashboardLayout({
         role: profile?.role || 'Guest',
     };
 
-    const sidebarLinks = [
-        ...baseLinks,
-        ...(isCEO ? [{ name: 'Employees', href: '/dashboard/employees', icon: UserCog }] : [])
-    ];
+    const sidebarLinks = baseLinks;
 
     const handleSignOut = async () => {
         await signOut();
