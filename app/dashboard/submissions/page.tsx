@@ -347,6 +347,7 @@ export default function SubmissionsPage() {
                                                 fill
                                                 sizes="(max-width: 768px) 100vw, 80vw"
                                                 className="object-contain"
+                                                unoptimized
                                             />
                                             {selectedSubmission.photos.length > 1 && (
                                                 <>
@@ -390,6 +391,7 @@ export default function SubmissionsPage() {
                                                             fill
                                                             sizes="100px"
                                                             className="object-cover"
+                                                            unoptimized
                                                         />
                                                     </button>
                                                 ))}

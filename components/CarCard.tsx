@@ -59,6 +59,7 @@ export default function CarCard({ listing, index = 0 }: CarCardProps) {
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                             className="object-cover group-hover:scale-105 transition-transform duration-500"
                             priority={index < 4}
+                            unoptimized
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 

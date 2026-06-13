@@ -208,6 +208,7 @@ export default function CarDetailPage() {
                                     alt={`${listing.make} ${listing.model}`}
                                     fill
                                     className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                    unoptimized
                                 />
                                 <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                                     <span className="px-4 py-2 bg-black/50 backdrop-blur-sm rounded-full text-white text-sm">
@@ -232,7 +233,7 @@ export default function CarDetailPage() {
                                             className={`relative flex-shrink-0 w-20 h-14 rounded-lg overflow-hidden ${idx === currentImageIndex ? 'ring-2 ring-red-500' : 'opacity-60 hover:opacity-100'
                                                 }`}
                                         >
-                                            <Image src={img} alt="" fill className="object-cover" />
+                                            <Image src={img} alt="" fill className="object-cover" unoptimized />
                                         </button>
                                     ))}
                                 </div>
@@ -372,6 +373,7 @@ export default function CarDetailPage() {
                                 alt=""
                                 fill
                                 className="object-contain"
+                                unoptimized
                             />
                         </div>
 

@@ -377,6 +377,7 @@ export default function ListingsPage() {
                                             fill
                                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                                             className="object-cover"
+                                            unoptimized
                                         />
                                     ) : (
                                         <div className="w-full h-full bg-zinc-800 flex items-center justify-center">
@@ -492,6 +493,7 @@ export default function ListingsPage() {
                                                         fill
                                                         sizes="(max-width: 768px) 100vw, 80vw"
                                                         className="object-contain"
+                                                        unoptimized
                                                     />
                                                     {selectedListing.gallery_images.length > 1 && (
                                                         <>
@@ -608,6 +610,7 @@ export default function ListingsPage() {
                                                             fill
                                                             sizes="150px"
                                                             className="object-cover"
+                                                            unoptimized
                                                         />
                                                         <button
                                                             onClick={() => removeImage(index)}
