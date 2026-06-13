@@ -4,7 +4,6 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
 <url>
   <loc>https://www.thetorque.in/</loc>
@@ -17,9 +16,59 @@
   <priority>0.80</priority>
 </url>
 <url>
+  <loc>https://www.thetorque.in/park-and-sell-car-chennai</loc>
+  <lastmod>2026-06-13T00:00:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
   <loc>https://www.thetorque.in/sell</loc>
   <lastmod>2026-03-19T06:44:15+00:00</lastmod>
   <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.thetorque.in/used-jaguar-cars-chennai</loc>
+  <lastmod>2026-06-13T00:00:00+00:00</lastmod>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://www.thetorque.in/used-audi-cars-chennai</loc>
+  <lastmod>2026-06-13T00:00:00+00:00</lastmod>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://www.thetorque.in/used-volvo-cars-chennai</loc>
+  <lastmod>2026-06-13T00:00:00+00:00</lastmod>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://www.thetorque.in/used-bmw-cars-chennai</loc>
+  <lastmod>2026-06-13T00:00:00+00:00</lastmod>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://www.thetorque.in/used-luxury-sedan-chennai</loc>
+  <lastmod>2026-06-13T00:00:00+00:00</lastmod>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://www.thetorque.in/used-range-rover-chennai</loc>
+  <lastmod>2026-06-13T00:00:00+00:00</lastmod>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://www.thetorque.in/used-porsche-cars-chennai</loc>
+  <lastmod>2026-06-13T00:00:00+00:00</lastmod>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://www.thetorque.in/used-luxury-suv-chennai</loc>
+  <lastmod>2026-06-13T00:00:00+00:00</lastmod>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://www.thetorque.in/used-mercedes-cars-chennai</loc>
+  <lastmod>2026-06-13T00:00:00+00:00</lastmod>
+  <priority>0.70</priority>
 </url>
 <url>
   <loc>https://www.thetorque.in/car-service-inspection-chennai</loc>
@@ -33,11 +82,6 @@
 </url>
 <url>
   <loc>https://www.thetorque.in/contact-torque-chennai</loc>
-  <lastmod>2026-03-19T06:44:15+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.thetorque.in/blogs</loc>
   <lastmod>2026-03-19T06:44:15+00:00</lastmod>
   <priority>0.80</priority>
 </url>
